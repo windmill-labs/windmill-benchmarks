@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:14
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: prefect
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  prefect-server:
+    image: prefecthq/prefect:2-latest
+    command:
+      - prefect
+      - server
+      - start
+    ports:
+      - 4200:4200
+    depends_on:
+      postgres:
+        condition: service_started
+    volumes:
+      - ${PWD}/prefect:/root/.prefect
+      - ${PWD}/flows:/flows
+    environment:
+      PREFECT_API_DATABASE_CONNECTION_URL: postgresql+asyncpg://postgres:changeme@postgres:5432/prefect
+      PREFECT_LOGGING_SERVER_LEVEL: INFO
+      PREFECT_API_URL: http://localhost:4200/api
+
+volumes:
+  db_data: null
