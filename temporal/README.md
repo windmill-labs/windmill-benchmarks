@@ -3,18 +3,21 @@ Temporal
 
 Similar to Airflow, Temporal has a [dedicated repo](https://github.com/temporalio/docker-compose) for how to self host with Docker. We used their `docker-compose.yml` with no modification.
 
+Once started, you can login to temporal going to http://<HOSTNAME>:8080.
+
 Temporal plays the role of a pure orchestrator, i.e. it doesn't run the code of the tasks themselves. I.e. the code will be executed by the Python command you run to execute the flow. So, it's really important to run the folowing command on the EC2 instance, and not on your local laptop or anything else otherwise the execution performance will not be fair compared to the other orchestrators.
 
 So, to run a benchmark, copy one of `bench_10.py`/`bench_40.py` in the folder `flows/` to the EC2 instance, and then simply run them with:
 
 ```bash
+pip3 install temporalio
 python3 bench_10.py
 python3 bhench_40.py
 ```
 
 Each run will connect to the temporal server running in Docker, and execute the flow. Temporal server will play the role of the orchestrator but the local python will execute the tasks.
 
-To extract the results, we inspected the network requests quen loading the flow results. It contains a list of all events trigerred by the flow (Temporal thinks in terms of events, not tasks). We filtered only the `ActivityTaskScheduled`, `ActivityTaskStarted` and `ActivityTaskCompleted` using jq.
+To extract the results, Temporal has a button on the flow run page to download the events history in JSON. It contains a list of all events trigerred by the flow (Temporal thinks in terms of events, not tasks). We filtered only the `ActivityTaskScheduled`, `ActivityTaskStarted` and `ActivityTaskCompleted` using jq.
 
 ```json
 {

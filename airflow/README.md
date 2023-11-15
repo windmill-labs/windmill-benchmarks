@@ -1,7 +1,9 @@
 Airflow
 =======
 
-Airflow has a pretty good documentation on how to self host. They provide a docker compose [here](https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html). We used it with no modification. We tries another executor but then decided to use Celery as it seems to be the recommended one (and the default from the docker compose).
+Airflow has a pretty good documentation on how to self host. They provide a docker compose [here](https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html). We used it with no modification. As indicated in the docs, make sure to persist the user ID to the env variable before starting the docker compose (simply run `echo -e "AIRFLOW_UID=$(id -u)" > .env`). We tried another executor but then decided to use Celery as it seems to be the recommended one (and the default from the docker compose).
+
+Once started, you can login to airflow going to http://<HOSTNAME>:8080. Default credentials are airflow/airflow
 
 The folder `dags/` contains the 2 DAGs for the 2 benchmarks and will be mounted in the Airflow container, such that they should appear in the landing page of Airflow when it starts (you can filter by tag `benchmark`).
 
