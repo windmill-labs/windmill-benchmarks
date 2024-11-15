@@ -1,4 +1,4 @@
-Windmill VS Airflow, Prefect and Temporal
+Windmill VS Airflow, Prefect, Temporal and Kestra
 =========================================
 
 ### Benchmarks
@@ -17,13 +17,18 @@ def fibo(n: int):
 ```
 For the lightweight tasks we computed `fibo(10)` and for the long running tasks, we choose `fibo(33)`.
 
-We executed the benchmarks on an EC2 t2-medium instance, always using Docker compose to wpin up the orchestrator.
+We executed the benchmarks on an EC2 t2-medium instance, always using Docker compose to spin up the orchestrator.
 
 Retrieving the results and assembling them is a very manual tasks and differs by orchestrator.
 
 ### Howtos
 
 [Airflow](./airflow/README.md)
+
 [Prefect](./prefect/README.md)
+
 [Temporal](./temporal/README.md)
+
+[Kestra](./kestra/README.md)
+
 [Windmill](./windmill/README.md)
