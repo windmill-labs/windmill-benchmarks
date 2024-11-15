@@ -28,6 +28,7 @@ def calculate_times(tasks):
             "Task ID": task["id"],
             "Value": task.get("value", "N/A"),  # Default to "N/A" if 'value' key is missing
             "Created Time": created_time,
+            "Started Time": running_time,
             "Success Time": success_time,
             "Transition Time (s)": transition_time,
             "Assignment Time (s)": assignment_time,
@@ -76,7 +77,7 @@ if __name__ == "__main__":
     print(df)
 
     # Optional: Save to CSV or display in a more sophisticated way
-    # df.to_csv("output.csv", index=False)
+    df.to_csv("output.csv", index=False)
 
     # Calculate percentage breakdown
     avg_assignment = df["Assignment Time (s)"].mean()
