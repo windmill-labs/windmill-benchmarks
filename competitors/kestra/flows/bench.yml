@@ -1,0 +1,42 @@
+id: benchmark
+namespace: company.team
+inputs:
+ - id: n
+   type: INT
+ - id: iters
+   type: INT
+tasks:
+  - id: getIterations
+    type: io.kestra.plugin.scripts.python.Script
+    taskRunner:
+      type: io.kestra.plugin.scripts.runner.docker.Docker
+    containerImage: ghcr.io/kestra-io/pydata:latest
+    env:
+      iters: "{{ inputs.iters }}"
+    script: |
+      import os
+      from kestra import Kestra
+      iters = int(os.getenv("iters"))
+      iterations = list(range(0, iters))
+      Kestra.outputs({'iterations': iterations})
+
+  - id: processIterations
+    type: io.kestra.plugin.core.flow.ForEach
+    values: '{{ outputs.getIterations.vars.iterations }}'
+    concurrencyLimit: 1
+    tasks:
+      - id: python
+        type: io.kestra.plugin.scripts.python.Script
+        containerImage: python:slim
+        env:
+          N: "{{ inputs.n }}"
+        script: |
+          import os
+          def fibo(n: int):
+            if n <= 1:
+                return n
+            else:
+                return fibo(n - 1) + fibo(n - 2)
+
+          n = int(os.getenv("N"))
+          print(str(fibo(n)))
