@@ -132,4 +132,3 @@ Transition (%): 6.38%
 
 Total Running Time: 29.80 seconds
 ```
-NOTE: they do not report transition time
