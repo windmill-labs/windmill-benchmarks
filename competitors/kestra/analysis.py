@@ -2,15 +2,12 @@ import sys
 import requests
 import pandas as pd
 
-# Function to calculate times
 def calculate_times(tasks):
     task_data = []
-    prev_success_time = None  # To track the previous task's success time
+    prev_success_time = None
 
     for task in tasks:
-        # let's be generous and ignore the generation of the range
-        # which requires it's own python script unless you hard-code it
-        if task.get("taskId") != "python":
+        if not task.get("taskId") in ["python", "script"]:
             continue
 
         histories = task["state"]["histories"]
@@ -26,7 +23,7 @@ def calculate_times(tasks):
 
         task_data.append({
             "Task ID": task["id"],
-            "Value": task.get("value", "N/A"),  # Default to "N/A" if 'value' key is missing
+            "Value": task.get("value", "N/A"),
             "Created Time": created_time,
             "Started Time": running_time,
             "Success Time": success_time,
@@ -36,19 +33,17 @@ def calculate_times(tasks):
             "Total Time (s)": transition_time + assignment_time + execution_time,
         })
 
-        # Update prev_success_time for the next iteration
         prev_success_time = success_time
 
     return task_data
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python script.py <url>")
+        print("Usage: python analysis.py <url>")
         sys.exit(1)
 
     url = "http://localhost:8080/api/v1/executions/" + sys.argv[1]
 
-    # Fetch JSON data from URL
     try:
         response = requests.get(url)
         response.raise_for_status()

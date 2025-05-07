@@ -1,0 +1,26 @@
+id: benchmark_node
+namespace: company.team
+inputs:
+ - id: n
+   type: INT
+ - id: iters
+   type: INT
+tasks:
+  - id: processIterations
+    type: io.kestra.plugin.core.flow.ForEach
+    values: '{{ range(0, inputs.iters - 1) }}'
+    concurrencyLimit: 1
+    tasks:
+      - id: script
+        type: io.kestra.plugin.scripts.node.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+            function fibo(n) {
+              if (n <= 1) {
+                return n
+              } else {
+                return fibo(n-1) + fibo(n-2)
+              }
+            }
+            console.log(fibo({{ inputs.n }}))
