@@ -1,0 +1,218 @@
+{
+  "1": {
+    "duckdb:memory": {
+      "dur_median": 0.51,
+      "dur_min": 0.49,
+      "dur_max": 0.51,
+      "mem_median": 2.25,
+      "cold_dur": 0.537,
+      "n": 5
+    },
+    "duckdb:disk": {
+      "dur_median": 0.52,
+      "dur_min": 0.51,
+      "dur_max": 0.53,
+      "mem_median": 2.25,
+      "cold_dur": 0.531,
+      "n": 5
+    },
+    "polars:eager": {
+      "dur_median": 0.49,
+      "dur_min": 0.48,
+      "dur_max": 0.49,
+      "mem_median": 2.83,
+      "cold_dur": 0.576,
+      "n": 5
+    },
+    "polars:lazy": {
+      "dur_median": 0.48,
+      "dur_min": 0.48,
+      "dur_max": 0.49,
+      "mem_median": 1.64,
+      "cold_dur": 0.578,
+      "n": 5
+    },
+    "polars:streaming": {
+      "dur_median": 0.45,
+      "dur_min": 0.45,
+      "dur_max": 0.46,
+      "mem_median": 0.93,
+      "cold_dur": 0.538,
+      "n": 5
+    },
+    "spark:aqe": {
+      "dur_median": 9.02,
+      "dur_min": 8.88,
+      "dur_max": 9.24,
+      "mem_median": 7.12,
+      "cold_dur": 9.088,
+      "n": 5
+    },
+    "duckdb:spill": {
+      "dur_median": 0.52,
+      "dur_min": 0.51,
+      "dur_max": 0.52,
+      "mem_median": 2.27,
+      "cold_dur": 0.542,
+      "n": 5
+    },
+    "duckdb:direct": {
+      "dur_median": 0.32,
+      "dur_min": 0.31,
+      "dur_max": 0.32,
+      "mem_median": 0.5,
+      "cold_dur": 0.35,
+      "n": 5
+    }
+  },
+  "10": {
+    "duckdb:memory": {
+      "dur_median": 3.33,
+      "dur_min": 3.31,
+      "dur_max": 3.36,
+      "mem_median": 17.93,
+      "cold_dur": 3.468,
+      "n": 5
+    },
+    "duckdb:disk": {
+      "dur_median": 5.85,
+      "dur_min": 5.78,
+      "dur_max": 5.93,
+      "mem_median": 5.75,
+      "cold_dur": 5.914,
+      "n": 5
+    },
+    "polars:eager": {
+      "dur_median": 4.64,
+      "dur_min": 4.58,
+      "dur_max": 4.75,
+      "mem_median": 21.75,
+      "cold_dur": 4.89,
+      "n": 5
+    },
+    "polars:lazy": {
+      "dur_median": 4.99,
+      "dur_min": 4.97,
+      "dur_max": 5.05,
+      "mem_median": 8.67,
+      "cold_dur": 5.334,
+      "n": 5
+    },
+    "polars:streaming": {
+      "dur_median": 4.33,
+      "dur_min": 4.3,
+      "dur_max": 4.38,
+      "mem_median": 4.12,
+      "cold_dur": 4.56,
+      "n": 5
+    },
+    "spark:aqe": {
+      "dur_median": 23.96,
+      "dur_min": 22.33,
+      "dur_max": 24.25,
+      "mem_median": 21.5,
+      "cold_dur": 25.388,
+      "n": 5
+    },
+    "duckdb:spill": {
+      "dur_median": 4.25,
+      "dur_min": 4.14,
+      "dur_max": 4.59,
+      "mem_median": 12.93,
+      "cold_dur": 4.3,
+      "n": 5
+    },
+    "duckdb:direct": {
+      "dur_median": 1.97,
+      "dur_min": 1.96,
+      "dur_max": 1.99,
+      "mem_median": 2.44,
+      "cold_dur": 2.103,
+      "n": 5
+    }
+  },
+  "50": {
+    "duckdb:disk": {
+      "dur_median": 100.92,
+      "dur_min": 72.06,
+      "dur_max": 112.47,
+      "mem_median": 9.23,
+      "cold_dur": 45.177,
+      "n": 3
+    },
+    "polars:streaming": {
+      "dur_median": 27.28,
+      "dur_min": 26.69,
+      "dur_max": 27.29,
+      "mem_median": 19.04,
+      "cold_dur": 30.483,
+      "n": 3
+    },
+    "spark:aqe": {
+      "dur_median": 77.86,
+      "dur_min": 74.32,
+      "dur_max": 91.19,
+      "mem_median": 24.57,
+      "cold_dur": 75.985,
+      "n": 3
+    },
+    "duckdb:spill": {
+      "dur_median": 84.26,
+      "dur_min": 79.26,
+      "dur_max": 84.47,
+      "mem_median": 32.11,
+      "cold_dur": 77.783,
+      "n": 3
+    },
+    "duckdb:direct": {
+      "dur_median": 9.84,
+      "dur_min": 9.84,
+      "dur_max": 9.84,
+      "mem_median": 10.21,
+      "cold_dur": 10.389,
+      "n": 3
+    }
+  },
+  "100": {
+    "duckdb:disk": {
+      "dur_median": 247.0,
+      "dur_min": 231.4,
+      "dur_max": 262.59,
+      "mem_median": 13.35,
+      "cold_dur": 173.929,
+      "n": 2
+    },
+    "polars:streaming": {
+      "dur_median": 55.43,
+      "dur_min": 55.35,
+      "dur_max": 55.51,
+      "mem_median": 34.19,
+      "cold_dur": 57.297,
+      "n": 2
+    },
+    "spark:aqe": {
+      "dur_median": 149.12,
+      "dur_min": 147.81,
+      "dur_max": 150.44,
+      "mem_median": 29.32,
+      "cold_dur": 158.241,
+      "n": 2
+    },
+    "duckdb:spill": {
+      "dur_median": 232.87,
+      "dur_min": 222.77,
+      "dur_max": 242.96,
+      "mem_median": 24.9,
+      "cold_dur": 239.291,
+      "n": 2
+    },
+    "duckdb:direct": {
+      "dur_median": 20.27,
+      "dur_min": 20.23,
+      "dur_max": 20.32,
+      "mem_median": 19.78,
+      "cold_dur": 21.554,
+      "n": 2
+    }
+  }
+}

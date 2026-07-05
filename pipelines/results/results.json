@@ -1,0 +1,3855 @@
+{
+  "duckdb:memory:sf1": {
+    "engine": "duckdb",
+    "variant": "memory",
+    "sf": 1,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.66,
+        "compute_s": 0.537,
+        "peak_rss_gb": 2.21,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.01858353614807129,
+            "query_2": 0.009755373001098633,
+            "query_3": 0.009029388427734375,
+            "query_4": 0.005314350128173828,
+            "query_5": 0.01929640769958496,
+            "query_6": 0.010382413864135742,
+            "query_7": 0.008145570755004883,
+            "query_8": 0.01647162437438965,
+            "query_9": 0.022745370864868164
+          },
+          "load": 0.38936686515808105
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.58,
+        "compute_s": 0.509,
+        "peak_rss_gb": 2.246,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.01621246337890625,
+            "query_2": 0.010126829147338867,
+            "query_3": 0.009303569793701172,
+            "query_4": 0.0049784183502197266,
+            "query_5": 0.0192873477935791,
+            "query_6": 0.010156393051147461,
+            "query_7": 0.008837699890136719,
+            "query_8": 0.016709089279174805,
+            "query_9": 0.0226285457611084
+          },
+          "load": 0.36458539962768555
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.57,
+        "compute_s": 0.509,
+        "peak_rss_gb": 2.262,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.016431808471679688,
+            "query_2": 0.00955963134765625,
+            "query_3": 0.008834123611450195,
+            "query_4": 0.004856109619140625,
+            "query_5": 0.01942157745361328,
+            "query_6": 0.010381460189819336,
+            "query_7": 0.008162498474121094,
+            "query_8": 0.016667842864990234,
+            "query_9": 0.02221512794494629
+          },
+          "load": 0.3638601303100586
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.57,
+        "compute_s": 0.506,
+        "peak_rss_gb": 2.244,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.016913652420043945,
+            "query_2": 0.009096145629882812,
+            "query_3": 0.009360790252685547,
+            "query_4": 0.004942655563354492,
+            "query_5": 0.020194292068481445,
+            "query_6": 0.01071023941040039,
+            "query_7": 0.00784158706665039,
+            "query_8": 0.017480134963989258,
+            "query_9": 0.023943662643432617
+          },
+          "load": 0.35411691665649414
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.59,
+        "compute_s": 0.51,
+        "peak_rss_gb": 2.252,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.01730060577392578,
+            "query_2": 0.009753227233886719,
+            "query_3": 0.008597373962402344,
+            "query_4": 0.005506277084350586,
+            "query_5": 0.020472049713134766,
+            "query_6": 0.010656118392944336,
+            "query_7": 0.008099555969238281,
+            "query_8": 0.01602649688720703,
+            "query_9": 0.022812843322753906
+          },
+          "load": 0.36025214195251465
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.56,
+        "compute_s": 0.493,
+        "peak_rss_gb": 2.255,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.01633143424987793,
+            "query_2": 0.010333538055419922,
+            "query_3": 0.009000539779663086,
+            "query_4": 0.005013942718505859,
+            "query_5": 0.01891922950744629,
+            "query_6": 0.01018071174621582,
+            "query_7": 0.008877754211425781,
+            "query_8": 0.01644611358642578,
+            "query_9": 0.02249622344970703
+          },
+          "load": 0.348602294921875
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:disk:sf1": {
+    "engine": "duckdb",
+    "variant": "disk",
+    "sf": 1,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.66,
+        "compute_s": 0.531,
+        "peak_rss_gb": 2.247,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.018814802169799805,
+            "query_2": 0.010506629943847656,
+            "query_3": 0.009374856948852539,
+            "query_4": 0.0050809383392333984,
+            "query_5": 0.019064903259277344,
+            "query_6": 0.010434389114379883,
+            "query_7": 0.007708072662353516,
+            "query_8": 0.01692485809326172,
+            "query_9": 0.02171039581298828
+          },
+          "load": 0.38414907455444336
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.57,
+        "compute_s": 0.505,
+        "peak_rss_gb": 2.265,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.01634836196899414,
+            "query_2": 0.009297370910644531,
+            "query_3": 0.008651971817016602,
+            "query_4": 0.004981279373168945,
+            "query_5": 0.019443750381469727,
+            "query_6": 0.010007858276367188,
+            "query_7": 0.0075223445892333984,
+            "query_8": 0.015900850296020508,
+            "query_9": 0.021698713302612305
+          },
+          "load": 0.36445164680480957
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.58,
+        "compute_s": 0.517,
+        "peak_rss_gb": 2.249,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.016369342803955078,
+            "query_2": 0.00889897346496582,
+            "query_3": 0.009407281875610352,
+            "query_4": 0.005040168762207031,
+            "query_5": 0.0201413631439209,
+            "query_6": 0.010184764862060547,
+            "query_7": 0.00961756706237793,
+            "query_8": 0.01613140106201172,
+            "query_9": 0.02277398109436035
+          },
+          "load": 0.3710446357727051
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.58,
+        "compute_s": 0.508,
+        "peak_rss_gb": 2.251,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.016703367233276367,
+            "query_2": 0.009332656860351562,
+            "query_3": 0.009776592254638672,
+            "query_4": 0.004991292953491211,
+            "query_5": 0.01968693733215332,
+            "query_6": 0.01008915901184082,
+            "query_7": 0.0074307918548583984,
+            "query_8": 0.01642632484436035,
+            "query_9": 0.02294182777404785
+          },
+          "load": 0.36063432693481445
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.59,
+        "compute_s": 0.516,
+        "peak_rss_gb": 2.242,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.016562700271606445,
+            "query_2": 0.009887218475341797,
+            "query_3": 0.009327173233032227,
+            "query_4": 0.0050656795501708984,
+            "query_5": 0.019807100296020508,
+            "query_6": 0.010461568832397461,
+            "query_7": 0.00790095329284668,
+            "query_8": 0.016057491302490234,
+            "query_9": 0.022449254989624023
+          },
+          "load": 0.37070178985595703
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.59,
+        "compute_s": 0.525,
+        "peak_rss_gb": 2.249,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.016216516494750977,
+            "query_2": 0.008597135543823242,
+            "query_3": 0.008906841278076172,
+            "query_4": 0.0048980712890625,
+            "query_5": 0.020105361938476562,
+            "query_6": 0.011707067489624023,
+            "query_7": 0.008280754089355469,
+            "query_8": 0.021702289581298828,
+            "query_9": 0.021872520446777344
+          },
+          "load": 0.3731060028076172
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "polars:eager:sf1": {
+    "engine": "polars",
+    "variant": "eager",
+    "sf": 1,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.8,
+        "compute_s": 0.576,
+        "peak_rss_gb": 2.818,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.08103418350219727,
+            "query_2": 0.021030426025390625,
+            "query_3": 0.018314123153686523,
+            "query_4": 0.006177663803100586,
+            "query_5": 0.024413347244262695,
+            "query_6": 0.010020971298217773,
+            "query_7": 0.0055353641510009766,
+            "query_8": 0.008913040161132812,
+            "query_9": 0.11887001991271973
+          },
+          "load": 0.281369686126709
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.65,
+        "compute_s": 0.488,
+        "peak_rss_gb": 2.831,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.07236933708190918,
+            "query_2": 0.017787694931030273,
+            "query_3": 0.01703619956970215,
+            "query_4": 0.005770444869995117,
+            "query_5": 0.02358102798461914,
+            "query_6": 0.010501384735107422,
+            "query_7": 0.004806995391845703,
+            "query_8": 0.006522655487060547,
+            "query_9": 0.11509227752685547
+          },
+          "load": 0.21406984329223633
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.65,
+        "compute_s": 0.483,
+        "peak_rss_gb": 2.857,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.07473587989807129,
+            "query_2": 0.017420291900634766,
+            "query_3": 0.0165712833404541,
+            "query_4": 0.005640745162963867,
+            "query_5": 0.023886680603027344,
+            "query_6": 0.00859689712524414,
+            "query_7": 0.005151987075805664,
+            "query_8": 0.007330179214477539,
+            "query_9": 0.11903190612792969
+          },
+          "load": 0.20481252670288086
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.66,
+        "compute_s": 0.495,
+        "peak_rss_gb": 2.865,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.0755460262298584,
+            "query_2": 0.01706862449645996,
+            "query_3": 0.018730878829956055,
+            "query_4": 0.005784034729003906,
+            "query_5": 0.022594690322875977,
+            "query_6": 0.009164810180664062,
+            "query_7": 0.005095243453979492,
+            "query_8": 0.006911039352416992,
+            "query_9": 0.12213706970214844
+          },
+          "load": 0.21187257766723633
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.65,
+        "compute_s": 0.485,
+        "peak_rss_gb": 2.801,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.0736544132232666,
+            "query_2": 0.017778873443603516,
+            "query_3": 0.017417430877685547,
+            "query_4": 0.005565643310546875,
+            "query_5": 0.02314138412475586,
+            "query_6": 0.009317636489868164,
+            "query_7": 0.0050661563873291016,
+            "query_8": 0.007185935974121094,
+            "query_9": 0.11607646942138672
+          },
+          "load": 0.21009516716003418
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.65,
+        "compute_s": 0.492,
+        "peak_rss_gb": 2.805,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.0747065544128418,
+            "query_2": 0.018139362335205078,
+            "query_3": 0.017170429229736328,
+            "query_4": 0.005596160888671875,
+            "query_5": 0.023055076599121094,
+            "query_6": 0.008794546127319336,
+            "query_7": 0.004975318908691406,
+            "query_8": 0.00698399543762207,
+            "query_9": 0.12047648429870605
+          },
+          "load": 0.2122206687927246
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "polars:lazy:sf1": {
+    "engine": "polars",
+    "variant": "lazy",
+    "sf": 1,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.75,
+        "compute_s": 0.578,
+        "peak_rss_gb": 1.619,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.16451501846313477,
+            "query_2": 0.049158334732055664,
+            "query_3": 0.05051827430725098,
+            "query_4": 0.02154684066772461,
+            "query_5": 0.058968305587768555,
+            "query_6": 0.03761649131774902,
+            "query_7": 0.031682491302490234,
+            "query_8": 0.015476703643798828,
+            "query_9": 0.14507269859313965
+          },
+          "load": 0.0032215118408203125
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.59,
+        "compute_s": 0.478,
+        "peak_rss_gb": 1.671,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.09271574020385742,
+            "query_2": 0.043776512145996094,
+            "query_3": 0.04972720146179199,
+            "query_4": 0.022193431854248047,
+            "query_5": 0.05521559715270996,
+            "query_6": 0.034253835678100586,
+            "query_7": 0.030321836471557617,
+            "query_8": 0.01165008544921875,
+            "query_9": 0.13813066482543945
+          },
+          "load": 0.00018644332885742188
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.6,
+        "compute_s": 0.483,
+        "peak_rss_gb": 1.644,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.09320521354675293,
+            "query_2": 0.04440712928771973,
+            "query_3": 0.05009794235229492,
+            "query_4": 0.02176976203918457,
+            "query_5": 0.05579566955566406,
+            "query_6": 0.03570294380187988,
+            "query_7": 0.02760601043701172,
+            "query_8": 0.011786460876464844,
+            "query_9": 0.14249300956726074
+          },
+          "load": 0.000186920166015625
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.6,
+        "compute_s": 0.483,
+        "peak_rss_gb": 1.7,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.09295034408569336,
+            "query_2": 0.04239296913146973,
+            "query_3": 0.04895496368408203,
+            "query_4": 0.021810293197631836,
+            "query_5": 0.05454754829406738,
+            "query_6": 0.037017822265625,
+            "query_7": 0.029288053512573242,
+            "query_8": 0.011186361312866211,
+            "query_9": 0.14480924606323242
+          },
+          "load": 0.0001857280731201172
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.6,
+        "compute_s": 0.482,
+        "peak_rss_gb": 1.631,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.09140157699584961,
+            "query_2": 0.04061722755432129,
+            "query_3": 0.04900765419006348,
+            "query_4": 0.021780014038085938,
+            "query_5": 0.058202505111694336,
+            "query_6": 0.037612199783325195,
+            "query_7": 0.0296630859375,
+            "query_8": 0.012537479400634766,
+            "query_9": 0.14128375053405762
+          },
+          "load": 0.0002048015594482422
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.6,
+        "compute_s": 0.488,
+        "peak_rss_gb": 1.624,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.09335541725158691,
+            "query_2": 0.04200339317321777,
+            "query_3": 0.049477577209472656,
+            "query_4": 0.020119667053222656,
+            "query_5": 0.05423736572265625,
+            "query_6": 0.04215717315673828,
+            "query_7": 0.030133724212646484,
+            "query_8": 0.01264333724975586,
+            "query_9": 0.14375925064086914
+          },
+          "load": 0.00018858909606933594
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "polars:streaming:sf1": {
+    "engine": "polars",
+    "variant": "streaming",
+    "sf": 1,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.69,
+        "compute_s": 0.538,
+        "peak_rss_gb": 0.919,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.14937686920166016,
+            "query_2": 0.05215573310852051,
+            "query_3": 0.05421853065490723,
+            "query_4": 0.020627975463867188,
+            "query_5": 0.06610107421875,
+            "query_6": 0.03710007667541504,
+            "query_7": 0.030391216278076172,
+            "query_8": 0.019530057907104492,
+            "query_9": 0.10574674606323242
+          },
+          "load": 0.0031142234802246094
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.56,
+        "compute_s": 0.458,
+        "peak_rss_gb": 0.951,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.08074307441711426,
+            "query_2": 0.04687213897705078,
+            "query_3": 0.051862239837646484,
+            "query_4": 0.021821022033691406,
+            "query_5": 0.06294512748718262,
+            "query_6": 0.04296231269836426,
+            "query_7": 0.030903339385986328,
+            "query_8": 0.015750885009765625,
+            "query_9": 0.10344886779785156
+          },
+          "load": 0.0001976490020751953
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.54,
+        "compute_s": 0.452,
+        "peak_rss_gb": 0.918,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.08066368103027344,
+            "query_2": 0.044687509536743164,
+            "query_3": 0.052587270736694336,
+            "query_4": 0.02034735679626465,
+            "query_5": 0.06416606903076172,
+            "query_6": 0.037633657455444336,
+            "query_7": 0.03065800666809082,
+            "query_8": 0.01654815673828125,
+            "query_9": 0.10420680046081543
+          },
+          "load": 0.00019359588623046875
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.54,
+        "compute_s": 0.454,
+        "peak_rss_gb": 0.945,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.0778663158416748,
+            "query_2": 0.046004295349121094,
+            "query_3": 0.05287814140319824,
+            "query_4": 0.02112555503845215,
+            "query_5": 0.06466841697692871,
+            "query_6": 0.03936648368835449,
+            "query_7": 0.030799388885498047,
+            "query_8": 0.016423702239990234,
+            "query_9": 0.10441708564758301
+          },
+          "load": 0.00020003318786621094
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.55,
+        "compute_s": 0.45,
+        "peak_rss_gb": 0.925,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.08001494407653809,
+            "query_2": 0.04538702964782715,
+            "query_3": 0.054178476333618164,
+            "query_4": 0.02188253402709961,
+            "query_5": 0.06212425231933594,
+            "query_6": 0.03830671310424805,
+            "query_7": 0.02955460548400879,
+            "query_8": 0.016161203384399414,
+            "query_9": 0.10262250900268555
+          },
+          "load": 0.00019693374633789062
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.54,
+        "compute_s": 0.445,
+        "peak_rss_gb": 0.918,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "1",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.0798497200012207,
+            "query_2": 0.04435849189758301,
+            "query_3": 0.05115628242492676,
+            "query_4": 0.020644187927246094,
+            "query_5": 0.06267118453979492,
+            "query_6": 0.03717184066772461,
+            "query_7": 0.028525352478027344,
+            "query_8": 0.016312360763549805,
+            "query_9": 0.10358476638793945
+          },
+          "load": 0.00022554397583007812
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "spark:aqe:sf1": {
+    "engine": "spark",
+    "variant": "aqe",
+    "sf": 1,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 12.89,
+        "compute_s": 9.088,
+        "peak_rss_gb": 7.408,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "1",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 1.3761217594146729,
+            "query_2": 1.2201931476593018,
+            "query_3": 0.9860415458679199,
+            "query_4": 0.3952212333679199,
+            "query_5": 1.2869000434875488,
+            "query_6": 0.6320483684539795,
+            "query_7": 0.22388792037963867,
+            "query_8": 0.43649935722351074,
+            "query_9": 1.06290864944458
+          },
+          "load": 1.4681081771850586
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 12.43,
+        "compute_s": 9.001,
+        "peak_rss_gb": 7.349,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "1",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 1.335144281387329,
+            "query_2": 1.2265589237213135,
+            "query_3": 0.9643828868865967,
+            "query_4": 0.3866701126098633,
+            "query_5": 1.2648303508758545,
+            "query_6": 0.6366143226623535,
+            "query_7": 0.26634883880615234,
+            "query_8": 0.4348173141479492,
+            "query_9": 1.0772032737731934
+          },
+          "load": 1.408212661743164
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 12.33,
+        "compute_s": 9.024,
+        "peak_rss_gb": 5.082,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "1",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 1.3421528339385986,
+            "query_2": 1.1358482837677002,
+            "query_3": 0.952378511428833,
+            "query_4": 0.25261831283569336,
+            "query_5": 1.21327543258667,
+            "query_6": 0.6670911312103271,
+            "query_7": 0.4192330837249756,
+            "query_8": 0.47673487663269043,
+            "query_9": 1.1503629684448242
+          },
+          "load": 1.4146697521209717
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 12.41,
+        "compute_s": 9.177,
+        "peak_rss_gb": 7.123,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "1",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 1.3502299785614014,
+            "query_2": 1.2538321018218994,
+            "query_3": 1.0168671607971191,
+            "query_4": 0.2520022392272949,
+            "query_5": 1.2957170009613037,
+            "query_6": 0.6665525436401367,
+            "query_7": 0.41825079917907715,
+            "query_8": 0.5009078979492188,
+            "query_9": 1.0281379222869873
+          },
+          "load": 1.3943617343902588
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 12.51,
+        "compute_s": 8.884,
+        "peak_rss_gb": 8.206,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "1",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 1.3160758018493652,
+            "query_2": 1.2914972305297852,
+            "query_3": 1.0327730178833008,
+            "query_4": 0.3384213447570801,
+            "query_5": 1.1817965507507324,
+            "query_6": 0.5995340347290039,
+            "query_7": 0.26515698432922363,
+            "query_8": 0.4270131587982178,
+            "query_9": 1.0690114498138428
+          },
+          "load": 1.3628923892974854
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 12.34,
+        "compute_s": 9.242,
+        "peak_rss_gb": 4.836,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "1",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 1.3451941013336182,
+            "query_2": 1.3869545459747314,
+            "query_3": 0.996680736541748,
+            "query_4": 0.2338869571685791,
+            "query_5": 1.2725715637207031,
+            "query_6": 0.6768286228179932,
+            "query_7": 0.38818836212158203,
+            "query_8": 0.40447306632995605,
+            "query_9": 1.1582059860229492
+          },
+          "load": 1.3785452842712402
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:memory:sf10": {
+    "engine": "duckdb",
+    "variant": "memory",
+    "sf": 10,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 3.6,
+        "compute_s": 3.468,
+        "peak_rss_gb": 17.992,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.1259169578552246,
+            "query_2": 0.051474809646606445,
+            "query_3": 0.05082845687866211,
+            "query_4": 0.03826260566711426,
+            "query_5": 0.12349271774291992,
+            "query_6": 0.06324315071105957,
+            "query_7": 0.043672800064086914,
+            "query_8": 0.05459403991699219,
+            "query_9": 0.19182372093200684
+          },
+          "load": 2.368762254714966
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 3.39,
+        "compute_s": 3.319,
+        "peak_rss_gb": 17.979,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.12295079231262207,
+            "query_2": 0.053106069564819336,
+            "query_3": 0.05164003372192383,
+            "query_4": 0.03674578666687012,
+            "query_5": 0.1234886646270752,
+            "query_6": 0.06241035461425781,
+            "query_7": 0.040908098220825195,
+            "query_8": 0.05215740203857422,
+            "query_9": 0.17444157600402832
+          },
+          "load": 2.227229118347168
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 3.38,
+        "compute_s": 3.309,
+        "peak_rss_gb": 17.863,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.12212252616882324,
+            "query_2": 0.05084991455078125,
+            "query_3": 0.05318641662597656,
+            "query_4": 0.03624272346496582,
+            "query_5": 0.12174868583679199,
+            "query_6": 0.06441760063171387,
+            "query_7": 0.042473793029785156,
+            "query_8": 0.05467796325683594,
+            "query_9": 0.17376112937927246
+          },
+          "load": 2.21340012550354
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 3.41,
+        "compute_s": 3.334,
+        "peak_rss_gb": 17.906,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.12269115447998047,
+            "query_2": 0.049996376037597656,
+            "query_3": 0.05254793167114258,
+            "query_4": 0.03688931465148926,
+            "query_5": 0.12253808975219727,
+            "query_6": 0.06380367279052734,
+            "query_7": 0.04193830490112305,
+            "query_8": 0.055776119232177734,
+            "query_9": 0.1747126579284668
+          },
+          "load": 2.2452776432037354
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 3.43,
+        "compute_s": 3.358,
+        "peak_rss_gb": 17.931,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.12368369102478027,
+            "query_2": 0.05011248588562012,
+            "query_3": 0.05357789993286133,
+            "query_4": 0.037222862243652344,
+            "query_5": 0.1238713264465332,
+            "query_6": 0.06328892707824707,
+            "query_7": 0.042723655700683594,
+            "query_8": 0.05859780311584473,
+            "query_9": 0.1778552532196045
+          },
+          "load": 2.2518303394317627
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 3.4,
+        "compute_s": 3.328,
+        "peak_rss_gb": 17.931,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "memory",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.12190866470336914,
+            "query_2": 0.04852437973022461,
+            "query_3": 0.05213117599487305,
+            "query_4": 0.03645682334899902,
+            "query_5": 0.12128233909606934,
+            "query_6": 0.06499433517456055,
+            "query_7": 0.04079747200012207,
+            "query_8": 0.0560150146484375,
+            "query_9": 0.17513036727905273
+          },
+          "load": 2.238154172897339
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:disk:sf10": {
+    "engine": "duckdb",
+    "variant": "disk",
+    "sf": 10,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 6.04,
+        "compute_s": 5.914,
+        "peak_rss_gb": 5.578,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.3926100730895996,
+            "query_2": 0.3055689334869385,
+            "query_3": 0.21138238906860352,
+            "query_4": 0.1455070972442627,
+            "query_5": 0.4163496494293213,
+            "query_6": 0.22784972190856934,
+            "query_7": 0.20053625106811523,
+            "query_8": 0.11273002624511719,
+            "query_9": 0.38482117652893066
+          },
+          "load": 3.044708013534546
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.93,
+        "compute_s": 5.85,
+        "peak_rss_gb": 5.62,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.3892230987548828,
+            "query_2": 0.28720951080322266,
+            "query_3": 0.21583175659179688,
+            "query_4": 0.16506576538085938,
+            "query_5": 0.40157008171081543,
+            "query_6": 0.22852444648742676,
+            "query_7": 0.26233458518981934,
+            "query_8": 0.11654162406921387,
+            "query_9": 0.38504767417907715
+          },
+          "load": 2.938981533050537
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.85,
+        "compute_s": 5.775,
+        "peak_rss_gb": 5.75,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.38286709785461426,
+            "query_2": 0.2797353267669678,
+            "query_3": 0.23522520065307617,
+            "query_4": 0.12076830863952637,
+            "query_5": 0.3811814785003662,
+            "query_6": 0.22440218925476074,
+            "query_7": 0.2284102439880371,
+            "query_8": 0.1240386962890625,
+            "query_9": 0.3991553783416748
+          },
+          "load": 2.9394259452819824
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.95,
+        "compute_s": 5.876,
+        "peak_rss_gb": 5.701,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.3749368190765381,
+            "query_2": 0.3066871166229248,
+            "query_3": 0.2537708282470703,
+            "query_4": 0.16646075248718262,
+            "query_5": 0.42241978645324707,
+            "query_6": 0.22996258735656738,
+            "query_7": 0.2250232696533203,
+            "query_8": 0.13073444366455078,
+            "query_9": 0.3792991638183594
+          },
+          "load": 2.927273750305176
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 6.01,
+        "compute_s": 5.935,
+        "peak_rss_gb": 5.895,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.4187757968902588,
+            "query_2": 0.3133559226989746,
+            "query_3": 0.2643413543701172,
+            "query_4": 0.14863896369934082,
+            "query_5": 0.428098201751709,
+            "query_6": 0.2219407558441162,
+            "query_7": 0.21230363845825195,
+            "query_8": 0.1059117317199707,
+            "query_9": 0.41094255447387695
+          },
+          "load": 2.948800802230835
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.91,
+        "compute_s": 5.837,
+        "peak_rss_gb": 5.914,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.3981647491455078,
+            "query_2": 0.2621493339538574,
+            "query_3": 0.25707483291625977,
+            "query_4": 0.1657865047454834,
+            "query_5": 0.42401599884033203,
+            "query_6": 0.236907958984375,
+            "query_7": 0.23105192184448242,
+            "query_8": 0.1156461238861084,
+            "query_9": 0.3716118335723877
+          },
+          "load": 2.8986685276031494
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "polars:eager:sf10": {
+    "engine": "polars",
+    "variant": "eager",
+    "sf": 10,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.59,
+        "compute_s": 4.89,
+        "peak_rss_gb": 21.662,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.7815594673156738,
+            "query_2": 0.16314291954040527,
+            "query_3": 0.1811971664428711,
+            "query_4": 0.045697927474975586,
+            "query_5": 0.27748918533325195,
+            "query_6": 0.08184146881103516,
+            "query_7": 0.04421591758728027,
+            "query_8": 0.04802417755126953,
+            "query_9": 1.4355425834655762
+          },
+          "load": 1.8314530849456787
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.23,
+        "compute_s": 4.591,
+        "peak_rss_gb": 21.674,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.7659459114074707,
+            "query_2": 0.1595747470855713,
+            "query_3": 0.17854523658752441,
+            "query_4": 0.0446934700012207,
+            "query_5": 0.27765798568725586,
+            "query_6": 0.06383419036865234,
+            "query_7": 0.043471574783325195,
+            "query_8": 0.046251535415649414,
+            "query_9": 1.3768954277038574
+          },
+          "load": 1.6343069076538086
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.4,
+        "compute_s": 4.746,
+        "peak_rss_gb": 21.742,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.772662878036499,
+            "query_2": 0.16217899322509766,
+            "query_3": 0.1832749843597412,
+            "query_4": 0.04616713523864746,
+            "query_5": 0.2777516841888428,
+            "query_6": 0.07045269012451172,
+            "query_7": 0.04243898391723633,
+            "query_8": 0.04410266876220703,
+            "query_9": 1.51328706741333
+          },
+          "load": 1.633911371231079
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.29,
+        "compute_s": 4.637,
+        "peak_rss_gb": 21.751,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.7723784446716309,
+            "query_2": 0.1594240665435791,
+            "query_3": 0.1797487735748291,
+            "query_4": 0.04551076889038086,
+            "query_5": 0.2770259380340576,
+            "query_6": 0.07444620132446289,
+            "query_7": 0.0430142879486084,
+            "query_8": 0.04620933532714844,
+            "query_9": 1.394298791885376
+          },
+          "load": 1.6447196006774902
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.23,
+        "compute_s": 4.576,
+        "peak_rss_gb": 21.973,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.7735514640808105,
+            "query_2": 0.16042542457580566,
+            "query_3": 0.18084359169006348,
+            "query_4": 0.04544210433959961,
+            "query_5": 0.2793247699737549,
+            "query_6": 0.06490111351013184,
+            "query_7": 0.04389619827270508,
+            "query_8": 0.046396493911743164,
+            "query_9": 1.3585119247436523
+          },
+          "load": 1.6224164962768555
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.3,
+        "compute_s": 4.639,
+        "peak_rss_gb": 21.893,
+        "meta": {
+          "engine": "polars",
+          "variant": "eager",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.7771573066711426,
+            "query_2": 0.1607074737548828,
+            "query_3": 0.18279385566711426,
+            "query_4": 0.04647064208984375,
+            "query_5": 0.27507877349853516,
+            "query_6": 0.06734967231750488,
+            "query_7": 0.044391632080078125,
+            "query_8": 0.04791259765625,
+            "query_9": 1.4058339595794678
+          },
+          "load": 1.630995750427246
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "polars:lazy:sf10": {
+    "engine": "polars",
+    "variant": "lazy",
+    "sf": 10,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.75,
+        "compute_s": 5.334,
+        "peak_rss_gb": 8.883,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 1.046816349029541,
+            "query_2": 0.4406416416168213,
+            "query_3": 0.541813850402832,
+            "query_4": 0.23134088516235352,
+            "query_5": 0.56996750831604,
+            "query_6": 0.34064316749572754,
+            "query_7": 0.2805063724517822,
+            "query_8": 0.08194231986999512,
+            "query_9": 1.7970507144927979
+          },
+          "load": 0.0030579566955566406
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.4,
+        "compute_s": 5.054,
+        "peak_rss_gb": 8.667,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.8824610710144043,
+            "query_2": 0.40349650382995605,
+            "query_3": 0.5321309566497803,
+            "query_4": 0.2130720615386963,
+            "query_5": 0.566960334777832,
+            "query_6": 0.33171772956848145,
+            "query_7": 0.281813383102417,
+            "query_8": 0.0699303150177002,
+            "query_9": 1.7724738121032715
+          },
+          "load": 0.00018715858459472656
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.35,
+        "compute_s": 5.019,
+        "peak_rss_gb": 8.819,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.8886935710906982,
+            "query_2": 0.3991849422454834,
+            "query_3": 0.5331976413726807,
+            "query_4": 0.20871686935424805,
+            "query_5": 0.5482902526855469,
+            "query_6": 0.3358182907104492,
+            "query_7": 0.2753589153289795,
+            "query_8": 0.0706179141998291,
+            "query_9": 1.7587454319000244
+          },
+          "load": 0.000194549560546875
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.33,
+        "compute_s": 4.987,
+        "peak_rss_gb": 8.686,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.8728907108306885,
+            "query_2": 0.4041404724121094,
+            "query_3": 0.5349245071411133,
+            "query_4": 0.20900678634643555,
+            "query_5": 0.5549867153167725,
+            "query_6": 0.3317544460296631,
+            "query_7": 0.2773861885070801,
+            "query_8": 0.07379961013793945,
+            "query_9": 1.7279152870178223
+          },
+          "load": 0.000186920166015625
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.32,
+        "compute_s": 4.983,
+        "peak_rss_gb": 8.661,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.8698928356170654,
+            "query_2": 0.40241408348083496,
+            "query_3": 0.5264089107513428,
+            "query_4": 0.21228623390197754,
+            "query_5": 0.5524144172668457,
+            "query_6": 0.32280421257019043,
+            "query_7": 0.27684926986694336,
+            "query_8": 0.06941699981689453,
+            "query_9": 1.7501764297485352
+          },
+          "load": 0.00019073486328125
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 5.31,
+        "compute_s": 4.972,
+        "peak_rss_gb": 8.647,
+        "meta": {
+          "engine": "polars",
+          "variant": "lazy",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.8855142593383789,
+            "query_2": 0.3987398147583008,
+            "query_3": 0.5231964588165283,
+            "query_4": 0.21382904052734375,
+            "query_5": 0.5599980354309082,
+            "query_6": 0.32722997665405273,
+            "query_7": 0.2815380096435547,
+            "query_8": 0.07105493545532227,
+            "query_9": 1.710148811340332
+          },
+          "load": 0.0001971721649169922
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "polars:streaming:sf10": {
+    "engine": "polars",
+    "variant": "streaming",
+    "sf": 10,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.83,
+        "compute_s": 4.56,
+        "peak_rss_gb": 4.111,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.8167397975921631,
+            "query_2": 0.4807755947113037,
+            "query_3": 0.5466861724853516,
+            "query_4": 0.20535564422607422,
+            "query_5": 0.4418833255767822,
+            "query_6": 0.35028886795043945,
+            "query_7": 0.27260446548461914,
+            "query_8": 0.11195206642150879,
+            "query_9": 1.3301467895507812
+          },
+          "load": 0.003225088119506836
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.52,
+        "compute_s": 4.319,
+        "peak_rss_gb": 4.12,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.6538100242614746,
+            "query_2": 0.4318981170654297,
+            "query_3": 0.5213973522186279,
+            "query_4": 0.19889116287231445,
+            "query_5": 0.440990686416626,
+            "query_6": 0.3326702117919922,
+            "query_7": 0.26554274559020996,
+            "query_8": 0.09637689590454102,
+            "query_9": 1.3769254684448242
+          },
+          "load": 0.00018596649169921875
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.58,
+        "compute_s": 4.383,
+        "peak_rss_gb": 4.084,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.655475378036499,
+            "query_2": 0.4342479705810547,
+            "query_3": 0.5264072418212891,
+            "query_4": 0.2032768726348877,
+            "query_5": 0.45369553565979004,
+            "query_6": 0.3574233055114746,
+            "query_7": 0.2827155590057373,
+            "query_8": 0.10101699829101562,
+            "query_9": 1.3683922290802002
+          },
+          "load": 0.00018644332885742188
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.53,
+        "compute_s": 4.336,
+        "peak_rss_gb": 4.14,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.6570589542388916,
+            "query_2": 0.45223236083984375,
+            "query_3": 0.5233874320983887,
+            "query_4": 0.19973206520080566,
+            "query_5": 0.43126678466796875,
+            "query_6": 0.34100866317749023,
+            "query_7": 0.2691664695739746,
+            "query_8": 0.09481549263000488,
+            "query_9": 1.366647481918335
+          },
+          "load": 0.0001983642578125
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.52,
+        "compute_s": 4.326,
+        "peak_rss_gb": 4.111,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.6622793674468994,
+            "query_2": 0.43381190299987793,
+            "query_3": 0.5233650207519531,
+            "query_4": 0.2049543857574463,
+            "query_5": 0.43453431129455566,
+            "query_6": 0.3483693599700928,
+            "query_7": 0.27207469940185547,
+            "query_8": 0.0976705551147461,
+            "query_9": 1.348464012145996
+          },
+          "load": 0.0001895427703857422
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.5,
+        "compute_s": 4.299,
+        "peak_rss_gb": 4.223,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "10",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 0.6644508838653564,
+            "query_2": 0.4368467330932617,
+            "query_3": 0.519683837890625,
+            "query_4": 0.20276880264282227,
+            "query_5": 0.42922449111938477,
+            "query_6": 0.3296511173248291,
+            "query_7": 0.2644195556640625,
+            "query_8": 0.09370303153991699,
+            "query_9": 1.3578338623046875
+          },
+          "load": 0.000202178955078125
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "spark:aqe:sf10": {
+    "engine": "spark",
+    "variant": "aqe",
+    "sf": 10,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 29.78,
+        "compute_s": 25.388,
+        "peak_rss_gb": 18.39,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "10",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 2.31906795501709,
+            "query_2": 4.732768297195435,
+            "query_3": 5.310842514038086,
+            "query_4": 0.7165117263793945,
+            "query_5": 2.960132360458374,
+            "query_6": 1.7039740085601807,
+            "query_7": 0.993330717086792,
+            "query_8": 1.144526481628418,
+            "query_9": 4.030259370803833
+          },
+          "load": 1.4765121936798096
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 27.69,
+        "compute_s": 24.253,
+        "peak_rss_gb": 21.941,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "10",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 2.3704497814178467,
+            "query_2": 4.690831422805786,
+            "query_3": 4.05366063117981,
+            "query_4": 0.691650390625,
+            "query_5": 2.9855620861053467,
+            "query_6": 1.5783264636993408,
+            "query_7": 1.0057392120361328,
+            "query_8": 1.1746561527252197,
+            "query_9": 4.292589902877808
+          },
+          "load": 1.40987229347229
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 27.3,
+        "compute_s": 23.711,
+        "peak_rss_gb": 21.499,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "10",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 2.1707603931427,
+            "query_2": 4.886802673339844,
+            "query_3": 4.278312921524048,
+            "query_4": 0.6952955722808838,
+            "query_5": 2.904972553253174,
+            "query_6": 1.554353952407837,
+            "query_7": 0.8625495433807373,
+            "query_8": 0.9536788463592529,
+            "query_9": 4.0294084548950195
+          },
+          "load": 1.375159740447998
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 26.37,
+        "compute_s": 22.326,
+        "peak_rss_gb": 22.766,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "10",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 2.1800460815429688,
+            "query_2": 3.5838754177093506,
+            "query_3": 3.988854169845581,
+            "query_4": 0.7389566898345947,
+            "query_5": 2.8881943225860596,
+            "query_6": 1.6300132274627686,
+            "query_7": 0.9135048389434814,
+            "query_8": 0.9933013916015625,
+            "query_9": 4.037641286849976
+          },
+          "load": 1.3716583251953125
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 27.88,
+        "compute_s": 24.09,
+        "peak_rss_gb": 18.982,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "10",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 2.227574110031128,
+            "query_2": 4.016484975814819,
+            "query_3": 5.537548542022705,
+            "query_4": 0.6795732975006104,
+            "query_5": 2.9078407287597656,
+            "query_6": 1.55411958694458,
+            "query_7": 0.9019479751586914,
+            "query_8": 0.9316182136535645,
+            "query_9": 3.9523704051971436
+          },
+          "load": 1.3810927867889404
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 27.71,
+        "compute_s": 23.957,
+        "peak_rss_gb": 18.752,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "10",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 2.077284336090088,
+            "query_2": 4.188789129257202,
+            "query_3": 4.4932801723480225,
+            "query_4": 0.6851441860198975,
+            "query_5": 3.1852710247039795,
+            "query_6": 1.6000783443450928,
+            "query_7": 0.988105297088623,
+            "query_8": 1.0581755638122559,
+            "query_9": 4.2707719802856445
+          },
+          "load": 1.4095816612243652
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:memory:sf50": {
+    "engine": "duckdb",
+    "variant": "memory",
+    "sf": 50,
+    "runs": [
+      {
+        "cold": true,
+        "ok": false,
+        "timed_out": false,
+        "wall_s": 6.92,
+        "compute_s": null,
+        "peak_rss_gb": 47.116,
+        "meta": {},
+        "error": "Command terminated by signal 9\n\tCommand being timed: \"/home/rfiszel/tpch-bench/.venv/bin/python /home/rfiszel/tpch-bench/pipelines/duckdb/tpc_h.py\"\n\tUser time (seconds): 97.32\n\tSystem time (seconds): 26.42\n\tPercent of CPU this job got: 1790%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 0:06.91\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 49405164\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 427\n\tMinor (reclaiming a frame) page faults: 12535404\n\tVoluntary context switches: 20782\n\tInvoluntary context switches: 49709\n\tSwaps: 0\n\tFile system inputs: 275808\n\tFile system outputs: 0\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 0\n"
+      }
+    ],
+    "done": true
+  },
+  "duckdb:disk:sf50": {
+    "engine": "duckdb",
+    "variant": "disk",
+    "sf": 50,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 45.31,
+        "compute_s": 45.177,
+        "peak_rss_gb": 9.35,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 4.952977895736694,
+            "query_2": 3.0518176555633545,
+            "query_3": 2.059703826904297,
+            "query_4": 1.5220341682434082,
+            "query_5": 3.392486572265625,
+            "query_6": 3.6672310829162598,
+            "query_7": 3.760280132293701,
+            "query_8": 0.7192838191986084,
+            "query_9": 4.181608438491821
+          },
+          "load": 15.636861801147461
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 72.15,
+        "compute_s": 72.057,
+        "peak_rss_gb": 9.374,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 9.147958517074585,
+            "query_2": 4.110672235488892,
+            "query_3": 4.325855255126953,
+            "query_4": 2.359126091003418,
+            "query_5": 6.598649024963379,
+            "query_6": 6.261974811553955,
+            "query_7": 5.532992601394653,
+            "query_8": 0.8154246807098389,
+            "query_9": 6.051781177520752
+          },
+          "load": 24.406697273254395
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 112.58,
+        "compute_s": 112.468,
+        "peak_rss_gb": 9.212,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 11.117568731307983,
+            "query_2": 7.767929792404175,
+            "query_3": 5.451477766036987,
+            "query_4": 4.399604797363281,
+            "query_5": 10.318388938903809,
+            "query_6": 9.75655198097229,
+            "query_7": 9.483403205871582,
+            "query_8": 1.7806470394134521,
+            "query_9": 13.956281661987305
+          },
+          "load": 35.22395443916321
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 101.06,
+        "compute_s": 100.919,
+        "peak_rss_gb": 9.229,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 8.760156154632568,
+            "query_2": 6.416750192642212,
+            "query_3": 4.175613641738892,
+            "query_4": 3.7553977966308594,
+            "query_5": 9.453049182891846,
+            "query_6": 7.594357967376709,
+            "query_7": 7.38237452507019,
+            "query_8": 1.3311984539031982,
+            "query_9": 8.140507221221924
+          },
+          "load": 41.50174570083618
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "polars:eager:sf50": {
+    "engine": "polars",
+    "variant": "eager",
+    "sf": 50,
+    "runs": [
+      {
+        "cold": true,
+        "ok": false,
+        "timed_out": false,
+        "wall_s": 6.82,
+        "compute_s": null,
+        "peak_rss_gb": 46.985,
+        "meta": {},
+        "error": "Command terminated by signal 9\n\tCommand being timed: \"/home/rfiszel/tpch-bench/.venv/bin/python /home/rfiszel/tpch-bench/pipelines/polars/tpc_h.py\"\n\tUser time (seconds): 54.14\n\tSystem time (seconds): 44.77\n\tPercent of CPU this job got: 1452%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 0:06.81\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 49267860\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 1459\n\tMinor (reclaiming a frame) page faults: 13310617\n\tVoluntary context switches: 32218\n\tInvoluntary context switches: 41365\n\tSwaps: 0\n\tFile system inputs: 622216\n\tFile system outputs: 0\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 0\n"
+      }
+    ],
+    "done": true
+  },
+  "polars:streaming:sf50": {
+    "engine": "polars",
+    "variant": "streaming",
+    "sf": 50,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 31.01,
+        "compute_s": 30.483,
+        "peak_rss_gb": 19.065,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "50",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 3.905583620071411,
+            "query_2": 3.561828136444092,
+            "query_3": 5.761444807052612,
+            "query_4": 1.093705177307129,
+            "query_5": 2.52215838432312,
+            "query_6": 1.82533597946167,
+            "query_7": 1.4519271850585938,
+            "query_8": 0.5881812572479248,
+            "query_9": 9.769452095031738
+          },
+          "load": 0.0030879974365234375
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 27.12,
+        "compute_s": 26.691,
+        "peak_rss_gb": 19.036,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "50",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 3.4188663959503174,
+            "query_2": 3.251267194747925,
+            "query_3": 4.942688465118408,
+            "query_4": 1.0901203155517578,
+            "query_5": 2.3673534393310547,
+            "query_6": 1.6756513118743896,
+            "query_7": 1.3052661418914795,
+            "query_8": 0.47194766998291016,
+            "query_9": 8.167993307113647
+          },
+          "load": 0.00021529197692871094
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 27.74,
+        "compute_s": 27.294,
+        "peak_rss_gb": 19.643,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "50",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 3.3230981826782227,
+            "query_2": 3.257107973098755,
+            "query_3": 4.968081951141357,
+            "query_4": 1.074310064315796,
+            "query_5": 2.3304967880249023,
+            "query_6": 1.669935941696167,
+            "query_7": 1.3054907321929932,
+            "query_8": 0.47771525382995605,
+            "query_9": 8.887398958206177
+          },
+          "load": 0.00021600723266601562
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 27.85,
+        "compute_s": 27.283,
+        "peak_rss_gb": 18.733,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "50",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 3.412719488143921,
+            "query_2": 3.2901008129119873,
+            "query_3": 4.898240089416504,
+            "query_4": 1.0871212482452393,
+            "query_5": 2.347933053970337,
+            "query_6": 1.7138912677764893,
+            "query_7": 1.2954683303833008,
+            "query_8": 0.49602556228637695,
+            "query_9": 8.741337060928345
+          },
+          "load": 0.0002086162567138672
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:memory:sf100": {
+    "engine": "duckdb",
+    "variant": "memory",
+    "sf": 100,
+    "runs": [
+      {
+        "cold": true,
+        "ok": false,
+        "timed_out": false,
+        "wall_s": 5.7,
+        "compute_s": null,
+        "peak_rss_gb": 34.859,
+        "meta": {},
+        "error": "Command terminated by signal 9\n\tCommand being timed: \"/home/rfiszel/tpch-bench/.venv/bin/python /home/rfiszel/tpch-bench/pipelines/duckdb/tpc_h.py\"\n\tUser time (seconds): 77.37\n\tSystem time (seconds): 20.95\n\tPercent of CPU this job got: 1726%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 0:05.69\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 36552816\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 218\n\tMinor (reclaiming a frame) page faults: 9282328\n\tVoluntary context switches: 17563\n\tInvoluntary context switches: 33795\n\tSwaps: 0\n\tFile system inputs: 159688\n\tFile system outputs: 0\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 0\n"
+      }
+    ],
+    "done": true
+  },
+  "duckdb:disk:sf100": {
+    "engine": "duckdb",
+    "variant": "disk",
+    "sf": 100,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 174.06,
+        "compute_s": 173.929,
+        "peak_rss_gb": 13.406,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "100",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 16.340166807174683,
+            "query_2": 10.020884990692139,
+            "query_3": 8.231602191925049,
+            "query_4": 7.304473638534546,
+            "query_5": 15.583952903747559,
+            "query_6": 14.651416540145874,
+            "query_7": 11.188725471496582,
+            "query_8": 1.3902368545532227,
+            "query_9": 18.472954273223877
+          },
+          "load": 67.09819412231445
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 231.5,
+        "compute_s": 231.401,
+        "peak_rss_gb": 13.334,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "100",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 19.076520442962646,
+            "query_2": 14.457619428634644,
+            "query_3": 12.66381049156189,
+            "query_4": 12.674153566360474,
+            "query_5": 23.225754499435425,
+            "query_6": 20.674522399902344,
+            "query_7": 19.977462768554688,
+            "query_8": 2.1153290271759033,
+            "query_9": 32.7900972366333
+          },
+          "load": 70.04416036605835
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 262.69,
+        "compute_s": 262.591,
+        "peak_rss_gb": 13.369,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "disk",
+          "sf": "100",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 23.630561113357544,
+            "query_2": 23.458090782165527,
+            "query_3": 16.460909128189087,
+            "query_4": 14.554663181304932,
+            "query_5": 27.232127904891968,
+            "query_6": 17.3545982837677,
+            "query_7": 18.33184790611267,
+            "query_8": 1.9232721328735352,
+            "query_9": 28.35004949569702
+          },
+          "load": 87.8988356590271
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "polars:eager:sf100": {
+    "engine": "polars",
+    "variant": "eager",
+    "sf": 100,
+    "runs": [
+      {
+        "cold": true,
+        "ok": false,
+        "timed_out": false,
+        "wall_s": 7.89,
+        "compute_s": null,
+        "peak_rss_gb": 46.452,
+        "meta": {},
+        "error": "Command terminated by signal 9\n\tCommand being timed: \"/home/rfiszel/tpch-bench/.venv/bin/python /home/rfiszel/tpch-bench/pipelines/polars/tpc_h.py\"\n\tUser time (seconds): 61.70\n\tSystem time (seconds): 51.45\n\tPercent of CPU this job got: 1434%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 0:07.88\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 48708164\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 3506\n\tMinor (reclaiming a frame) page faults: 13296572\n\tVoluntary context switches: 38181\n\tInvoluntary context switches: 55459\n\tSwaps: 0\n\tFile system inputs: 1581128\n\tFile system outputs: 0\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 0\n"
+      }
+    ],
+    "done": true
+  },
+  "polars:lazy:sf100": {
+    "engine": "polars",
+    "variant": "lazy",
+    "sf": 100,
+    "runs": [
+      {
+        "cold": true,
+        "ok": false,
+        "timed_out": false,
+        "wall_s": 5.92,
+        "compute_s": null,
+        "peak_rss_gb": 42.156,
+        "meta": {},
+        "error": "Command terminated by signal 9\n\tCommand being timed: \"/home/rfiszel/tpch-bench/.venv/bin/python /home/rfiszel/tpch-bench/pipelines/polars/tpc_h.py\"\n\tUser time (seconds): 35.83\n\tSystem time (seconds): 43.79\n\tPercent of CPU this job got: 1344%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 0:05.92\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 44204208\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 270\n\tMinor (reclaiming a frame) page faults: 11720532\n\tVoluntary context switches: 25692\n\tInvoluntary context switches: 36236\n\tSwaps: 0\n\tFile system inputs: 178248\n\tFile system outputs: 0\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 0\n"
+      }
+    ],
+    "done": true
+  },
+  "polars:streaming:sf100": {
+    "engine": "polars",
+    "variant": "streaming",
+    "sf": 100,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 57.94,
+        "compute_s": 57.297,
+        "peak_rss_gb": 34.497,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "100",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 7.6927995681762695,
+            "query_2": 6.821030139923096,
+            "query_3": 10.370829105377197,
+            "query_4": 2.752203941345215,
+            "query_5": 5.228703498840332,
+            "query_6": 3.8804690837860107,
+            "query_7": 2.908355712890625,
+            "query_8": 1.1521148681640625,
+            "query_9": 16.487321853637695
+          },
+          "load": 0.0028982162475585938
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 56.12,
+        "compute_s": 55.349,
+        "peak_rss_gb": 34.489,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "100",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 6.7211220264434814,
+            "query_2": 6.440458297729492,
+            "query_3": 10.228293180465698,
+            "query_4": 2.6488492488861084,
+            "query_5": 5.379821538925171,
+            "query_6": 3.8617002964019775,
+            "query_7": 2.685694456100464,
+            "query_8": 1.0868613719940186,
+            "query_9": 16.296137809753418
+          },
+          "load": 0.0002033710479736328
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 56.34,
+        "compute_s": 55.512,
+        "peak_rss_gb": 33.887,
+        "meta": {
+          "engine": "polars",
+          "variant": "streaming",
+          "sf": "100",
+          "polars_version": "1.42.1",
+          "per_query": {
+            "query_1": 7.183191776275635,
+            "query_2": 6.521672964096069,
+            "query_3": 10.007022142410278,
+            "query_4": 2.61620831489563,
+            "query_5": 5.131505966186523,
+            "query_6": 3.609809637069702,
+            "query_7": 2.673539161682129,
+            "query_8": 1.088113784790039,
+            "query_9": 16.680249452590942
+          },
+          "load": 0.0002422332763671875
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "polars:lazy:sf50": {
+    "engine": "polars",
+    "variant": "lazy",
+    "sf": 50,
+    "runs": [
+      {
+        "cold": true,
+        "ok": false,
+        "timed_out": false,
+        "wall_s": 26.15,
+        "compute_s": null,
+        "peak_rss_gb": 35.983,
+        "meta": {},
+        "error": "Command terminated by signal 9\n\tCommand being timed: \"/home/rfiszel/tpch-bench/.venv/bin/python /home/rfiszel/tpch-bench/pipelines/polars/tpc_h.py\"\n\tUser time (seconds): 325.85\n\tSystem time (seconds): 98.89\n\tPercent of CPU this job got: 1624%\n\tElapsed (wall clock) time (h:mm:ss or m:ss): 0:26.15\n\tAverage shared text size (kbytes): 0\n\tAverage unshared data size (kbytes): 0\n\tAverage stack size (kbytes): 0\n\tAverage total size (kbytes): 0\n\tMaximum resident set size (kbytes): 37731044\n\tAverage resident set size (kbytes): 0\n\tMajor (requiring I/O) page faults: 349\n\tMinor (reclaiming a frame) page faults: 27890766\n\tVoluntary context switches: 61248\n\tInvoluntary context switches: 141500\n\tSwaps: 0\n\tFile system inputs: 199808\n\tFile system outputs: 0\n\tSocket messages sent: 0\n\tSocket messages received: 0\n\tSignals delivered: 0\n\tPage size (bytes): 4096\n\tExit status: 0\n"
+      }
+    ],
+    "done": true
+  },
+  "spark:aqe:sf50": {
+    "engine": "spark",
+    "variant": "aqe",
+    "sf": 50,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 80.58,
+        "compute_s": 75.985,
+        "peak_rss_gb": 26.173,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "50",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 5.283345937728882,
+            "query_2": 11.720919370651245,
+            "query_3": 15.091084003448486,
+            "query_4": 2.5522005558013916,
+            "query_5": 9.507166385650635,
+            "query_6": 6.5826146602630615,
+            "query_7": 3.6485464572906494,
+            "query_8": 2.8288044929504395,
+            "query_9": 17.283923149108887
+          },
+          "load": 1.4861395359039307
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 81.67,
+        "compute_s": 77.865,
+        "peak_rss_gb": 24.138,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "50",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 4.960522174835205,
+            "query_2": 11.502794742584229,
+            "query_3": 16.003948211669922,
+            "query_4": 2.5800249576568604,
+            "query_5": 9.752694606781006,
+            "query_6": 7.7869696617126465,
+            "query_7": 3.739112138748169,
+            "query_8": 2.678846597671509,
+            "query_9": 17.46209692955017
+          },
+          "load": 1.3982393741607666
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 78.25,
+        "compute_s": 74.319,
+        "peak_rss_gb": 25.323,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "50",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 4.841557025909424,
+            "query_2": 11.320425748825073,
+            "query_3": 15.900615692138672,
+            "query_4": 2.594764232635498,
+            "query_5": 9.639209032058716,
+            "query_6": 6.181898355484009,
+            "query_7": 3.359267234802246,
+            "query_8": 2.2801105976104736,
+            "query_9": 16.814148902893066
+          },
+          "load": 1.3871665000915527
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 97.4,
+        "compute_s": 91.195,
+        "peak_rss_gb": 24.57,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "50",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 8.37377381324768,
+            "query_2": 13.81471872329712,
+            "query_3": 17.692869424819946,
+            "query_4": 2.751199722290039,
+            "query_5": 10.67915678024292,
+            "query_6": 6.626584529876709,
+            "query_7": 3.697329044342041,
+            "query_8": 3.35018253326416,
+            "query_9": 22.140003442764282
+          },
+          "load": 2.0692837238311768
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "spark:aqe:sf100": {
+    "engine": "spark",
+    "variant": "aqe",
+    "sf": 100,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 163.02,
+        "compute_s": 158.241,
+        "peak_rss_gb": 27.992,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "100",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 10.985775232315063,
+            "query_2": 24.08406114578247,
+            "query_3": 31.5337495803833,
+            "query_4": 6.483749866485596,
+            "query_5": 18.34334921836853,
+            "query_6": 13.889124870300293,
+            "query_7": 8.624494791030884,
+            "query_8": 5.86999773979187,
+            "query_9": 36.7648229598999
+          },
+          "load": 1.6617693901062012
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 154.61,
+        "compute_s": 147.813,
+        "peak_rss_gb": 28.901,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "100",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 8.74367380142212,
+            "query_2": 21.094629287719727,
+            "query_3": 27.404865264892578,
+            "query_4": 6.353179693222046,
+            "query_5": 17.802719116210938,
+            "query_6": 17.673519611358643,
+            "query_7": 7.747199296951294,
+            "query_8": 4.436410427093506,
+            "query_9": 35.02035403251648
+          },
+          "load": 1.5362789630889893
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 154.91,
+        "compute_s": 150.437,
+        "peak_rss_gb": 29.736,
+        "meta": {
+          "engine": "spark",
+          "variant": "aqe",
+          "sf": "100",
+          "spark_version": "4.0.0",
+          "per_query": {
+            "query_1": 8.8564453125,
+            "query_2": 20.974640607833862,
+            "query_3": 29.269181489944458,
+            "query_4": 6.829306602478027,
+            "query_5": 18.404486417770386,
+            "query_6": 16.959635257720947,
+            "query_7": 7.550752401351929,
+            "query_8": 5.324246644973755,
+            "query_9": 34.72546648979187
+          },
+          "load": 1.5255796909332275
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:spill:sf1": {
+    "engine": "duckdb",
+    "variant": "spill",
+    "sf": 1,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.67,
+        "compute_s": 0.542,
+        "peak_rss_gb": 2.247,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.018718957901000977,
+            "query_2": 0.009826898574829102,
+            "query_3": 0.008812427520751953,
+            "query_4": 0.005420207977294922,
+            "query_5": 0.02062702178955078,
+            "query_6": 0.010251998901367188,
+            "query_7": 0.009260892868041992,
+            "query_8": 0.017668485641479492,
+            "query_9": 0.023058414459228516
+          },
+          "load": 0.3893742561340332
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.58,
+        "compute_s": 0.513,
+        "peak_rss_gb": 2.27,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.01652693748474121,
+            "query_2": 0.009881973266601562,
+            "query_3": 0.009541511535644531,
+            "query_4": 0.0049626827239990234,
+            "query_5": 0.019397974014282227,
+            "query_6": 0.010851383209228516,
+            "query_7": 0.008402824401855469,
+            "query_8": 0.01748514175415039,
+            "query_9": 0.023682355880737305
+          },
+          "load": 0.3632659912109375
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.59,
+        "compute_s": 0.521,
+        "peak_rss_gb": 2.261,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.017423391342163086,
+            "query_2": 0.009926795959472656,
+            "query_3": 0.009299039840698242,
+            "query_4": 0.006571769714355469,
+            "query_5": 0.021578311920166016,
+            "query_6": 0.013595104217529297,
+            "query_7": 0.009915590286254883,
+            "query_8": 0.01599574089050293,
+            "query_9": 0.024654626846313477
+          },
+          "load": 0.3600785732269287
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.59,
+        "compute_s": 0.519,
+        "peak_rss_gb": 2.271,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.016250133514404297,
+            "query_2": 0.01094818115234375,
+            "query_3": 0.008777141571044922,
+            "query_4": 0.00504612922668457,
+            "query_5": 0.021172523498535156,
+            "query_6": 0.009966373443603516,
+            "query_7": 0.010030984878540039,
+            "query_8": 0.01672649383544922,
+            "query_9": 0.021305084228515625
+          },
+          "load": 0.366835355758667
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.58,
+        "compute_s": 0.515,
+        "peak_rss_gb": 2.265,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.017310380935668945,
+            "query_2": 0.0102386474609375,
+            "query_3": 0.009642839431762695,
+            "query_4": 0.005521059036254883,
+            "query_5": 0.019794940948486328,
+            "query_6": 0.010034561157226562,
+            "query_7": 0.007917404174804688,
+            "query_8": 0.015805721282958984,
+            "query_9": 0.021680593490600586
+          },
+          "load": 0.3670680522918701
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.59,
+        "compute_s": 0.517,
+        "peak_rss_gb": 2.255,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.01627969741821289,
+            "query_2": 0.009108304977416992,
+            "query_3": 0.00869297981262207,
+            "query_4": 0.004904985427856445,
+            "query_5": 0.019957542419433594,
+            "query_6": 0.010634899139404297,
+            "query_7": 0.008685111999511719,
+            "query_8": 0.015732288360595703,
+            "query_9": 0.022037267684936523
+          },
+          "load": 0.37361717224121094
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:spill:sf10": {
+    "engine": "duckdb",
+    "variant": "spill",
+    "sf": 10,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.43,
+        "compute_s": 4.3,
+        "peak_rss_gb": 12.919,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.1846768856048584,
+            "query_2": 0.13225746154785156,
+            "query_3": 0.11030125617980957,
+            "query_4": 0.07522177696228027,
+            "query_5": 0.25304365158081055,
+            "query_6": 0.10379219055175781,
+            "query_7": 0.12163376808166504,
+            "query_8": 0.1656937599182129,
+            "query_9": 0.23156046867370605
+          },
+          "load": 2.557877540588379
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.67,
+        "compute_s": 4.592,
+        "peak_rss_gb": 12.883,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.24203181266784668,
+            "query_2": 0.1786634922027588,
+            "query_3": 0.15634965896606445,
+            "query_4": 0.0880894660949707,
+            "query_5": 0.30572009086608887,
+            "query_6": 0.11341261863708496,
+            "query_7": 0.13202905654907227,
+            "query_8": 0.18174004554748535,
+            "query_9": 0.24592018127441406
+          },
+          "load": 2.561349868774414
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.36,
+        "compute_s": 4.281,
+        "peak_rss_gb": 13.045,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.19730401039123535,
+            "query_2": 0.13135027885437012,
+            "query_3": 0.12072491645812988,
+            "query_4": 0.06874465942382812,
+            "query_5": 0.271636962890625,
+            "query_6": 0.11369991302490234,
+            "query_7": 0.12245011329650879,
+            "query_8": 0.15907645225524902,
+            "query_9": 0.23933148384094238
+          },
+          "load": 2.464114189147949
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.22,
+        "compute_s": 4.143,
+        "peak_rss_gb": 12.927,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.17798209190368652,
+            "query_2": 0.1291193962097168,
+            "query_3": 0.1120901107788086,
+            "query_4": 0.06848454475402832,
+            "query_5": 0.23653554916381836,
+            "query_6": 0.09728479385375977,
+            "query_7": 0.12067127227783203,
+            "query_8": 0.14437460899353027,
+            "query_9": 0.22433924674987793
+          },
+          "load": 2.4496006965637207
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.31,
+        "compute_s": 4.23,
+        "peak_rss_gb": 13.144,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.18898749351501465,
+            "query_2": 0.13282489776611328,
+            "query_3": 0.11085915565490723,
+            "query_4": 0.07422113418579102,
+            "query_5": 0.2541024684906006,
+            "query_6": 0.1033482551574707,
+            "query_7": 0.1267697811126709,
+            "query_8": 0.14905381202697754,
+            "query_9": 0.23016905784606934
+          },
+          "load": 2.4673995971679688
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 4.33,
+        "compute_s": 4.247,
+        "peak_rss_gb": 12.925,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.18162870407104492,
+            "query_2": 0.13702988624572754,
+            "query_3": 0.09047698974609375,
+            "query_4": 0.0637054443359375,
+            "query_5": 0.24432873725891113,
+            "query_6": 0.10819888114929199,
+            "query_7": 0.12056684494018555,
+            "query_8": 0.17084121704101562,
+            "query_9": 0.26499342918395996
+          },
+          "load": 2.475371837615967
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:spill:sf50": {
+    "engine": "duckdb",
+    "variant": "spill",
+    "sf": 50,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 77.92,
+        "compute_s": 77.783,
+        "peak_rss_gb": 32.085,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 5.8262434005737305,
+            "query_2": 4.102201223373413,
+            "query_3": 3.256383180618286,
+            "query_4": 2.7513113021850586,
+            "query_5": 6.533138036727905,
+            "query_6": 3.6428771018981934,
+            "query_7": 5.596983194351196,
+            "query_8": 1.721768856048584,
+            "query_9": 8.529735326766968
+          },
+          "load": 33.49021768569946
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 84.57,
+        "compute_s": 84.465,
+        "peak_rss_gb": 32.11,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 7.9234631061553955,
+            "query_2": 3.6241226196289062,
+            "query_3": 3.2873852252960205,
+            "query_4": 4.956998348236084,
+            "query_5": 9.434366464614868,
+            "query_6": 4.600330352783203,
+            "query_7": 6.1131203174591064,
+            "query_8": 0.493776798248291,
+            "query_9": 8.067548036575317
+          },
+          "load": 33.45160222053528
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 79.36,
+        "compute_s": 79.256,
+        "peak_rss_gb": 32.096,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 7.003952264785767,
+            "query_2": 4.051106691360474,
+            "query_3": 5.497488975524902,
+            "query_4": 3.8353512287139893,
+            "query_5": 7.299474716186523,
+            "query_6": 4.231881380081177,
+            "query_7": 5.040454864501953,
+            "query_8": 1.3406198024749756,
+            "query_9": 8.073014497756958
+          },
+          "load": 31.060782194137573
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 84.35,
+        "compute_s": 84.256,
+        "peak_rss_gb": 32.118,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 6.011150360107422,
+            "query_2": 3.045842170715332,
+            "query_3": 3.0431525707244873,
+            "query_4": 4.8468921184539795,
+            "query_5": 8.028064012527466,
+            "query_6": 4.80172061920166,
+            "query_7": 6.8452160358428955,
+            "query_8": 1.2635271549224854,
+            "query_9": 7.404029846191406
+          },
+          "load": 36.262301206588745
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:spill:sf100": {
+    "engine": "duckdb",
+    "variant": "spill",
+    "sf": 100,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 239.43,
+        "compute_s": 239.291,
+        "peak_rss_gb": 24.779,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "100",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 23.872796297073364,
+            "query_2": 17.794811725616455,
+            "query_3": 16.963468074798584,
+            "query_4": 15.314146757125854,
+            "query_5": 18.84686255455017,
+            "query_6": 16.929491758346558,
+            "query_7": 18.68705725669861,
+            "query_8": 2.6937971115112305,
+            "query_9": 23.073416233062744
+          },
+          "load": 81.56828141212463
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 243.06,
+        "compute_s": 242.964,
+        "peak_rss_gb": 24.863,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "100",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 24.293001413345337,
+            "query_2": 14.827125310897827,
+            "query_3": 18.41654348373413,
+            "query_4": 14.777935028076172,
+            "query_5": 21.674863815307617,
+            "query_6": 14.526472091674805,
+            "query_7": 13.513076305389404,
+            "query_8": 4.046178579330444,
+            "query_9": 24.092257261276245
+          },
+          "load": 89.24944639205933
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 222.87,
+        "compute_s": 222.768,
+        "peak_rss_gb": 24.938,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "spill",
+          "sf": "100",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 20.901415586471558,
+            "query_2": 13.333323001861572,
+            "query_3": 15.239701747894287,
+            "query_4": 11.574229955673218,
+            "query_5": 20.761072397232056,
+            "query_6": 16.872095584869385,
+            "query_7": 14.349976539611816,
+            "query_8": 1.3697569370269775,
+            "query_9": 19.31287932395935
+          },
+          "load": 85.6531138420105
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:direct:sf1": {
+    "engine": "duckdb",
+    "variant": "direct",
+    "sf": 1,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.47,
+        "compute_s": 0.35,
+        "peak_rss_gb": 0.49,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.05258464813232422,
+            "query_2": 0.04125213623046875,
+            "query_3": 0.033502817153930664,
+            "query_4": 0.01125955581665039,
+            "query_5": 0.05916881561279297,
+            "query_6": 0.03355526924133301,
+            "query_7": 0.03182363510131836,
+            "query_8": 0.024445295333862305,
+            "query_9": 0.0360567569732666
+          },
+          "load": 0.01908564567565918
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.38,
+        "compute_s": 0.321,
+        "peak_rss_gb": 0.501,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.04207301139831543,
+            "query_2": 0.03482365608215332,
+            "query_3": 0.03277587890625,
+            "query_4": 0.010369300842285156,
+            "query_5": 0.056603193283081055,
+            "query_6": 0.03368949890136719,
+            "query_7": 0.030277729034423828,
+            "query_8": 0.023874282836914062,
+            "query_9": 0.04067707061767578
+          },
+          "load": 0.008655309677124023
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.38,
+        "compute_s": 0.321,
+        "peak_rss_gb": 0.492,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.04210686683654785,
+            "query_2": 0.03541684150695801,
+            "query_3": 0.0343480110168457,
+            "query_4": 0.010732889175415039,
+            "query_5": 0.05826592445373535,
+            "query_6": 0.03603100776672363,
+            "query_7": 0.028318405151367188,
+            "query_8": 0.022593259811401367,
+            "query_9": 0.03599953651428223
+          },
+          "load": 0.009893178939819336
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.37,
+        "compute_s": 0.314,
+        "peak_rss_gb": 0.499,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.038680076599121094,
+            "query_2": 0.0344541072845459,
+            "query_3": 0.0324399471282959,
+            "query_4": 0.010466814041137695,
+            "query_5": 0.058960914611816406,
+            "query_6": 0.03550434112548828,
+            "query_7": 0.028539657592773438,
+            "query_8": 0.02279973030090332,
+            "query_9": 0.03635907173156738
+          },
+          "load": 0.009162664413452148
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.38,
+        "compute_s": 0.314,
+        "peak_rss_gb": 0.498,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.0386350154876709,
+            "query_2": 0.03404879570007324,
+            "query_3": 0.03267359733581543,
+            "query_4": 0.010169506072998047,
+            "query_5": 0.05700516700744629,
+            "query_6": 0.03643083572387695,
+            "query_7": 0.029608964920043945,
+            "query_8": 0.0221712589263916,
+            "query_9": 0.036623239517211914
+          },
+          "load": 0.009196996688842773
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 0.38,
+        "compute_s": 0.319,
+        "peak_rss_gb": 0.498,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "1",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.0389559268951416,
+            "query_2": 0.034233808517456055,
+            "query_3": 0.033719778060913086,
+            "query_4": 0.011224508285522461,
+            "query_5": 0.060445547103881836,
+            "query_6": 0.03462648391723633,
+            "query_7": 0.029157400131225586,
+            "query_8": 0.023759841918945312,
+            "query_9": 0.03653669357299805
+          },
+          "load": 0.008732795715332031
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:direct:sf10": {
+    "engine": "duckdb",
+    "variant": "direct",
+    "sf": 10,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 2.22,
+        "compute_s": 2.103,
+        "peak_rss_gb": 2.513,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.33763623237609863,
+            "query_2": 0.29020237922668457,
+            "query_3": 0.25044775009155273,
+            "query_4": 0.06836986541748047,
+            "query_5": 0.24582672119140625,
+            "query_6": 0.2739675045013428,
+            "query_7": 0.20920777320861816,
+            "query_8": 0.09335207939147949,
+            "query_9": 0.28262782096862793
+          },
+          "load": 0.023135662078857422
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 2.02,
+        "compute_s": 1.956,
+        "peak_rss_gb": 2.437,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.2682337760925293,
+            "query_2": 0.25352954864501953,
+            "query_3": 0.24783849716186523,
+            "query_4": 0.06860971450805664,
+            "query_5": 0.24450325965881348,
+            "query_6": 0.2711751461029053,
+            "query_7": 0.20614099502563477,
+            "query_8": 0.07883000373840332,
+            "query_9": 0.27159619331359863
+          },
+          "load": 0.014647245407104492
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 2.03,
+        "compute_s": 1.965,
+        "peak_rss_gb": 2.44,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.26866912841796875,
+            "query_2": 0.25243616104125977,
+            "query_3": 0.2522406578063965,
+            "query_4": 0.06825065612792969,
+            "query_5": 0.24191641807556152,
+            "query_6": 0.2720649242401123,
+            "query_7": 0.2043759822845459,
+            "query_8": 0.08665776252746582,
+            "query_9": 0.27001476287841797
+          },
+          "load": 0.015399456024169922
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 2.03,
+        "compute_s": 1.967,
+        "peak_rss_gb": 2.458,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.2687976360321045,
+            "query_2": 0.2529304027557373,
+            "query_3": 0.24806523323059082,
+            "query_4": 0.06752419471740723,
+            "query_5": 0.24888086318969727,
+            "query_6": 0.27498912811279297,
+            "query_7": 0.20579075813293457,
+            "query_8": 0.07981109619140625,
+            "query_9": 0.2727699279785156
+          },
+          "load": 0.014636516571044922
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 2.05,
+        "compute_s": 1.985,
+        "peak_rss_gb": 2.433,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.27292346954345703,
+            "query_2": 0.2509582042694092,
+            "query_3": 0.2515740394592285,
+            "query_4": 0.06745576858520508,
+            "query_5": 0.24330759048461914,
+            "query_6": 0.2726726531982422,
+            "query_7": 0.20463085174560547,
+            "query_8": 0.08839249610900879,
+            "query_9": 0.28325343132019043
+          },
+          "load": 0.01653003692626953
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 2.03,
+        "compute_s": 1.963,
+        "peak_rss_gb": 2.448,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "10",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 0.26512575149536133,
+            "query_2": 0.25388622283935547,
+            "query_3": 0.25012731552124023,
+            "query_4": 0.06788516044616699,
+            "query_5": 0.24886345863342285,
+            "query_6": 0.2743864059448242,
+            "query_7": 0.20454692840576172,
+            "query_8": 0.07915973663330078,
+            "query_9": 0.27126145362854004
+          },
+          "load": 0.015520572662353516
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:direct:sf50": {
+    "engine": "duckdb",
+    "variant": "direct",
+    "sf": 50,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 10.51,
+        "compute_s": 10.389,
+        "peak_rss_gb": 10.199,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 1.6731963157653809,
+            "query_2": 1.4624154567718506,
+            "query_3": 1.3499243259429932,
+            "query_4": 0.32181215286254883,
+            "query_5": 1.1380460262298584,
+            "query_6": 1.4239332675933838,
+            "query_7": 1.0718631744384766,
+            "query_8": 0.357560396194458,
+            "query_9": 1.3850476741790771
+          },
+          "load": 0.052744388580322266
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 9.91,
+        "compute_s": 9.837,
+        "peak_rss_gb": 10.238,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 1.3209612369537354,
+            "query_2": 1.27803373336792,
+            "query_3": 1.354480504989624,
+            "query_4": 0.32068562507629395,
+            "query_5": 1.1416921615600586,
+            "query_6": 1.4231152534484863,
+            "query_7": 1.0486335754394531,
+            "query_8": 0.3297114372253418,
+            "query_9": 1.4047660827636719
+          },
+          "load": 0.039238929748535156
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 9.91,
+        "compute_s": 9.839,
+        "peak_rss_gb": 10.185,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 1.3160042762756348,
+            "query_2": 1.2812297344207764,
+            "query_3": 1.3324122428894043,
+            "query_4": 0.3272120952606201,
+            "query_5": 1.1448333263397217,
+            "query_6": 1.419053077697754,
+            "query_7": 1.0459258556365967,
+            "query_8": 0.33980870246887207,
+            "query_9": 1.4063243865966797
+          },
+          "load": 0.040434837341308594
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 9.91,
+        "compute_s": 9.836,
+        "peak_rss_gb": 10.214,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "50",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 1.3141403198242188,
+            "query_2": 1.2864108085632324,
+            "query_3": 1.3356785774230957,
+            "query_4": 0.3235433101654053,
+            "query_5": 1.1434762477874756,
+            "query_6": 1.4159598350524902,
+            "query_7": 1.0450160503387451,
+            "query_8": 0.32626843452453613,
+            "query_9": 1.411714792251587
+          },
+          "load": 0.03928208351135254
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  },
+  "duckdb:direct:sf100": {
+    "engine": "duckdb",
+    "variant": "direct",
+    "sf": 100,
+    "runs": [
+      {
+        "cold": true,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 21.68,
+        "compute_s": 21.554,
+        "peak_rss_gb": 19.779,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "100",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 3.4817111492156982,
+            "query_2": 3.0588884353637695,
+            "query_3": 2.759080648422241,
+            "query_4": 0.6463737487792969,
+            "query_5": 2.3479533195495605,
+            "query_6": 3.082038164138794,
+            "query_7": 2.1960549354553223,
+            "query_8": 0.7141993045806885,
+            "query_9": 2.8332040309906006
+          },
+          "load": 0.0804738998413086
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 20.3,
+        "compute_s": 20.226,
+        "peak_rss_gb": 19.801,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "100",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 2.728930711746216,
+            "query_2": 2.647892475128174,
+            "query_3": 2.7308714389801025,
+            "query_4": 0.6427321434020996,
+            "query_5": 2.3275365829467773,
+            "query_6": 3.064363718032837,
+            "query_7": 2.1554503440856934,
+            "query_8": 0.6400618553161621,
+            "query_9": 2.841451644897461
+          },
+          "load": 0.0709693431854248
+        },
+        "error": ""
+      },
+      {
+        "cold": false,
+        "ok": true,
+        "timed_out": false,
+        "wall_s": 20.4,
+        "compute_s": 20.324,
+        "peak_rss_gb": 19.766,
+        "meta": {
+          "engine": "duckdb",
+          "variant": "direct",
+          "sf": "100",
+          "duckdb_version": "1.5.4",
+          "per_query": {
+            "query_1": 2.729301691055298,
+            "query_2": 2.633610486984253,
+            "query_3": 2.7261710166931152,
+            "query_4": 0.6474487781524658,
+            "query_5": 2.396101713180542,
+            "query_6": 3.064007043838501,
+            "query_7": 2.153852701187134,
+            "query_8": 0.6453778743743896,
+            "query_9": 2.855198383331299
+          },
+          "load": 0.07065606117248535
+        },
+        "error": ""
+      }
+    ],
+    "done": true
+  }
+}

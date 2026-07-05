@@ -1,504 +1,217 @@
+"""TPC-H-derived benchmark — Spark (single node, local[*]).
+
+Runs 9 TPC-H queries (spec Q1, Q3, Q5, Q6, Q10, Q12, Q14, Q16, Q18, exposed
+here as query_1..query_9) sequentially in one SparkSession against Parquet
+inputs read from S3 (MinIO via s3a). Adaptive Query Execution is enabled and
+this is tuned as a single-node ("no cluster") deployment, not a strawman.
+
+This is NOT an audited TPC-H benchmark. See pipelines/README.md.
+
+Config via environment:
+  SCALE_FACTOR / S3_BUCKET / S3_ENDPOINT / S3_USE_SSL
+  AWS_REGION / AWS_ACCESS_KEY / AWS_SECRET_KEY
+  BENCH_OUT     path to write per-query timing JSON
+  WRITE_OUTPUT  "true" to write query results back to S3 (default "false")
+"""
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import sum, col, avg, count, when, countDistinct, lit
 from datetime import date, timedelta
-from pyspark.sql.functions import sum, col, avg, count, when, countDistinct
-import argparse
+import builtins
+import json
 import os
+import time
+
+BUCKET = os.environ.get("S3_BUCKET", "windmill")
+SF = os.environ.get("SCALE_FACTOR", "1")
+WRITE_OUTPUT = os.environ.get("WRITE_OUTPUT", "false").lower() == "true"
 
 
-BUCKET = "windmill"
+def build_session():
+    b = (SparkSession.builder.appName("tpch")
+         .master(os.environ.get("SPARK_MASTER", "local[*]"))
+         .config("spark.sql.adaptive.enabled", "true")
+         .config("spark.sql.adaptive.coalescePartitions.enabled", "true")
+         .config("spark.sql.adaptive.skewJoin.enabled", "true"))
+    endpoint = os.environ.get("S3_ENDPOINT")
+    if endpoint:
+        scheme = "https" if os.environ.get("S3_USE_SSL", "true").lower() == "true" else "http"
+        b = (b.config("spark.hadoop.fs.s3a.endpoint", f"{scheme}://{endpoint}")
+              .config("spark.hadoop.fs.s3a.access.key", os.environ.get("AWS_ACCESS_KEY", ""))
+              .config("spark.hadoop.fs.s3a.secret.key", os.environ.get("AWS_SECRET_KEY", ""))
+              .config("spark.hadoop.fs.s3a.path.style.access", "true")
+              .config("spark.hadoop.fs.s3a.connection.ssl.enabled",
+                      os.environ.get("S3_USE_SSL", "true").lower())
+              .config("spark.hadoop.fs.s3a.aws.credentials.provider",
+                      "org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider"))
+    return b.getOrCreate()
 
 
-def main(remote, scale, query_number):
-    with SparkSession.builder.getOrCreate() as spark:
-        if remote:
-            connect_s3(spark)
-
-        match query_number:
-            case 1:
-                lineitem = load_dataset(spark, remote, scale, "lineitem")
-                output = query_1(lineitem)
-            case 2:
-                customer = load_dataset(spark, remote, scale, "customer")
-                orders = load_dataset(spark, remote, scale, "orders")
-                lineitem = load_dataset(spark, remote, scale, "lineitem")
-                output = query_2(customer, orders, lineitem)
-            case 3:
-                customer = load_dataset(spark, remote, scale, "customer")
-                orders = load_dataset(spark, remote, scale, "orders")
-                lineitem = load_dataset(spark, remote, scale, "lineitem")
-                supplier = load_dataset(spark, remote, scale, "supplier")
-                nation = load_dataset(spark, remote, scale, "nation")
-                region = load_dataset(spark, remote, scale, "region")
-                output = query_3(customer, orders, lineitem, supplier, nation, region)
-            case 4:
-                lineitem = load_dataset(spark, remote, scale, "lineitem")
-                output = query_4(lineitem)
-            case 5:
-                customer = load_dataset(spark, remote, scale, "customer")
-                orders = load_dataset(spark, remote, scale, "orders")
-                lineitem = load_dataset(spark, remote, scale, "lineitem")
-                nation = load_dataset(spark, remote, scale, "nation")
-                output = query_5(customer, orders, lineitem, nation)
-            case 6:
-                orders = load_dataset(spark, remote, scale, "orders")
-                lineitem = load_dataset(spark, remote, scale, "lineitem")
-                output = query_6(orders, lineitem)
-            case 7:
-                lineitem = load_dataset(spark, remote, scale, "lineitem")
-                part = load_dataset(spark, remote, scale, "part")
-                output = query_7(lineitem, part)
-            case 8:
-                partsupp = load_dataset(spark, remote, scale, "partsupp")
-                part = load_dataset(spark, remote, scale, "part")
-                supplier = load_dataset(spark, remote, scale, "supplier")
-                output = query_8(partsupp, part, supplier)
-            case 9:
-                customer = load_dataset(spark, remote, scale, "customer")
-                orders = load_dataset(spark, remote, scale, "orders")
-                lineitem = load_dataset(spark, remote, scale, "lineitem")
-                output = query_9(customer, orders, lineitem)
-
-        output.show()
-        if remote:
-            write_dataset(output, scale, query_number)
+def load(spark, name):
+    return spark.read.parquet(f"s3a://{BUCKET}/tpc-h/{SF}/raw/{name}.parquet")
 
 
-def connect_s3(spark):
-    spark._jsc.hadoopConfiguration().set(
-        "fs.s3a.access.key", os.environ.get("AWS_ACCESS_KEY")
-    )
-    spark._jsc.hadoopConfiguration().set(
-        "fs.s3a.secret.key", os.environ.get("AWS_SECRET_KEY")
-    )
-    spark._jsc.hadoopConfiguration().set(
-        "fs.s3a.endpoint",
-        "s3.us-east-2.amazonaws.com",  # change it to the URL of your S3 server
-    )
-
-
-def load_dataset(spark, remote, scale, dataset_name_or_path):
-    if remote:
-        dataset_path = "s3a://{}/tpc-h/{}/input/{}.parquet".format(
-            BUCKET, scale, dataset_name_or_path
-        )
-    else:
-        dataset_path = "./data/{}.parquet".format(dataset_name_or_path)
-    return spark.read.parquet(dataset_path)
-
-
-def write_dataset(dataset, scale, query_number):
-    output_path = "s3a://{}/tcp-h/{}/output-spark/query_{}.parquet".format(
-        BUCKET, scale, query_number
-    )
-    dataset.write.parquet(output_path, mode="overwrite")
-
-
-def query_9(customer, orders, lineitem):
-    """
-    select
-        c_name,
-        c_custkey,
-        o_orderkey,
-        o_orderdate,
-        o_totalprice,
-        sum(l_quantity)
-    from
-        customer,
-        orders,
-        lineitem
-    where
-        o_orderkey in (
-            select
-                l_orderkey
-            from
-                lineitem
-            group by
-                l_orderkey having
-                    sum(l_quantity) > 300
-        )
-        and c_custkey = o_custkey
-        and o_orderkey = l_orderkey
-    group by
-        c_name,
-        c_custkey,
-        o_orderkey,
-        o_orderdate,
-        o_totalprice
-    order by
-        o_totalprice desc,
-        o_orderdate;
-    limit 100;
-    """
-    return (
-        customer.join(orders, customer.C_CUSTKEY == orders.O_CUSTKEY)
-        .join(lineitem, orders.O_ORDERKEY == lineitem.L_ORDERKEY)
-        .join(
-            lineitem.groupBy("L_ORDERKEY")
-            .agg(sum(col("L_QUANTITY")).alias("SUM_QTY"))
-            .filter(col("SUM_QTY") > 300)
-            .alias("la"),
-            orders.O_ORDERKEY == col("la.L_ORDERKEY"),
-            how="inner",
-        )
-        .groupBy("C_NAME", "C_CUSTKEY", "O_ORDERKEY", "O_ORDERDATE", "O_TOTALPRICE")
-        .agg(sum(col("L_QUANTITY")).alias("SUM_QTY"))
-        .sort(col("O_TOTALPRICE").desc(), col("O_ORDERDATE"))
-        .limit(100)
-    )
-
-
-def query_8(partsupp, part, supplier):
-    """
-    select
-        p_brand,
-        p_type,
-        p_size,
-        count(distinct ps_suppkey) as supplier_cnt
-    from
-        partsupp,
-        part
-    where
-        p_partkey = ps_partkey
-        and p_brand <> 'Brand#45'
-        and p_type not like 'MEDIUM POLISHED%'
-        and p_size in (49, 14, 23, 45, 19, 3, 36, 9)
-        and ps_suppkey not in (
-            select
-                s_suppkey
-            from
-                supplier
-            where
-                s_comment like '%Customer%Complaints%'
-        )
-    group by
-        p_brand,
-        p_type,
-        p_size
-    order by
-        supplier_cnt desc,
-        p_brand,
-        p_type,
-        p_size;
-    limit -1;
-    """
-    return (
-        partsupp.join(part, partsupp.PS_PARTKEY == part.P_PARTKEY)
-        .filter(col("P_BRAND") != "Brand#45")
-        .filter(~col("P_TYPE").startswith("MEDIUM POLISHED"))
-        .filter(col("P_SIZE").isin([49, 14, 23, 45, 19, 3, 36, 9]))
-        .join(
-            supplier.filter(col("S_COMMENT").contains("Customer")),
-            partsupp.PS_SUPPKEY == supplier.S_SUPPKEY,
-            how="left_anti",
-        )
-        .groupBy("P_BRAND", "P_TYPE", "P_SIZE")
-        .agg(countDistinct("PS_SUPPKEY").alias("SUPPLIER_CNT"))
-        .sort(col("SUPPLIER_CNT").desc(), col("P_BRAND"), col("P_TYPE"), col("P_SIZE"))
-    )
-
-
-def query_7(lineitem, part):
-    """
-    select
-        100.00 * sum(case
-            when p_type like 'PROMO%'
-                then l_extendedprice * (1 - l_discount)
-            else 0
-        end) / sum(l_extendedprice * (1 - l_discount)) as promo_revenue
-    from
-        lineitem,
-        part
-    where
-        l_partkey = p_partkey
-        and l_shipdate >= date '1995-09-01'
-        and l_shipdate < date '1995-09-01' + interval '1' month;
-    limit -1;
-    """
-    return (
-        lineitem.join(part, lineitem.L_PARTKEY == part.P_PARTKEY)
-        .filter(lineitem.L_SHIPDATE >= date(1995, 9, 1))
-        .filter(lineitem.L_SHIPDATE < date(1995, 9, 1) + timedelta(days=30))
-        .select(
-            (
-                100
-                * sum(
-                    when(
-                        col("P_TYPE").startswith("PROMO"),
-                        col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT")),
-                    ).otherwise(0)
-                )
-                / sum(col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT")))
-            ).alias("PROMO_REVENUE")
-        )
-    )
-
-
-def query_6(orders, lineitem):
-    """
-    select
-        l_shipmode,
-        sum(case
-            when o_orderpriority = '1-URGENT'
-                or o_orderpriority = '2-HIGH'
-                then 1
-            else 0
-        end) as high_line_count,
-        sum(case
-            when o_orderpriority <> '1-URGENT'
-                and o_orderpriority <> '2-HIGH'
-                then 1
-            else 0
-        end) as low_line_count
-    from
-        orders,
-        lineitem
-    where
-        o_orderkey = l_orderkey
-        and l_shipmode in ('MAIL', 'SHIP')
-        and l_commitdate < l_receiptdate
-        and l_shipdate < l_commitdate
-        and l_receiptdate >= date '1994-01-01'
-        and l_receiptdate < date '1994-01-01' + interval '1' year
-    group by
-        l_shipmode
-    order by
-        l_shipmode;
-    limit -1;
-    """
-    return (
-        orders.join(lineitem, orders.O_ORDERKEY == lineitem.L_ORDERKEY)
-        .filter(lineitem.L_SHIPMODE.isin(["MAIL", "SHIP"]))
-        .filter(lineitem.L_COMMITDATE < lineitem.L_RECEIPTDATE)
-        .filter(lineitem.L_RECEIPTDATE >= date(1994, 1, 1))
-        .filter(lineitem.L_RECEIPTDATE < date(1994, 1, 1) + timedelta(days=365))
-        .groupBy("L_SHIPMODE")
-        .agg(
-            sum(
-                when(orders.O_ORDERPRIORITY.isin(["1-URGENT", "2-HIGH"]), 1).otherwise(
-                    0
-                )
-            ).alias("HIGH_LINE_COUNT"),
-            sum(
-                when(~orders.O_ORDERPRIORITY.isin(["1-URGENT", "2-HIGH"]), 1).otherwise(
-                    0
-                )
-            ).alias("LOW_LINE_COUNT"),
-        )
-        .sort("L_SHIPMODE")
-    )
-
-
-def query_5(customer, orders, lineitem, nation):
-    """
-    select
-        c_custkey,
-        c_name,
-        sum(l_extendedprice * (1 - l_discount)) as revenue,
-        c_acctbal,
-        n_name,
-        c_address,
-        c_phone,
-        c_comment
-    from
-        customer,
-        orders,
-        lineitem,
-        nation
-    where
-        c_custkey = o_custkey
-        and l_orderkey = o_orderkey
-        and o_orderdate >= date '1993-10-01'
-        and o_orderdate < date '1993-10-01' + interval '3' month
-        and l_returnflag = 'R'
-        and c_nationkey = n_nationkey
-    group by
-        c_custkey,
-        c_name,
-        c_acctbal,
-        c_phone,
-        n_name,
-        c_address,
-        c_comment
-    order by
-        revenue desc;
-    limit 20;
-    """
-    return (
-        customer.join(orders, customer.C_CUSTKEY == orders.O_CUSTKEY)
-        .join(lineitem, orders.O_ORDERKEY == lineitem.L_ORDERKEY)
-        .join(nation, customer.C_NATIONKEY == nation.N_NATIONKEY)
-        .filter(orders.O_ORDERDATE >= date(1993, 10, 1))
-        .filter(orders.O_ORDERDATE < date(1993, 10, 1) + timedelta(days=90))
-        .filter(col("L_RETURNFLAG") == "R")
-        .groupBy(
-            "C_CUSTKEY",
-            "C_NAME",
-            "C_ACCTBAL",
-            "C_PHONE",
-            "N_NAME",
-            "C_ADDRESS",
-            "C_COMMENT",
-        )
-        .agg(sum(col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT"))).alias("REVENUE"))
-        .sort(col("REVENUE").desc())
-        .limit(20)
-    )
-
-
-def query_4(lineitem):
-    """
-    select
-        sum(l_extendedprice * l_discount) as revenue
-    from
-        lineitem
-    where
-        l_shipdate >= date '1994-01-01'
-        and l_shipdate < date '1994-01-01' + interval '1' year
-        and l_discount between .06 - 0.01 and .06 + 0.01
-        and l_quantity < 24;
-    limit -1;
-    """
-    return (
-        lineitem.filter(lineitem.L_SHIPDATE >= date(1994, 1, 1))
-        .filter(lineitem.L_SHIPDATE < date(1994, 1, 1) + timedelta(days=365))
-        .filter(col("L_DISCOUNT").between(0.06 - 0.01, 0.06 + 0.01))
-        .agg(sum(col("L_EXTENDEDPRICE") * col("L_DISCOUNT")).alias("REVENUE"))
-    )
-
-
-def query_3(customer, orders, lineitem, supplier, nation, region):
-    """
-    select
-        n_name,
-        sum(l_extendedprice * (1 - l_discount)) as revenue
-    from
-        customer,
-        orders,
-        lineitem,
-        supplier,
-        nation,
-        region
-    where
-        c_custkey = o_custkey
-        and l_orderkey = o_orderkey
-        and l_suppkey = s_suppkey
-        and c_nationkey = s_nationkey
-        and s_nationkey = n_nationkey
-        and n_regionkey = r_regionkey
-        and r_name = 'ASIA'
-        and o_orderdate >= date '1994-01-01'
-        and o_orderdate < date '1994-01-01' + interval '1' year
-    group by
-        n_name
-    order by
-        revenue desc;
-    limit -1;
-    """
-    return (
-        customer.join(orders, customer.C_CUSTKEY == orders.O_CUSTKEY)
-        .join(lineitem, orders.O_ORDERKEY == lineitem.L_ORDERKEY)
-        .join(supplier, lineitem.L_SUPPKEY == supplier.S_SUPPKEY)
-        .join(nation, supplier.S_NATIONKEY == nation.N_NATIONKEY)
-        .join(region, nation.N_REGIONKEY == region.R_REGIONKEY)
-        .filter(region.R_NAME == "ASIA")
-        .filter(orders.O_ORDERDATE >= date(1994, 1, 1))
-        .filter(orders.O_ORDERDATE < date(1994, 1, 1) + timedelta(days=365))
-        .groupBy("N_NAME")
-        .agg(sum(col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT"))).alias("REVENUE"))
-        .sort(col("REVENUE").desc())
-    )
-
-
-def query_2(customer, orders, lineitem):
-    """
-    select
-        l_orderkey,
-        sum(l_extendedprice * (1 - l_discount)) as revenue,
-        o_orderdate,
-        o_shippriority
-    from
-        customer,
-        orders,
-        lineitem
-    where
-        c_mktsegment = 'BUILDING'
-        and c_custkey = o_custkey
-        and l_orderkey = o_orderkey
-        and o_orderdate < date '1995-03-15'
-        and l_shipdate > date '1995-03-15'
-    group by
-        l_orderkey,
-        o_orderdate,
-        o_shippriority
-    order by
-        revenue desc,
-        o_orderdate;
-    limit 10;
-    """
-    return (
-        lineitem.join(orders, lineitem.L_ORDERKEY == orders.O_ORDERKEY)
-        .join(customer, orders.O_CUSTKEY == customer.C_CUSTKEY)
-        .filter(customer.C_MKTSEGMENT == "BUILDING")
-        .filter(orders.O_ORDERDATE < date(1995, 3, 15))
-        .filter(lineitem.L_SHIPDATE > date(1995, 3, 15))
-        .groupBy("L_ORDERKEY", "O_ORDERDATE", "O_SHIPPRIORITY")
-        .agg(sum(col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT"))).alias("REVENUE"))
-        .sort(col("REVENUE").desc(), col("O_ORDERDATE"))
-        .limit(10)
-    )
-
-
-def query_1(lineitem):
-    """
-    select
-        l_returnflag,
-        l_linestatus,
-        sum(l_quantity) as sum_qty,
-        sum(l_extendedprice) as sum_base_price,
-        sum(l_extendedprice * (1 - l_discount)) as sum_disc_price,
-        sum(l_extendedprice * (1 - l_discount) * (1 + l_tax)) as sum_charge,
-        avg(l_quantity) as avg_qty,
-        avg(l_extendedprice) as avg_price,
-        avg(l_discount) as avg_disc,
-        count(*) as count_order
-    from
-        lineitem
-    where
-        l_shipdate <= date '1998-12-01' - interval '90' day (3)
-    group by
-        l_returnflag,
-        l_linestatus
-    order by
-        l_returnflag,
-        l_linestatus;
-    limit -1;
-    """
-    return (
-        lineitem.filter(lineitem.L_SHIPDATE < date(1998, 12, 1) - timedelta(days=90))
-        .groupBy(["L_RETURNFLAG", "L_LINESTATUS"])
+def query_1(t):  # TPC-H Q1
+    return (t["lineitem"]
+        .filter(col("L_SHIPDATE") <= lit(date(1998, 12, 1) - timedelta(days=90)))
+        .groupBy("L_RETURNFLAG", "L_LINESTATUS")
         .agg(
             sum("L_QUANTITY").alias("SUM_QTY"),
             sum("L_EXTENDEDPRICE").alias("SUM_BASE_PRICE"),
-            sum(col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT"))).alias(
-                "SUM_DISC_PRICE"
-            ),
-            sum(
-                col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT")) * (1 + col("L_TAX"))
-            ).alias("SUM_CHARGE"),
-            avg("L_QUANTITY").alias("AVG_QUANTITY"),
+            sum(col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT"))).alias("SUM_DISC_PRICE"),
+            sum(col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT")) * (1 + col("L_TAX"))).alias("SUM_CHARGE"),
+            avg("L_QUANTITY").alias("AVG_QTY"),
             avg("L_EXTENDEDPRICE").alias("AVG_PRICE"),
             avg("L_DISCOUNT").alias("AVG_DISC"),
-            count("L_QUANTITY").alias("COUNT_ORDER"),
-        )
-        .sort("L_RETURNFLAG", "L_LINESTATUS")
-    )
+            count(lit(1)).alias("COUNT_ORDER"),
+        ).sort("L_RETURNFLAG", "L_LINESTATUS"))
+
+
+def query_2(t):  # TPC-H Q3
+    return (t["lineitem"]
+        .join(t["orders"], col("L_ORDERKEY") == col("O_ORDERKEY"))
+        .join(t["customer"], col("O_CUSTKEY") == col("C_CUSTKEY"))
+        .filter(col("C_MKTSEGMENT") == "BUILDING")
+        .filter(col("O_ORDERDATE") < lit(date(1995, 3, 15)))
+        .filter(col("L_SHIPDATE") > lit(date(1995, 3, 15)))
+        .groupBy("L_ORDERKEY", "O_ORDERDATE", "O_SHIPPRIORITY")
+        .agg(sum(col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT"))).alias("REVENUE"))
+        .sort(col("REVENUE").desc(), col("O_ORDERDATE")).limit(10))
+
+
+def query_3(t):  # TPC-H Q5
+    return (t["customer"]
+        .join(t["orders"], col("C_CUSTKEY") == col("O_CUSTKEY"))
+        .join(t["lineitem"], col("O_ORDERKEY") == col("L_ORDERKEY"))
+        .join(t["supplier"], col("L_SUPPKEY") == col("S_SUPPKEY"))
+        .join(t["nation"], col("S_NATIONKEY") == col("N_NATIONKEY"))
+        .join(t["region"], col("N_REGIONKEY") == col("R_REGIONKEY"))
+        .filter(col("R_NAME") == "ASIA")
+        .filter(col("C_NATIONKEY") == col("S_NATIONKEY"))  # spec join, missing in original
+        .filter(col("O_ORDERDATE") >= lit(date(1994, 1, 1)))
+        .filter(col("O_ORDERDATE") < lit(date(1995, 1, 1)))
+        .groupBy("N_NAME")
+        .agg(sum(col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT"))).alias("REVENUE"))
+        .sort(col("REVENUE").desc()))
+
+
+def query_4(t):  # TPC-H Q6
+    return (t["lineitem"]
+        .filter(col("L_SHIPDATE") >= lit(date(1994, 1, 1)))
+        .filter(col("L_SHIPDATE") < lit(date(1995, 1, 1)))
+        .filter(col("L_DISCOUNT").between(round(0.06 - 0.01, 2), round(0.06 + 0.01, 2)))
+        .filter(col("L_QUANTITY") < 24)
+        .agg(sum(col("L_EXTENDEDPRICE") * col("L_DISCOUNT")).alias("REVENUE")))
+
+
+def query_5(t):  # TPC-H Q10
+    return (t["customer"]
+        .join(t["orders"], col("C_CUSTKEY") == col("O_CUSTKEY"))
+        .join(t["lineitem"], col("O_ORDERKEY") == col("L_ORDERKEY"))
+        .join(t["nation"], col("C_NATIONKEY") == col("N_NATIONKEY"))
+        .filter(col("O_ORDERDATE") >= lit(date(1993, 10, 1)))
+        .filter(col("O_ORDERDATE") < lit(date(1994, 1, 1)))
+        .filter(col("L_RETURNFLAG") == "R")
+        .groupBy("C_CUSTKEY", "C_NAME", "C_ACCTBAL", "C_PHONE", "N_NAME", "C_ADDRESS", "C_COMMENT")
+        .agg(sum(col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT"))).alias("REVENUE"))
+        .sort(col("REVENUE").desc()).limit(20))
+
+
+def query_6(t):  # TPC-H Q12
+    return (t["orders"]
+        .join(t["lineitem"], col("O_ORDERKEY") == col("L_ORDERKEY"))
+        .filter(col("L_SHIPMODE").isin(["MAIL", "SHIP"]))
+        .filter(col("L_COMMITDATE") < col("L_RECEIPTDATE"))
+        .filter(col("L_SHIPDATE") < col("L_COMMITDATE"))
+        .filter(col("L_RECEIPTDATE") >= lit(date(1994, 1, 1)))
+        .filter(col("L_RECEIPTDATE") < lit(date(1995, 1, 1)))
+        .groupBy("L_SHIPMODE")
+        .agg(
+            sum(when(col("O_ORDERPRIORITY").isin(["1-URGENT", "2-HIGH"]), 1).otherwise(0)).alias("HIGH_LINE_COUNT"),
+            sum(when(~col("O_ORDERPRIORITY").isin(["1-URGENT", "2-HIGH"]), 1).otherwise(0)).alias("LOW_LINE_COUNT"),
+        ).sort("L_SHIPMODE"))
+
+
+def query_7(t):  # TPC-H Q14
+    return (t["lineitem"]
+        .join(t["part"], col("L_PARTKEY") == col("P_PARTKEY"))
+        .filter(col("L_SHIPDATE") >= lit(date(1995, 9, 1)))
+        .filter(col("L_SHIPDATE") < lit(date(1995, 10, 1)))
+        .select((100.0 * sum(when(col("P_TYPE").startswith("PROMO"),
+                                  col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT"))).otherwise(0))
+                 / sum(col("L_EXTENDEDPRICE") * (1 - col("L_DISCOUNT")))).alias("PROMO_REVENUE")))
+
+
+def query_8(t):  # TPC-H Q16
+    # original used contains("Customer") only; spec is LIKE '%Customer%Complaints%'
+    bad = t["supplier"].filter(col("S_COMMENT").rlike("Customer.*Complaints")).select("S_SUPPKEY")
+    return (t["partsupp"]
+        .join(t["part"], col("PS_PARTKEY") == col("P_PARTKEY"))
+        .filter(col("P_BRAND") != "Brand#45")
+        .filter(~col("P_TYPE").startswith("MEDIUM POLISHED"))
+        .filter(col("P_SIZE").isin([49, 14, 23, 45, 19, 3, 36, 9]))
+        .join(bad, col("PS_SUPPKEY") == col("S_SUPPKEY"), how="left_anti")
+        .groupBy("P_BRAND", "P_TYPE", "P_SIZE")
+        .agg(countDistinct("PS_SUPPKEY").alias("SUPPLIER_CNT"))
+        .sort(col("SUPPLIER_CNT").desc(), col("P_BRAND"), col("P_TYPE"), col("P_SIZE")))
+
+
+def query_9(t):  # TPC-H Q18
+    big = (t["lineitem"].groupBy("L_ORDERKEY").agg(sum("L_QUANTITY").alias("SUM_QTY"))
+           .filter(col("SUM_QTY") > 300).select(col("L_ORDERKEY").alias("BIG_ORDERKEY")))
+    return (t["customer"]
+        .join(t["orders"], col("C_CUSTKEY") == col("O_CUSTKEY"))
+        .join(t["lineitem"], col("O_ORDERKEY") == col("L_ORDERKEY"))
+        .join(big, col("O_ORDERKEY") == col("BIG_ORDERKEY"), how="left_semi")
+        .groupBy("C_NAME", "C_CUSTKEY", "O_ORDERKEY", "O_ORDERDATE", "O_TOTALPRICE")
+        .agg(sum("L_QUANTITY").alias("SUM_QTY"))
+        .sort(col("O_TOTALPRICE").desc(), col("O_ORDERDATE")).limit(100))
+
+
+QUERIES = [query_1, query_2, query_3, query_4, query_5, query_6, query_7, query_8, query_9]
+NEEDS = {  # tables each query touches (to load only what's needed)
+    1: ["lineitem"], 2: ["customer", "orders", "lineitem"],
+    3: ["customer", "orders", "lineitem", "supplier", "nation", "region"],
+    4: ["lineitem"], 5: ["customer", "orders", "lineitem", "nation"],
+    6: ["orders", "lineitem"], 7: ["lineitem", "part"],
+    8: ["partsupp", "part", "supplier"], 9: ["customer", "orders", "lineitem"],
+}
+
+
+def main():
+    spark = build_session()
+    spark.sparkContext.setLogLevel("ERROR")
+    timings = {}
+    t0 = time.time()
+    tables = {name: load(spark, name)
+              for name in {n for names in NEEDS.values() for n in names}}
+    timings["load"] = time.time() - t0
+    validate_dir = os.environ.get("SPARK_VALIDATE_DIR")
+    results = {}
+    for i, qf in enumerate(QUERIES, 1):
+        s = time.time()
+        res = qf(tables)
+        if validate_dir:
+            results[i] = [list(r) for r in res.collect()]
+        elif WRITE_OUTPUT:
+            res.write.parquet(f"s3a://{BUCKET}/tpc-h/{SF}/output-spark/query_{i}.parquet", mode="overwrite")
+        else:
+            res.count()  # force full execution
+        timings[f"query_{i}"] = time.time() - s
+    if validate_dir:
+        os.makedirs(validate_dir, exist_ok=True)
+        with open(os.path.join(validate_dir, f"spark_sf{SF}.json"), "w") as f:
+            json.dump(results, f, default=str)
+    timings["total_queries"] = builtins.sum(v for k, v in timings.items() if k.startswith("query_"))
+    timings["total"] = time.time() - t0
+    ver = spark.version
+    spark.stop()
+    out = os.environ.get("BENCH_OUT")
+    if out:
+        with open(out, "w") as f:
+            json.dump({"engine": "spark", "variant": "aqe", "sf": SF,
+                       "spark_version": ver, "timings": timings}, f)
+    print(json.dumps(timings, indent=2))
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run Spark queries")
-    parser.add_argument("--remote", required=False, default="false", help="remote")
-    parser.add_argument("--scale", required=False, default="1g", help="scale factor")
-    parser.add_argument("--query", required=False, default="1", help="query number")
-    args = parser.parse_args()
-
-    main(args.remote.lower() == "true", args.scale, int(args.query))
+    main()

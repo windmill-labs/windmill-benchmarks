@@ -1,0 +1,15 @@
+# Pinned versions for the 2026 TPC-H-derived refresh
+python: Python 3.12.13
+polars: 1.42.1
+duckdb: 1.5.4
+pyarrow: 24.0.0
+s3fs: 2026.6.0
+boto3: 1.43.0
+pyspark: 4.0.0 (bundled with spark-4.0.0-bin-hadoop3)
+spark: 4.0.0 (Scala 2.13.16, Hadoop 3.4.1)
+hadoop-aws: 3.4.1
+java: openjdk version "17.0.19" 2026-04-21
+minio: mc version RELEASE.2025-08-13T08-35-41Z (commit-id=7394ce0dd2a80935aded936b09fa12cbb3cb8096) / server RELEASE.2025-09-07T16-13-09Z
+os: Linux 7.0.10-arch1-1
+cpu: 24 logical cores — AMD Ryzen 9 9900X 12-Core Processor
+mem: 60 GiB
