@@ -4,30 +4,55 @@ from pydantic import BaseModel
 
 hatchet = Hatchet(debug=True)
 
-class WorkflowInput(BaseModel):
-    n: int = 10
+class FibonacciInput(BaseModel):
+    n: int
 
-fibo_wf = hatchet.workflow(name="StaticSequentialFibo", input_validator=WorkflowInput)
+class FibonacciTriggerInput(BaseModel):
+    n: int
+    iterations: int = int(os.getenv("ITERATIONS", "10"))
+    parallel: bool = bool(os.getenv("PARALLEL", "True") == "True")
+
+class FibonacciOutput(BaseModel):
+    result: int
+
+class FibonacciTriggerOutput(BaseModel):
+    results: list[FibonacciOutput]
 
 def fibo(n: int) -> int:
     if n <= 1:
         return n
+
     return fibo(n - 1) + fibo(n - 2)
 
-ITERATIONS = int(os.environ.get("ITERATIONS", 5))
-task_refs = []
+@hatchet.task(input_validator=FibonacciInput)
+def compute_fibonacci(input: FibonacciInput, _: Context) -> FibonacciOutput:
+    return FibonacciOutput(result=fibo(input.n))
 
-for i in range(ITERATIONS):
-    @fibo_wf.task(name=f"fibo_task_{i}", parents=[task_refs[i-1]] if i > 0 else [])
-    def fibo_task(input: WorkflowInput, ctx: Context, idx=i) -> dict:
-        print(f"Task {idx}: Computing fibo({input.n})")
-        result = fibo(input.n)
-        return {"index": idx, "fibo": result}
+@hatchet.durable_task(input_validator=FibonacciTriggerInput)
+async def fibonacci_parent(
+    input: FibonacciTriggerInput, _: Context
+) -> FibonacciTriggerOutput:
+    if input.parallel:
+        return FibonacciTriggerOutput(
+            results=await compute_fibonacci.aio_run_many(
+                [
+                    compute_fibonacci.create_bulk_run_item(FibonacciInput(n=input.n))
+                    for _ in range(input.iterations)
+                ]
+            )
+        )
 
-    task_refs.append(fibo_task)
+    return FibonacciTriggerOutput(
+        results=[
+            await compute_fibonacci.aio_run(FibonacciInput(n=input.n))
+            for _ in range(input.iterations)
+        ]
+    )
 
 def main() -> None:
-    worker = hatchet.worker(slots=1, name="fibo-worker", workflows=[fibo_wf])
+    worker = hatchet.worker(
+        slots=1, durable_slots=1, name="fibo-worker", workflows=[fibonacci_parent, compute_fibonacci]
+    )
     worker.start()
 
 if __name__ == "__main__":

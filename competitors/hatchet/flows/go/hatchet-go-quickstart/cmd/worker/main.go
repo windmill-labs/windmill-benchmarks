@@ -10,21 +10,22 @@ import (
 )
 
 func main() {
-
 	hatchet, err := hatchet_client.HatchetClient()
 
 	if err != nil {
 		panic(err)
 	}
 
+	child, parent := workflows.FibonacciWorkflow(hatchet)
+
 	worker, err := hatchet.Worker(
 		worker.WorkerOpts{
 			Name: "fibo-workflow-worker",
 			Workflows: []workflow.WorkflowBase{
-				workflows.FibonacciWorkflow(hatchet),
-				workflows.BulkFibonacciWorkflow(hatchet),
+				child, parent,
 			},
-			Slots: 1,
+			Slots:        1,
+			DurableSlots: 1,
 		},
 	)
 
