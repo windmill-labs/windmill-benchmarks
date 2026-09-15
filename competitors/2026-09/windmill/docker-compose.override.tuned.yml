@@ -1,0 +1,25 @@
+# Tuned configuration (the `windmill_tuned` rows in results/).
+# Identical to docker-compose.override.yml except SLEEP_QUEUE=5 (default 50):
+# the interval a worker sleeps between queue polls when it finds no job.
+services:
+  windmill_worker:
+    deploy:
+      replicas: 1
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - MODE=worker
+      - WORKER_GROUP=default
+      - FAVOR_UNSHARE_PID=true
+      - SLEEP_QUEUE=5
+  windmill_worker_native:
+    deploy:
+      replicas: 0
+  windmill_indexer:
+    deploy:
+      replicas: 0
+  windmill_extra:
+    deploy:
+      replicas: 0
+  db:
+    ports:
+      - "5432:5432"

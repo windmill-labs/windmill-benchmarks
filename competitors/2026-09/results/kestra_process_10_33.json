@@ -1,0 +1,220 @@
+{
+ "engine": "kestra",
+ "version": "2.0.2",
+ "runner": "process",
+ "workload": "fibonacci_10_33",
+ "runs": [
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.397,
+    0.818,
+    1.242,
+    1.613,
+    2.037,
+    2.437,
+    2.838,
+    3.212,
+    3.611
+   ],
+   "started_at": [
+    0.009,
+    0.42,
+    0.837,
+    1.25,
+    1.634,
+    2.047,
+    2.459,
+    2.846,
+    3.235,
+    3.622
+   ],
+   "completed_at": [
+    0.367,
+    0.775,
+    1.209,
+    1.603,
+    1.988,
+    2.402,
+    2.813,
+    3.198,
+    3.585,
+    3.971
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.423,
+    0.872,
+    1.296,
+    1.692,
+    2.117,
+    2.516,
+    2.942,
+    3.365,
+    3.79
+   ],
+   "started_at": [
+    0.016,
+    0.455,
+    0.894,
+    1.304,
+    1.715,
+    2.129,
+    2.543,
+    2.957,
+    3.393,
+    3.805
+   ],
+   "completed_at": [
+    0.376,
+    0.821,
+    1.246,
+    1.658,
+    2.064,
+    2.478,
+    2.897,
+    3.312,
+    3.742,
+    4.156
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.402,
+    0.803,
+    1.201,
+    1.701,
+    2.097,
+    2.495,
+    2.896,
+    3.269,
+    3.642
+   ],
+   "started_at": [
+    0.022,
+    0.407,
+    0.82,
+    1.23,
+    1.718,
+    2.105,
+    2.518,
+    2.904,
+    3.29,
+    3.65
+   ],
+   "completed_at": [
+    0.375,
+    0.766,
+    1.172,
+    1.662,
+    2.07,
+    2.447,
+    2.86,
+    3.249,
+    3.628,
+    3.992
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.403,
+    0.779,
+    1.179,
+    1.578,
+    1.976,
+    2.372,
+    2.795,
+    3.191,
+    3.639
+   ],
+   "started_at": [
+    0.025,
+    0.412,
+    0.8,
+    1.186,
+    1.599,
+    1.985,
+    2.397,
+    2.807,
+    3.219,
+    3.655
+   ],
+   "completed_at": [
+    0.37,
+    0.758,
+    1.15,
+    1.529,
+    1.942,
+    2.328,
+    2.747,
+    3.156,
+    3.611,
+    4.006
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.433,
+    0.831,
+    1.254,
+    1.652,
+    2.075,
+    2.475,
+    2.898,
+    3.296,
+    3.696
+   ],
+   "started_at": [
+    0.03,
+    0.441,
+    0.854,
+    1.268,
+    1.679,
+    2.094,
+    2.505,
+    2.915,
+    3.324,
+    3.71
+   ],
+   "completed_at": [
+    0.379,
+    0.791,
+    1.204,
+    1.615,
+    2.031,
+    2.439,
+    2.869,
+    3.26,
+    3.677,
+    4.061
+   ]
+  }
+ ],
+ "totals": [
+  3.971,
+  4.156,
+  3.992,
+  4.006,
+  4.061
+ ],
+ "interpreter": {
+  "version": "3.12.3 (main, Jul 15 2026, 23:46:41) [GCC 13.3.0]",
+  "fibo33_s": [
+   0.31,
+   0.311,
+   0.312
+  ],
+  "fibo10_s": 7e-06
+ },
+ "notes": "Task type io.kestra.plugin.scripts.python.Script with taskRunner explicitly set to io.kestra.plugin.core.runner.Process (that is the class name in Kestra 2.0.2; io.kestra.plugin.scripts.runner.process.Process does not exist in this version). This is NOT the default: omitting taskRunner yields the Docker runner. The script runs as a local subprocess of the worker, i.e. inside the kestra/kestra container, using that image's own CPython rather than python:3.13-slim, so the interpreter field differs from the Docker-runner run and raw compute is not directly comparable between the two. Timings read from Kestra's REST API: GET /api/v1/main/executions/{id}, field taskRunList[].state.histories. created_at = CREATED history entry (taskrun created/queued by the executor), started_at = RUNNING entry (worker began executing, i.e. after the task was dispatched and the Docker container was being set up), completed_at = terminal (SUCCESS) entry. No wall-clock prints inside the tasks. All values in seconds relative to the first taskrun's CREATED timestamp of that run. Kestra 2.0.2 OSS standalone (server standalone) on Postgres, from the official docker-compose.yml, all defaults; single node, worker started with 32 threads but the flow is strictly sequential so concurrency is 1. 1 warmup run discarded, then 5 measured reps."
+}

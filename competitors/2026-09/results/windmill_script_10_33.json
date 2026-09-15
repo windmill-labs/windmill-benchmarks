@@ -1,0 +1,223 @@
+{
+ "engine": "windmill_script",
+ "version": "1.811.1 EE",
+ "workload": "fibonacci_10_33",
+ "runs": [
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.417,
+    0.833,
+    1.246,
+    1.668,
+    2.081,
+    2.495,
+    2.909,
+    3.323,
+    3.736
+   ],
+   "started_at": [
+    0.002,
+    0.42,
+    0.835,
+    1.248,
+    1.67,
+    2.085,
+    2.497,
+    2.912,
+    3.326,
+    3.738
+   ],
+   "completed_at": [
+    0.409,
+    0.823,
+    1.238,
+    1.661,
+    2.073,
+    2.487,
+    2.902,
+    3.315,
+    3.728,
+    4.15
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.417,
+    0.83,
+    1.254,
+    1.693,
+    2.108,
+    2.523,
+    2.939,
+    3.355,
+    3.767
+   ],
+   "started_at": [
+    0.002,
+    0.419,
+    0.833,
+    1.261,
+    1.696,
+    2.11,
+    2.525,
+    2.941,
+    3.358,
+    3.77
+   ],
+   "completed_at": [
+    0.408,
+    0.822,
+    1.245,
+    1.684,
+    2.099,
+    2.513,
+    2.931,
+    3.348,
+    3.761,
+    4.174
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.412,
+    0.825,
+    1.237,
+    1.653,
+    2.079,
+    2.492,
+    2.906,
+    3.326,
+    3.74
+   ],
+   "started_at": [
+    0.002,
+    0.415,
+    0.827,
+    1.24,
+    1.657,
+    2.081,
+    2.495,
+    2.912,
+    3.328,
+    3.742
+   ],
+   "completed_at": [
+    0.404,
+    0.817,
+    1.229,
+    1.645,
+    2.071,
+    2.484,
+    2.898,
+    3.317,
+    3.732,
+    4.145
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.411,
+    0.825,
+    1.247,
+    1.661,
+    2.077,
+    2.493,
+    2.916,
+    3.334,
+    3.773
+   ],
+   "started_at": [
+    0.002,
+    0.415,
+    0.829,
+    1.25,
+    1.663,
+    2.081,
+    2.495,
+    2.919,
+    3.338,
+    3.776
+   ],
+   "completed_at": [
+    0.404,
+    0.818,
+    1.239,
+    1.654,
+    2.069,
+    2.484,
+    2.908,
+    3.326,
+    3.764,
+    4.18
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.409,
+    0.824,
+    1.237,
+    1.649,
+    2.082,
+    2.494,
+    2.916,
+    3.331,
+    3.743
+   ],
+   "started_at": [
+    0.002,
+    0.413,
+    0.826,
+    1.24,
+    1.652,
+    2.084,
+    2.496,
+    2.918,
+    3.333,
+    3.745
+   ],
+   "completed_at": [
+    0.402,
+    0.817,
+    1.229,
+    1.641,
+    2.074,
+    2.486,
+    2.909,
+    3.323,
+    3.735,
+    4.16
+   ]
+  }
+ ],
+ "totals": [
+  4.15,
+  4.174,
+  4.145,
+  4.18,
+  4.16
+ ],
+ "step_tags": [
+  "python3"
+ ],
+ "notes": "Windmill EE 1.811.1. Flow steps call a deployed python script by path (dedicated workers bind to a script path, so inline steps cannot be used). CONTROL: identical flow and script, steps run on the normal worker, so the only difference from the dedicated row is which worker group executes them. SLEEP_QUEUE=5 on both workers. Timings from v2_as_completed_job for children of the flow job. 1 warmup discarded + 5 reps.",
+ "interpreter": {
+  "version": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "fibo33_s": [
+   0.3539,
+   0.3526,
+   0.3544
+  ],
+  "fibo10_s": 7e-06,
+  "measured_in": "windmill worker container (same image runs both worker groups)"
+ }
+}

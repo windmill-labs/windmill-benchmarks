@@ -1,3 +1,8 @@
+> **Superseded by the [2026-09 run](./2026-09/README.md).** The numbers below were measured
+> on an EC2 t2.medium against engine versions that are now several majors old. The 2026-09
+> directory re-runs the same two workloads on six engines, one m7i.xlarge each, with a
+> scripted harness and the raw per-task timings checked in.
+
 Windmill VS Airflow, Prefect, Temporal and Kestra
 =========================================
 

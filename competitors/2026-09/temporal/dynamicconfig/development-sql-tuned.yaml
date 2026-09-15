@@ -1,0 +1,16 @@
+# Tuned configuration (the `temporal_tuned` row in results/).
+# The stock file shipped by temporalio/docker-compose, plus one line:
+# history.transferProcessorMaxPollRPS, which defaults to 20 and throttles
+# task dispatch to roughly 10 activities/s once the limiter's initial burst
+# is spent. Drop this in as dynamicconfig/development-sql.yaml, restart the
+# server and wait >2 minutes: the per-shard limiters refresh on a ~1 minute
+# timer, so runs taken sooner still show the old throttle on some shards.
+limit.maxIDLength:
+  - value: 255
+    constraints: {}
+system.forceSearchAttributesCacheRefreshOnRead:
+  - value: true # Dev setup only. Please don't turn this on in production.
+    constraints: {}
+history.transferProcessorMaxPollRPS:
+  - value: 1000
+    constraints: {}

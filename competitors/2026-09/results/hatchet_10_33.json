@@ -1,0 +1,220 @@
+{
+  "engine": "hatchet",
+  "version": "v0.107.0 (ghcr.io/hatchet-dev/hatchet/hatchet-lite@sha256:db8fb8e009a5c892859e52e4aa50b17aa11ab1dd23801cd320492f2942db30d7)",
+  "sdk": "hatchet-sdk 1.40.1 (Python 3.12.14)",
+  "workload": "fibonacci_10_33",
+  "interpreter": {
+    "version": "3.12.14 (main, Sep  1 2026, 00:10:07) [GCC 14.2.0]",
+    "fibo33_s": [
+      0.316008,
+      0.31965,
+      0.315601
+    ],
+    "fibo10_s": 6e-06
+  },
+  "runs": [
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        0.352,
+        0.701,
+        1.052,
+        1.404,
+        1.757,
+        2.107,
+        2.465,
+        2.817,
+        3.172
+      ],
+      "started_at": [
+        0.009,
+        0.371,
+        0.723,
+        1.071,
+        1.423,
+        1.776,
+        2.128,
+        2.486,
+        2.837,
+        3.19
+      ],
+      "completed_at": [
+        0.338,
+        0.688,
+        1.04,
+        1.392,
+        1.743,
+        2.094,
+        2.452,
+        2.805,
+        3.159,
+        3.51
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        0.355,
+        0.707,
+        1.071,
+        1.424,
+        1.774,
+        2.135,
+        2.487,
+        2.839,
+        3.195
+      ],
+      "started_at": [
+        0.009,
+        0.373,
+        0.727,
+        1.088,
+        1.441,
+        1.791,
+        2.154,
+        2.505,
+        2.859,
+        3.214
+      ],
+      "completed_at": [
+        0.342,
+        0.694,
+        1.059,
+        1.41,
+        1.762,
+        2.122,
+        2.474,
+        2.825,
+        3.182,
+        3.534
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        0.347,
+        0.719,
+        1.069,
+        1.42,
+        1.769,
+        2.134,
+        2.486,
+        2.834,
+        3.186
+      ],
+      "started_at": [
+        0.014,
+        0.363,
+        0.734,
+        1.086,
+        1.436,
+        1.786,
+        2.153,
+        2.502,
+        2.852,
+        3.203
+      ],
+      "completed_at": [
+        0.334,
+        0.707,
+        1.056,
+        1.407,
+        1.756,
+        2.12,
+        2.473,
+        2.82,
+        3.172,
+        3.523
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        0.347,
+        0.701,
+        1.053,
+        1.406,
+        1.772,
+        2.125,
+        2.476,
+        2.827,
+        3.179
+      ],
+      "started_at": [
+        0.009,
+        0.367,
+        0.721,
+        1.072,
+        1.424,
+        1.793,
+        2.143,
+        2.493,
+        2.848,
+        3.198
+      ],
+      "completed_at": [
+        0.333,
+        0.688,
+        1.041,
+        1.394,
+        1.758,
+        2.114,
+        2.463,
+        2.814,
+        3.166,
+        3.518
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        0.352,
+        0.707,
+        1.055,
+        1.404,
+        1.754,
+        2.115,
+        2.469,
+        2.828,
+        3.181
+      ],
+      "started_at": [
+        0.02,
+        0.37,
+        0.725,
+        1.073,
+        1.422,
+        1.775,
+        2.136,
+        2.489,
+        2.847,
+        3.197
+      ],
+      "completed_at": [
+        0.338,
+        0.692,
+        1.043,
+        1.393,
+        1.741,
+        2.103,
+        2.455,
+        2.816,
+        3.168,
+        3.516
+      ]
+    }
+  ],
+  "totals": [
+    3.51,
+    3.534,
+    3.523,
+    3.518,
+    3.516
+  ],
+  "notes": "SOURCE: read from the engine own Postgres (hatchet-lite v0.107.0 OLAP tables), not wall-clock in the harness. created_at = v1_tasks_olap.inserted_at (verified byte-identical to the operational v1_task.inserted_at, i.e. the row the engine writes when it creates/queues the task); started_at = max(v1_task_events_olap.event_timestamp) where event_type=STARTED; completed_at = the FINISHED event timestamp. These are exactly the three fields Hatchet own REST API returns as metadata.createdAt / startedAt / finishedAt; one task per run is cross-checked against GET /api/v1/stable/tasks/{id} and agrees within 0.5ms. STARTED/FINISHED are stamped by the worker, which shares the host clock with the engine, so there is no skew. CAVEAT 1 (created_at semantics): Hatchet materialises a DAG lazily - a downstream task row is only inserted once its parent finishes - so created_at for task i>0 is the moment the engine first knew about that task, not a submit time for the whole DAG. It is the closest true queued/scheduled timestamp Hatchet has, but it means created_at tracks the critical path instead of being ~0 for every task. CAVEAT 2 (what one worker means): Hatchet default worker slot count is 100, so one worker process is not one concurrency slot. It does not matter here because the DAG is strictly sequential (task i+1 declares task i as parent) so at most one task is ever runnable; the extractor asserts no two tasks overlap and none did. Python tasks are sync defs, which the SDK runs in a thread pool. CAVEAT 3 (warm-up drift): per-task orchestration latency is not stationary. Under sustained back-to-back load it degraded from ~37 to ~52 ms/task over ~25s, then recovered to ~26-33 ms/task after an idle gap, correlating with Postgres autovacuum on the frequently-updated Dispatcher/Ticker heartbeat tables. The reported reps were therefore taken after a 90s settle, which is the reproducible steady state; a saturated-engine run of the 40-task workload can be ~40 percent slower. CAVEAT 4 (do not use client wall-clock): the SDK result listener appears to resolve on a ~1s grid, so the client-observed wall time was a flat ~2.13s (40x10) and ~4.07s (10x33) regardless of how fast the DAG actually ran; the engine-side timings here are the accurate ones. INTERPRETER: measured with docker exec inside the live worker container, system settled; fibo(33) drifts to ~0.328s if sampled immediately after a benchmark batch. SETUP: one hatchet-lite container (engine+API+gRPC) plus postgres:15.6, and one Python worker process with default settings, all on one m7i.xlarge (4 vCPU, 15GB, Amazon Linux 2023). 1 warmup run discarded, then 5 measured reps."
+}

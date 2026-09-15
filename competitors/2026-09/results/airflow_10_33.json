@@ -1,0 +1,258 @@
+{
+  "engine": "airflow",
+  "version": "3.3.1",
+  "executor": "CeleryExecutor",
+  "config": "default",
+  "workload": "fibonacci_10_33",
+  "interpreter": {
+    "version": "3.13.14 (main, Aug 12 2026, 08:57:09) [GCC 12.2.0]",
+    "fibo33_s": [
+      0.3716,
+      0.3711,
+      0.3655
+    ],
+    "fibo10_s": 8e-06
+  },
+  "runs": [
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        1.149,
+        2.281,
+        3.415,
+        4.533,
+        5.656,
+        6.768,
+        7.975,
+        9.108,
+        10.266
+      ],
+      "started_at": [
+        0.029,
+        1.168,
+        2.3,
+        3.435,
+        4.552,
+        5.675,
+        6.785,
+        7.995,
+        9.14,
+        10.293
+      ],
+      "completed_at": [
+        0.58,
+        1.644,
+        2.763,
+        3.893,
+        5.005,
+        6.129,
+        7.242,
+        8.575,
+        9.927,
+        10.965
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        1.089,
+        2.198,
+        3.328,
+        4.433,
+        5.579,
+        6.695,
+        7.37,
+        8.016,
+        9.143
+      ],
+      "started_at": [
+        0.02,
+        1.106,
+        2.215,
+        3.346,
+        4.454,
+        5.597,
+        6.715,
+        7.388,
+        8.035,
+        9.164
+      ],
+      "completed_at": [
+        0.525,
+        1.556,
+        2.719,
+        3.796,
+        5.026,
+        6.055,
+        7.172,
+        7.848,
+        8.497,
+        9.633
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        1.124,
+        2.261,
+        3.403,
+        4.528,
+        5.636,
+        6.841,
+        7.952,
+        9.096,
+        10.609
+      ],
+      "started_at": [
+        0.021,
+        1.144,
+        2.28,
+        3.423,
+        4.546,
+        5.654,
+        6.86,
+        7.982,
+        9.116,
+        10.631
+      ],
+      "completed_at": [
+        0.502,
+        1.619,
+        2.909,
+        3.886,
+        5.002,
+        6.113,
+        7.317,
+        8.466,
+        9.82,
+        11.361
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        1.122,
+        2.233,
+        3.358,
+        4.468,
+        5.61,
+        6.724,
+        7.9,
+        8.751,
+        9.858
+      ],
+      "started_at": [
+        0.017,
+        1.139,
+        2.252,
+        3.379,
+        4.488,
+        5.628,
+        6.742,
+        7.92,
+        8.77,
+        9.877
+      ],
+      "completed_at": [
+        0.6,
+        1.586,
+        2.743,
+        3.825,
+        5.032,
+        6.118,
+        7.215,
+        8.365,
+        9.231,
+        10.336
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        1.125,
+        2.228,
+        3.341,
+        4.462,
+        5.875,
+        6.988,
+        8.105,
+        9.542,
+        10.658
+      ],
+      "started_at": [
+        0.02,
+        1.143,
+        2.245,
+        3.361,
+        4.483,
+        5.892,
+        7.008,
+        8.124,
+        9.561,
+        10.679
+      ],
+      "completed_at": [
+        0.551,
+        1.584,
+        2.689,
+        3.811,
+        4.947,
+        6.341,
+        7.615,
+        8.587,
+        10.001,
+        11.188
+      ]
+    }
+  ],
+  "totals": [
+    10.965,
+    9.633,
+    11.361,
+    10.336,
+    11.188
+  ],
+  "notes": "Apache Airflow 3.3.1 brought up from the official docker-compose (https://airflow.apache.org/docs/apache-airflow/3.3.1/docker-compose.yaml), unmodified, on a dedicated m7i.xlarge (4 vCPU, 15 GiB, Amazon Linux 2023, us-east-2). Everything on the one box: postgres 16, redis 7.2, api-server, scheduler, dag-processor, triggerer and one celery worker. DAG uses the TaskFlow API (`from airflow.sdk import dag, task`), 10 tasks chained strictly sequentially (t0 >> t1 >> ... >> t9), each computing fibo(33) with the naive recursion. Timings come from the Airflow metadata database (task_instance table) via psql, not from wall-clock prints inside the tasks: created_at = queued_dttm (scheduler handing the TI to the executor), started_at = start_date, completed_at = end_date. All values are shifted so the first task's queued_dttm is 0.0 and rounded to 3 decimals. queued_dttm was non-null for all 50 measured task instances, so no fallback was needed. Validation: every task instance was state=success with try_number=1 (no retries); an overlap check (start_date[i] < end_date[i-1]) found 0 overlaps in all 5 runs, confirming the tasks really ran one at a time; and the XCom return value was 3524578 for every task, confirming the recursion really executed. One warmup DAG run preceded the 5 measured runs; runs were triggered one at a time with `airflow dags trigger` and each was allowed to finish before the next was triggered. Defaults, all left exactly as shipped (nothing tuned in either direction): core.executor=CeleryExecutor, core.parallelism=32, core.max_active_tasks_per_dag=16, core.max_active_runs_per_dag=16, celery.worker_concurrency=16, scheduler.scheduler_heartbeat_sec=5, scheduler.scheduler_idle_sleep_time=1, scheduler.max_tis_per_query=16, scheduler.job_heartbeat_sec=5, dag_processor.min_file_process_interval=30, dag_processor.parsing_processes=2, core.load_examples=true. Caveats: (1) the official compose ships AIRFLOW__CORE__LOAD_EXAMPLES=true, so 115 bundled example DAGs sit next to the 2 benchmark DAGs (117 total) and the dag-processor re-parses the folder every min_file_process_interval=30s, bursting to roughly 0.6-1.5 of the 4 vCPUs. This is the shipped default and was deliberately left alone, but it is ambient CPU noise that a leaner engine on the same box does not pay. (2) Median in-task execution (start_date->end_date) was 0.463s against ~0.372s of actual fibo(33) compute, median dispatch (queued_dttm->start_date) 0.020s, and median gap between one task ending and the next being queued 0.637s. Median total is 1.097s per task, of which ~0.372s is compute and ~0.725s is orchestration overhead. (3) The `interpreter` field was measured with `docker exec` inside the airflow-worker container (the exact environment task instances execute in), CPython 3.13.14, a PGO+LTO build (--enable-optimizations, --with-lto). Two warmup iterations were discarded first, standard benchmarking practice: without discarding them, samples show a right tail to ~0.63s when a measurement lands inside a dag-processor parse burst. Median of 12 consecutive steady-state samples was 0.374s, min 0.3635s, so ~0.372s is the fair figure for fibo(33) compute per task.",
+  "_checks": [
+    {
+      "run_id": "bench_cb0e7f2c8987",
+      "overlaps": 0,
+      "xcom": [
+        "3524578"
+      ]
+    },
+    {
+      "run_id": "bench_a64335355c41",
+      "overlaps": 0,
+      "xcom": [
+        "3524578"
+      ]
+    },
+    {
+      "run_id": "bench_4db8822b8c0a",
+      "overlaps": 0,
+      "xcom": [
+        "3524578"
+      ]
+    },
+    {
+      "run_id": "bench_00461ed76b9c",
+      "overlaps": 0,
+      "xcom": [
+        "3524578"
+      ]
+    },
+    {
+      "run_id": "bench_ee9052d8187b",
+      "overlaps": 0,
+      "xcom": [
+        "3524578"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+# Dedicated-worker configuration, Enterprise Edition (the `windmill_dedicated`
+# and `windmill_script` rows in results/). Adds a second worker in the
+# `dedicated` worker group; wm_dedicated_bench.py binds that group to the
+# benchmark script. LICENSE_KEY comes from .env and is never committed.
+services:
+  windmill_server:
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - MODE=server
+      - LICENSE_KEY=${LICENSE_KEY}
+  windmill_worker:
+    deploy:
+      replicas: 1
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - MODE=worker
+      - WORKER_GROUP=default
+      - FAVOR_UNSHARE_PID=true
+      - SLEEP_QUEUE=5
+      - LICENSE_KEY=${LICENSE_KEY}
+  windmill_worker_dedicated:
+    image: ${WM_IMAGE}
+    pull_policy: always
+    deploy:
+      replicas: 1
+    restart: unless-stopped
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - MODE=worker
+      - WORKER_GROUP=dedicated
+      - SLEEP_QUEUE=5
+      - LICENSE_KEY=${LICENSE_KEY}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - worker_dependency_cache:/tmp/windmill/cache
+      - worker_logs:/tmp/windmill/logs
+  windmill_worker_native:
+    deploy:
+      replicas: 0
+  windmill_indexer:
+    deploy:
+      replicas: 0
+  windmill_extra:
+    deploy:
+      replicas: 0
+  db:
+    ports:
+      - "5432:5432"

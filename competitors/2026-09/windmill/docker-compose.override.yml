@@ -1,0 +1,25 @@
+# Default configuration (the `windmill` rows in results/).
+# One worker, nothing else: the native worker, the indexer and the extra
+# services are scaled to 0 so the box runs exactly one job executor.
+# SLEEP_QUEUE is deliberately absent, i.e. left at its default of 50ms.
+services:
+  windmill_worker:
+    deploy:
+      replicas: 1
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - MODE=worker
+      - WORKER_GROUP=default
+      - FAVOR_UNSHARE_PID=true
+  windmill_worker_native:
+    deploy:
+      replicas: 0
+  windmill_indexer:
+    deploy:
+      replicas: 0
+  windmill_extra:
+    deploy:
+      replicas: 0
+  db:
+    ports:
+      - "5432:5432"

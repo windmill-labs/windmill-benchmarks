@@ -1,0 +1,220 @@
+{
+ "engine": "windmill_tuned",
+ "version": "1.811.1",
+ "workload": "fibonacci_10_33",
+ "runs": [
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.41,
+    0.824,
+    1.235,
+    1.65,
+    2.065,
+    2.475,
+    2.885,
+    3.31,
+    3.73
+   ],
+   "started_at": [
+    0.003,
+    0.413,
+    0.826,
+    1.24,
+    1.653,
+    2.069,
+    2.477,
+    2.887,
+    3.312,
+    3.733
+   ],
+   "completed_at": [
+    0.403,
+    0.816,
+    1.227,
+    1.642,
+    2.057,
+    2.468,
+    2.877,
+    3.303,
+    3.722,
+    4.133
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.409,
+    0.829,
+    1.241,
+    1.653,
+    2.069,
+    2.481,
+    2.894,
+    3.312,
+    3.73
+   ],
+   "started_at": [
+    0.003,
+    0.411,
+    0.832,
+    1.244,
+    1.656,
+    2.073,
+    2.486,
+    2.899,
+    3.318,
+    3.733
+   ],
+   "completed_at": [
+    0.402,
+    0.821,
+    1.232,
+    1.645,
+    2.062,
+    2.473,
+    2.886,
+    3.302,
+    3.721,
+    4.14
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.41,
+    0.819,
+    1.236,
+    1.647,
+    2.062,
+    2.471,
+    2.883,
+    3.298,
+    3.709
+   ],
+   "started_at": [
+    0.002,
+    0.412,
+    0.822,
+    1.238,
+    1.65,
+    2.065,
+    2.474,
+    2.886,
+    3.301,
+    3.712
+   ],
+   "completed_at": [
+    0.402,
+    0.811,
+    1.228,
+    1.64,
+    2.051,
+    2.464,
+    2.875,
+    3.29,
+    3.701,
+    4.111
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.413,
+    0.824,
+    1.233,
+    1.643,
+    2.055,
+    2.464,
+    2.879,
+    3.292,
+    3.705
+   ],
+   "started_at": [
+    0.002,
+    0.415,
+    0.828,
+    1.236,
+    1.647,
+    2.058,
+    2.466,
+    2.882,
+    3.297,
+    3.708
+   ],
+   "completed_at": [
+    0.405,
+    0.817,
+    1.227,
+    1.636,
+    2.048,
+    2.457,
+    2.87,
+    3.284,
+    3.697,
+    4.109
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.411,
+    0.833,
+    1.246,
+    1.659,
+    2.074,
+    2.482,
+    2.898,
+    3.315,
+    3.724
+   ],
+   "started_at": [
+    0.002,
+    0.414,
+    0.835,
+    1.251,
+    1.662,
+    2.076,
+    2.485,
+    2.901,
+    3.317,
+    3.727
+   ],
+   "completed_at": [
+    0.402,
+    0.825,
+    1.238,
+    1.652,
+    2.066,
+    2.475,
+    2.89,
+    3.307,
+    3.717,
+    4.151
+   ]
+  }
+ ],
+ "totals": [
+  4.133,
+  4.14,
+  4.111,
+  4.109,
+  4.151
+ ],
+ "interpreter": {
+  "version": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "fibo33_s": [
+   0.3539,
+   0.3526,
+   0.3544
+  ],
+  "fibo10_s": 7e-06,
+  "measured_in": "windmill_worker container, where flow steps execute"
+ },
+ "notes": "SUPPLEMENTARY, NOT THE DEFAULT CONFIG: identical to the windmill run except SLEEP_QUEUE=5 (default 50) on the single worker, which is the interval a worker sleeps between queue polls when it finds no job. Isolates how much of the default result is the poll interval rather than orchestration cost. Everything else identical: CE 1.811.1, one worker replica, flow of N sequential python3 rawscript steps, timings from v2_as_completed_job, 1 warmup + 5 reps."
+}
