@@ -1,0 +1,8 @@
+# written by aggregate.py, regenerated on demand
+site_data/
+# never commit filled-in credential files
+.env
+env.list
+token.txt
+tenant.txt
+wm_token

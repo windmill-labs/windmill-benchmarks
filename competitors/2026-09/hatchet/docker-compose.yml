@@ -1,0 +1,47 @@
+name: hatchet-lite
+services:
+  postgres:
+    image: postgres:15.6
+    command: postgres -c "max_connections=500"
+    restart: always
+    environment:
+      - POSTGRES_USER=hatchet
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=hatchet
+    ports:
+      - "5432:5432"
+    volumes:
+      - hatchet_lite_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d hatchet -U hatchet"]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
+  hatchet-lite:
+    image: ghcr.io/hatchet-dev/hatchet/hatchet-lite:v0.107.0
+    restart: always
+    ports:
+      - "8888:8888"
+      - "7077:7077"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "postgresql://hatchet:${POSTGRES_PASSWORD}@postgres:5432/hatchet?sslmode=disable"
+      SERVER_AUTH_COOKIE_DOMAIN: localhost
+      SERVER_AUTH_COOKIE_INSECURE: "t"
+      SERVER_GRPC_BIND_ADDRESS: "0.0.0.0"
+      SERVER_GRPC_INSECURE: "t"
+      SERVER_GRPC_BROADCAST_ADDRESS: hatchet-lite:7077
+      SERVER_GRPC_PORT: "7077"
+      SERVER_URL: http://localhost:8888
+      SERVER_AUTH_SET_EMAIL_VERIFIED: "t"
+      SERVER_INTERNAL_CLIENT_INTERNAL_GRPC_BROADCAST_ADDRESS: hatchet-lite:7077
+      SERVER_DEFAULT_ENGINE_VERSION: V1
+    volumes:
+      - "hatchet_lite_config:/config"
+
+volumes:
+  hatchet_lite_postgres_data:
+  hatchet_lite_config:

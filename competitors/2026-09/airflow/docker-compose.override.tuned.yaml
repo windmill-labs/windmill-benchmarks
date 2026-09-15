@@ -1,0 +1,23 @@
+# Benchmark "tuned" variant: exactly two changes from the stock official compose.
+#   AIRFLOW__CORE__LOAD_EXAMPLES                  true -> false
+#   AIRFLOW__SCHEDULER__SCHEDULER_IDLE_SLEEP_TIME 1    -> 0.1
+# Everything else (CeleryExecutor, parallelism, heartbeats, worker_concurrency,
+# min_file_process_interval, ...) is left at the shipped default.
+---
+x-bench-tuning: &bench-tuning
+  AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+  AIRFLOW__SCHEDULER__SCHEDULER_IDLE_SLEEP_TIME: '0.1'
+
+services:
+  airflow-apiserver:
+    environment: *bench-tuning
+  airflow-scheduler:
+    environment: *bench-tuning
+  airflow-dag-processor:
+    environment: *bench-tuning
+  airflow-worker:
+    environment: *bench-tuning
+  airflow-triggerer:
+    environment: *bench-tuning
+  airflow-init:
+    environment: *bench-tuning

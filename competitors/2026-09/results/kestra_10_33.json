@@ -1,0 +1,220 @@
+{
+ "engine": "kestra",
+ "version": "2.0.2",
+ "runner": "io.kestra.plugin.scripts.runner.docker.Docker (plugin default for io.kestra.plugin.scripts.python.Script; one python:3.13-slim container per task run)",
+ "workload": "fibonacci_10_33",
+ "runs": [
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    1.045,
+    2.077,
+    3.164,
+    4.146,
+    5.214,
+    6.2,
+    7.262,
+    8.221,
+    9.181
+   ],
+   "started_at": [
+    0.027,
+    1.074,
+    2.102,
+    3.181,
+    4.154,
+    5.232,
+    6.228,
+    7.278,
+    8.25,
+    9.201
+   ],
+   "completed_at": [
+    1.022,
+    2.05,
+    3.113,
+    4.1,
+    5.174,
+    6.149,
+    7.233,
+    8.192,
+    9.141,
+    10.143
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    1.055,
+    2.172,
+    3.211,
+    4.271,
+    5.266,
+    6.304,
+    7.344,
+    8.335,
+    9.323
+   ],
+   "started_at": [
+    0.026,
+    1.08,
+    2.181,
+    3.238,
+    4.296,
+    5.298,
+    6.327,
+    7.354,
+    8.361,
+    9.336
+   ],
+   "completed_at": [
+    1.017,
+    2.128,
+    3.175,
+    4.238,
+    5.247,
+    6.286,
+    7.305,
+    8.299,
+    9.294,
+    10.303
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.995,
+    2.03,
+    2.992,
+    4.08,
+    5.093,
+    6.055,
+    7.1,
+    8.139,
+    9.13
+   ],
+   "started_at": [
+    0.027,
+    1.023,
+    2.048,
+    3.02,
+    4.099,
+    5.121,
+    6.067,
+    7.122,
+    8.152,
+    9.151
+   ],
+   "completed_at": [
+    0.953,
+    2.006,
+    2.957,
+    4.049,
+    5.056,
+    6.015,
+    7.046,
+    8.093,
+    9.094,
+    10.025
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    1.046,
+    2.062,
+    3.077,
+    4.084,
+    5.121,
+    6.159,
+    7.161,
+    8.151,
+    9.138
+   ],
+   "started_at": [
+    0.013,
+    1.07,
+    2.091,
+    3.09,
+    4.112,
+    5.137,
+    6.166,
+    7.171,
+    8.176,
+    9.153
+   ],
+   "completed_at": [
+    1.015,
+    2.015,
+    3.035,
+    4.038,
+    5.077,
+    6.108,
+    7.132,
+    8.122,
+    9.106,
+    10.104
+   ]
+  },
+  {
+   "workers": 1,
+   "created_at": [
+    0.0,
+    0.957,
+    1.989,
+    2.97,
+    4.033,
+    5.071,
+    6.14,
+    7.08,
+    8.097,
+    9.11
+   ],
+   "started_at": [
+    0.021,
+    0.968,
+    2.017,
+    2.993,
+    4.043,
+    5.095,
+    6.15,
+    7.1,
+    8.126,
+    9.125
+   ],
+   "completed_at": [
+    0.944,
+    1.956,
+    2.934,
+    3.975,
+    5.036,
+    6.111,
+    7.045,
+    8.066,
+    9.067,
+    10.079
+   ]
+  }
+ ],
+ "totals": [
+  10.143,
+  10.303,
+  10.025,
+  10.104,
+  10.079
+ ],
+ "interpreter": {
+  "version": "3.13.15 (main, Sep  1 2026, 00:07:39) [GCC 14.2.0]",
+  "fibo33_s": [
+   0.351,
+   0.355,
+   0.346
+  ],
+  "fibo10_s": 7e-06
+ },
+ "notes": "Timings read from Kestra's REST API: GET /api/v1/main/executions/{id}, field taskRunList[].state.histories. created_at = CREATED history entry (taskrun created/queued by the executor), started_at = RUNNING entry (worker began executing, i.e. after the task was dispatched and the Docker container was being set up), completed_at = terminal (SUCCESS) entry. No wall-clock prints inside the tasks. All values in seconds relative to the first taskrun's CREATED timestamp of that run. Kestra 2.0.2 OSS standalone (server standalone) on Postgres, from the official docker-compose.yml, all defaults; single node, worker started with 32 threads but the flow is strictly sequential so concurrency is 1. Task type io.kestra.plugin.scripts.python.Script with no taskRunner set, which Kestra resolves to its default io.kestra.plugin.scripts.runner.docker.Docker: every task run starts and tears down its own python:3.13-slim container (image pre-pulled; container start/stop is included in the numbers and is the bulk of the per-task cost for the cheap workload). Note that started_at is set when the worker picks the task up, BEFORE the container is created, so completed_at - started_at includes container startup, not just Python execution. 1 warmup run discarded, then 5 measured reps."
+}

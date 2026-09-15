@@ -1,0 +1,220 @@
+{
+  "engine": "temporal",
+  "version": "1.29.7",
+  "sdk": "1.33.0",
+  "workload": "fibonacci_10_33",
+  "runs": [
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        0.358,
+        0.705,
+        1.052,
+        1.401,
+        1.753,
+        2.105,
+        2.457,
+        2.807,
+        3.154
+      ],
+      "started_at": [
+        0.004,
+        0.362,
+        0.709,
+        1.056,
+        1.405,
+        1.758,
+        2.11,
+        2.462,
+        2.811,
+        3.159
+      ],
+      "completed_at": [
+        0.345,
+        0.693,
+        1.04,
+        1.387,
+        1.74,
+        2.093,
+        2.445,
+        2.792,
+        3.142,
+        3.491
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        0.349,
+        0.698,
+        1.046,
+        1.393,
+        1.741,
+        2.088,
+        2.438,
+        2.786,
+        3.131
+      ],
+      "started_at": [
+        0.004,
+        0.354,
+        0.703,
+        1.051,
+        1.397,
+        1.745,
+        2.093,
+        2.442,
+        2.79,
+        3.135
+      ],
+      "completed_at": [
+        0.338,
+        0.686,
+        1.033,
+        1.381,
+        1.729,
+        2.075,
+        2.423,
+        2.774,
+        3.12,
+        3.469
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        0.348,
+        0.694,
+        1.037,
+        1.383,
+        1.733,
+        2.081,
+        2.427,
+        2.773,
+        3.121
+      ],
+      "started_at": [
+        0.004,
+        0.353,
+        0.698,
+        1.042,
+        1.388,
+        1.737,
+        2.085,
+        2.431,
+        2.778,
+        3.125
+      ],
+      "completed_at": [
+        0.336,
+        0.682,
+        1.026,
+        1.371,
+        1.718,
+        2.069,
+        2.414,
+        2.761,
+        3.107,
+        3.455
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        0.347,
+        0.694,
+        1.041,
+        1.389,
+        1.737,
+        2.083,
+        2.432,
+        2.779,
+        3.125
+      ],
+      "started_at": [
+        0.005,
+        0.351,
+        0.698,
+        1.046,
+        1.394,
+        1.742,
+        2.088,
+        2.436,
+        2.783,
+        3.129
+      ],
+      "completed_at": [
+        0.334,
+        0.681,
+        1.029,
+        1.377,
+        1.725,
+        2.071,
+        2.419,
+        2.766,
+        3.113,
+        3.46
+      ]
+    },
+    {
+      "workers": 1,
+      "created_at": [
+        0.0,
+        0.35,
+        0.695,
+        1.043,
+        1.39,
+        1.735,
+        2.08,
+        2.428,
+        2.774,
+        3.133
+      ],
+      "started_at": [
+        0.004,
+        0.355,
+        0.699,
+        1.047,
+        1.394,
+        1.739,
+        2.085,
+        2.432,
+        2.778,
+        3.137
+      ],
+      "completed_at": [
+        0.338,
+        0.683,
+        1.028,
+        1.378,
+        1.723,
+        2.069,
+        2.416,
+        2.76,
+        3.108,
+        3.468
+      ]
+    }
+  ],
+  "totals": [
+    3.491,
+    3.469,
+    3.455,
+    3.46,
+    3.468
+  ],
+  "interpreter": {
+    "fibo10_s": 8e-06,
+    "fibo33_s": [
+      0.337,
+      0.335,
+      0.335
+    ],
+    "version": "3.11.16 (main, Aug 24 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-5)]"
+  },
+  "notes": "TIMINGS: pulled from the workflow's event history (Python SDK fetch_history_events() after the workflow completed), not from wall-clock prints in the harness. created_at = ActivityTaskScheduled.event_time, started_at = ActivityTaskStarted.event_time, completed_at = ActivityTaskCompleted.event_time; Started/Completed are matched back to their Scheduled event via scheduled_event_id, entries are ordered by scheduled event id (== created_at order) and expressed in seconds relative to the first ActivityTaskScheduled. All three are server-assigned timestamps from the single Temporal server on this box, so one clock throughout.\nACTIVITYTASKSTARTED CAVEAT: the server does not persist ActivityTaskStarted when it dispatches the task; it keeps it in mutable state and flushes it to history together with the terminal event (ActivityTaskCompleted here). The event_time is still the real dispatch time, but it is only readable once the activity has finished, so the harness fetches the full history after the workflow completes rather than streaming events live. Only the final attempt's Started event survives a retry, so the harness asserts every activity is attempt 1 and that no ActivityTaskFailed/TimedOut or WorkflowTaskFailed/TimedOut event appears in any history; none did. started_at is when the server handed the task to the worker, not when the Python function body entered (~4ms of dispatch here); SDK-internal queueing inside that is not visible in history.\nSETUP: official temporalio/docker-compose, postgres variant (docker-compose-postgres.yml), temporalio/auto-setup:1.29.7 + postgres:16, stock dynamicconfig/development-sql.yaml, default namespace, 4 history shards. Server 1.30-1.32 exist but temporalio/auto-setup publishes no image past 1.29.x, so 1.29.7 is the newest server reachable through the official docker-compose path. One worker process, default worker tuning, task queue \"bench\". Activities are sync defs, so the worker is given activity_executor=ThreadPoolExecutor(max_workers=100) - the documented way to run sync/CPU-bound activities, sized to the default max_concurrent_activities=100. The workflow awaits each execute_activity before scheduling the next, so exactly one activity is ever in flight. Everything (server, postgres, worker, harness) runs on one m7i.xlarge (4 vCPU, 15GB, Amazon Linux 2023); CPU was ~98% idle during the runs.\nINTERPRETER: the \"interpreter\" field was measured by an extra activity run on the same worker process and the same ThreadPoolExecutor as the benchmark activities (fibo(33) three times then fibo(10) once, timed with time.perf_counter inside the activity), so it reflects the exact CPython build the activities execute on.\nFAIRNESS NOTE: this workload is dominated by CPython, not by orchestration - 10 x fibo(33) at ~0.33s each is ~3.32s of the ~3.46s total, leaving ~14ms of orchestration per activity (~4ms ActivityTaskScheduled->Started dispatch, ~7ms for the worker to run the workflow task that schedules the next activity, ~3ms of server-side write). Compare per-activity overhead across engines rather than totals, and see the \"interpreter\" field for this environment's raw CPython speed. The default history.transferProcessorMaxPollRPS=20 per-shard limit that throttles the 40 x fibo(10) workload does not bite here (these activities run at ~3/s, well under the limit); re-running this workload with that limit raised to 1000 gave 3.525-3.561s, i.e. no improvement."
+}
