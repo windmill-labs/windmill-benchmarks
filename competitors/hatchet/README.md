@@ -1,15 +1,14 @@
-Hatchet
-=======
+# Hatchet
 
 ## Installation
 
-- Follow the guide on (Hatchet's official documentation)[https://docs.hatchet.run/self-hosting/docker-compose]
+- Follow the guide on [Hatchet's official documentation](https://docs.hatchet.run/self-hosting/docker-compose)
 - `docker compose up -d`
 - create an API token on the UI (localhost:8080) and export it in your terminal along with
-    ```
-    export HATCHET_CLIENT_TOKEN="..."
-    HATCHET_CLIENT_TLS_STRATEGY=none
-    ```
+  ```
+  export HATCHET_CLIENT_TOKEN="..."
+  HATCHET_CLIENT_TLS_STRATEGY=none
+  ```
 
 ## Running flows
 
@@ -17,15 +16,15 @@ Hatchet
 
 - Run the workers: e.g
 
-    ```
-    ITERATIONS=10 python3 worker.py
-    ```
+  ```
+  ITERATIONS=10 python3 worker.py
+  ```
 
 - Trigger the workflow
 
-    ```
-    python3 trigger.py --n 33
-    ```
+  ```
+  python3 trigger.py --n 33
+  ```
 
 ### Go
 
@@ -33,18 +32,16 @@ We followed the sample in https://github.com/hatchet-dev/hatchet-go-quickstart
 
 - Run the workers: e.g
 
-    ```
-    # Run workers (e.g 10)
-    # ITERATIONS / PARALLEL can be passed depending on what analysis you're trying to do
-    for i in {1..10}; do go run ITERATIONS=400 cmd/worker/main.go > /dev/null & done
-    ```
+  ```
+  # Run workers (e.g 10)
+  sh run-workers.sh 10
+  ```
 
 - Trigger the workflow
 
-    ```
-    # or use --bulk --iterations=xxx to trigger bulk run mode
-    go run cmd/run/main.go --n=38
-    ```
+  ```
+  go run cmd/run/main.go --n=38
+  ```
 
 ## Timing analysis
 
