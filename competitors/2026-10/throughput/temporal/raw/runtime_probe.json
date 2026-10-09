@@ -1,0 +1,14 @@
+{
+ "python_version": "3.11.17",
+ "python_implementation": "CPython",
+ "python_build": "main Oct  6 2026 02:02:21",
+ "sys_version": "3.11.17 (main, Oct  6 2026, 02:02:21) [GCC 14.2.0]",
+ "temporalio_sdk": "1.34.0",
+ "fibo31_value": 1346269,
+ "fibo31_runs_s": [
+  0.13162,
+  0.13146,
+  0.13087
+ ],
+ "fibo31_mean_s": 0.13132
+}

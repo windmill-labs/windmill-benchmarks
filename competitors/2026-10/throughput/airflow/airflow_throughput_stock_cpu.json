@@ -1,0 +1,327 @@
+{
+  "engine": "airflow",
+  "config": "stock",
+  "workload": "cpu",
+  "concurrency": 20,
+  "concurrency_mechanism": "CeleryExecutor. Three caps were aligned on 20 so exactly one of them binds at 20 and none binds lower: core.parallelism=20 (deployment-wide), core.max_active_tasks_per_dag=20 (per DAG) and celery.worker_concurrency=20 (prefork pool size on the single airflow-worker container). default_pool keeps its 128 slots, so pool slots never bind. The Celery prefork pool forks one OS process per task instance, so CPU-bound task bodies get real cores.",
+  "settings_changed": {
+    "core.parallelism": {
+      "default": "32",
+      "set_to": "20",
+      "why": "hard cap on concurrently running task instances across the whole deployment"
+    },
+    "core.max_active_tasks_per_dag": {
+      "default": "16",
+      "set_to": "20",
+      "why": "per-DAG cap; the default 16 would have bound below 20"
+    },
+    "celery.worker_concurrency": {
+      "default": "16",
+      "set_to": "20",
+      "why": "Celery prefork pool size on the single worker container; the default 16 would have bound below 20"
+    },
+    "core.max_map_length": {
+      "default": "1024",
+      "set_to": "2000",
+      "why": "dynamic task mapping refuses to expand past this; 2000 inputs need it raised"
+    },
+    "core.load_examples": {
+      "default": "True",
+      "set_to": "true (unchanged)",
+      "why": "left on: 'stock' is defined as the official compose, which ships 115 example DAGs loaded and re-parsed"
+    },
+    "scheduler.scheduler_idle_sleep_time": {
+      "default": "1",
+      "set_to": "1 (unchanged)",
+      "why": "left at the stock value"
+    },
+    "scheduler.max_tis_per_query": {
+      "default": "16",
+      "set_to": "16 (unchanged)",
+      "why": "left at default; measured enqueue batches averaged 9.0, so this cap was never reached"
+    },
+    "core.default_pool_task_slot_count": {
+      "default": "128",
+      "set_to": "128 (unchanged)",
+      "why": "default_pool has 128 slots, well above 20, so pool slots never bound"
+    },
+    "AIRFLOW_UID": {
+      "default": "50000",
+      "set_to": "1000",
+      "why": "the step the official docker-compose guide requires on Linux so the mounted dags/ and logs/ are writable; not a tuning"
+    }
+  },
+  "notes": "Same shape as the sleep workload but tp_cpu, body = naive recursive fibo(31) (~135ms of real CPU). All 2000 task instances created up-front; peak concurrency exactly 20, never exceeded; mean concurrency 6.1 of 20. Example DAGs enabled (117 DAGs). Mean host CPU over the span was 5.1 of 32 cores, so ~20 cores were NOT busy: the ~6 concurrent task processes doing ~135ms of work each account for ~2.0 cores of the 5.1, the rest being the scheduler, dag-processor re-parsing 115 example DAGs, the api-server and Postgres.",
+  "measurement": "All reported numbers are derived from the Airflow metadata DB (task_instance), not harness wall-clock. throughput = n_success / (max(end_date) - min(start_date)). latency = end_date - queued_dttm. exec = end_date - start_date. Peak and mean concurrency are a sweep line over the (start_date, end_date) intervals. mean_busy_cores_host comes from an independent 1Hz /proc/stat sampler on the host (32 cores, nothing else running).",
+  "fanout": "single DAG run; one @task mapped with .expand() over a literal list of 2000 inputs (dynamic task mapping), giving 2000 independent task instances",
+  "theoretical_ceiling_per_s": 148.03,
+  "theoretical_ceiling_basis": "20 concurrent / 0.135104 (measured median fibo(31) in the worker image) s of work per task",
+  "summary": {
+    "median_throughput_per_s": 10.186,
+    "min_throughput_per_s": 9.868,
+    "max_throughput_per_s": 11.221,
+    "spread_pct_of_median": 13.3,
+    "pct_of_theoretical_ceiling": 6.9,
+    "median_latency_p50_s": 0.7071,
+    "median_latency_p95_s": 0.8742,
+    "median_exec_p50_s": 0.6263,
+    "median_mean_concurrency": 6.11,
+    "median_mean_busy_cores_host_of_32": 5.14
+  },
+  "sanity_checks": {
+    "all_reps_2000_success": true,
+    "peak_concurrency_per_rep": [
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "peak_concurrency_exceeded_20": false,
+    "retries_per_rep": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "all_task_instances_ready_before_first_start_per_rep": [
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "dag_run_states": [
+      "success",
+      "success",
+      "success",
+      "success",
+      "success"
+    ],
+    "apiserver_db_pool_timeouts_during_series": 0
+  },
+  "warmup_discarded": {
+    "jobs": 2000,
+    "span_s": 195.61,
+    "throughput_per_s": 10.224,
+    "latency_p50_s": 0.7095,
+    "latency_p95_s": 0.8709,
+    "exec_p50_s": 0.6265,
+    "exec_p95_s": 0.7886,
+    "latency_from_scheduled_p50_s": 100.9228,
+    "latency_from_scheduled_p95_s": 187.3914,
+    "n_task_instances": 2000,
+    "n_success": 2000,
+    "n_not_success": 0,
+    "states": {
+      "success": 2000
+    },
+    "retries": 0,
+    "peak_concurrency": 20,
+    "mean_concurrency": 6.044,
+    "mean_busy_cores_host": 5.09,
+    "all_task_instances_ready_before_first_start": true,
+    "ti_scheduled_spread_s": 0.234,
+    "last_scheduled_minus_first_start_s": -0.115,
+    "steady_state": {
+      "definition": "from the first instant concurrency reaches 20 to the last instant it is still 20",
+      "window_s": 190.817,
+      "start_offset_s": 0.462,
+      "completed_in_window": 1932,
+      "throughput_per_s": 10.125,
+      "mean_concurrency": 6.006,
+      "exec_p50_s": 0.6288,
+      "mean_busy_cores_host": 5.09
+    },
+    "run_id": "tp-stock-cpu-warmup-1791562579",
+    "dag_run_state": "success"
+  },
+  "reps": [
+    {
+      "jobs": 2000,
+      "span_s": 198.563,
+      "throughput_per_s": 10.072,
+      "latency_p50_s": 0.7127,
+      "latency_p95_s": 0.8669,
+      "exec_p50_s": 0.6297,
+      "exec_p95_s": 0.782,
+      "latency_from_scheduled_p50_s": 96.9376,
+      "latency_from_scheduled_p95_s": 186.6061,
+      "n_task_instances": 2000,
+      "n_success": 2000,
+      "n_not_success": 0,
+      "states": {
+        "success": 2000
+      },
+      "retries": 0,
+      "peak_concurrency": 20,
+      "mean_concurrency": 5.949,
+      "mean_busy_cores_host": 5.01,
+      "all_task_instances_ready_before_first_start": true,
+      "ti_scheduled_spread_s": 0.235,
+      "last_scheduled_minus_first_start_s": -0.108,
+      "steady_state": {
+        "definition": "from the first instant concurrency reaches 20 to the last instant it is still 20",
+        "window_s": 195.563,
+        "start_offset_s": 0.464,
+        "completed_in_window": 1967,
+        "throughput_per_s": 10.058,
+        "mean_concurrency": 5.952,
+        "exec_p50_s": 0.631,
+        "mean_busy_cores_host": 5.02
+      },
+      "run_id": "tp-stock-cpu-rep1-1791562788",
+      "dag_run_state": "success",
+      "apiserver_db_pool_timeouts_cumulative": 0
+    },
+    {
+      "jobs": 2000,
+      "span_s": 178.245,
+      "throughput_per_s": 11.221,
+      "latency_p50_s": 0.6626,
+      "latency_p95_s": 0.8742,
+      "exec_p50_s": 0.5877,
+      "exec_p95_s": 0.7926,
+      "latency_from_scheduled_p50_s": 88.1383,
+      "latency_from_scheduled_p95_s": 167.0772,
+      "n_task_instances": 2000,
+      "n_success": 2000,
+      "n_not_success": 0,
+      "states": {
+        "success": 2000
+      },
+      "retries": 0,
+      "peak_concurrency": 20,
+      "mean_concurrency": 6.499,
+      "mean_busy_cores_host": 5.49,
+      "all_task_instances_ready_before_first_start": true,
+      "ti_scheduled_spread_s": 0.197,
+      "last_scheduled_minus_first_start_s": -0.107,
+      "steady_state": {
+        "definition": "from the first instant concurrency reaches 20 to the last instant it is still 20",
+        "window_s": 162.874,
+        "start_offset_s": 14.196,
+        "completed_in_window": 1743,
+        "throughput_per_s": 10.702,
+        "mean_concurrency": 6.297,
+        "exec_p50_s": 0.6044,
+        "mean_busy_cores_host": 5.32
+      },
+      "run_id": "tp-stock-cpu-rep2-1791563000",
+      "dag_run_state": "success",
+      "apiserver_db_pool_timeouts_cumulative": 0
+    },
+    {
+      "jobs": 2000,
+      "span_s": 202.675,
+      "throughput_per_s": 9.868,
+      "latency_p50_s": 0.7224,
+      "latency_p95_s": 0.877,
+      "exec_p50_s": 0.6376,
+      "exec_p95_s": 0.7929,
+      "latency_from_scheduled_p50_s": 99.776,
+      "latency_from_scheduled_p95_s": 191.2017,
+      "n_task_instances": 2000,
+      "n_success": 2000,
+      "n_not_success": 0,
+      "states": {
+        "success": 2000
+      },
+      "retries": 0,
+      "peak_concurrency": 20,
+      "mean_concurrency": 5.897,
+      "mean_busy_cores_host": 5.01,
+      "all_task_instances_ready_before_first_start": true,
+      "ti_scheduled_spread_s": 0.228,
+      "last_scheduled_minus_first_start_s": -0.111,
+      "steady_state": {
+        "definition": "from the first instant concurrency reaches 20 to the last instant it is still 20",
+        "window_s": 198.662,
+        "start_offset_s": 1.582,
+        "completed_in_window": 1950,
+        "throughput_per_s": 9.816,
+        "mean_concurrency": 5.879,
+        "exec_p50_s": 0.6382,
+        "mean_busy_cores_host": 4.99
+      },
+      "run_id": "tp-stock-cpu-rep3-1791563191",
+      "dag_run_state": "success",
+      "apiserver_db_pool_timeouts_cumulative": 0
+    },
+    {
+      "jobs": 2000,
+      "span_s": 186.835,
+      "throughput_per_s": 10.705,
+      "latency_p50_s": 0.7016,
+      "latency_p95_s": 0.8733,
+      "exec_p50_s": 0.618,
+      "exec_p95_s": 0.7847,
+      "latency_from_scheduled_p50_s": 94.5082,
+      "latency_from_scheduled_p95_s": 179.274,
+      "n_task_instances": 2000,
+      "n_success": 2000,
+      "n_not_success": 0,
+      "states": {
+        "success": 2000
+      },
+      "retries": 0,
+      "peak_concurrency": 20,
+      "mean_concurrency": 6.268,
+      "mean_busy_cores_host": 5.37,
+      "all_task_instances_ready_before_first_start": true,
+      "ti_scheduled_spread_s": 0.226,
+      "last_scheduled_minus_first_start_s": -0.11,
+      "steady_state": {
+        "definition": "from the first instant concurrency reaches 20 to the last instant it is still 20",
+        "window_s": 180.017,
+        "start_offset_s": 1.55,
+        "completed_in_window": 1902,
+        "throughput_per_s": 10.566,
+        "mean_concurrency": 6.222,
+        "exec_p50_s": 0.6207,
+        "mean_busy_cores_host": 5.32
+      },
+      "run_id": "tp-stock-cpu-rep4-1791563408",
+      "dag_run_state": "success",
+      "apiserver_db_pool_timeouts_cumulative": 0
+    },
+    {
+      "jobs": 2000,
+      "span_s": 196.354,
+      "throughput_per_s": 10.186,
+      "latency_p50_s": 0.7071,
+      "latency_p95_s": 0.8906,
+      "exec_p50_s": 0.6263,
+      "exec_p95_s": 0.8031,
+      "latency_from_scheduled_p50_s": 101.8301,
+      "latency_from_scheduled_p95_s": 187.2384,
+      "n_task_instances": 2000,
+      "n_success": 2000,
+      "n_not_success": 0,
+      "states": {
+        "success": 2000
+      },
+      "retries": 0,
+      "peak_concurrency": 20,
+      "mean_concurrency": 6.114,
+      "mean_busy_cores_host": 5.14,
+      "all_task_instances_ready_before_first_start": true,
+      "ti_scheduled_spread_s": 0.228,
+      "last_scheduled_minus_first_start_s": -0.112,
+      "steady_state": {
+        "definition": "from the first instant concurrency reaches 20 to the last instant it is still 20",
+        "window_s": 192.083,
+        "start_offset_s": 1.576,
+        "completed_in_window": 1941,
+        "throughput_per_s": 10.105,
+        "mean_concurrency": 6.072,
+        "exec_p50_s": 0.6266,
+        "mean_busy_cores_host": 5.1
+      },
+      "run_id": "tp-stock-cpu-rep5-1791563609",
+      "dag_run_state": "success",
+      "apiserver_db_pool_timeouts_cumulative": 0
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+###### per_exec=20
+[tp_process_sleep_20_sw2] upserted; 100 executions x 20 units = 2000
+[tp_process_sleep_20_sw2] warmup tp=136.75/s span=14.63s lat_p50=6.941 lat_p95=14.017 exec_p50=0.137 peak=20 over20=0.0s mean_conc=18.88 submit=1.057s wall=15.7s
+[tp_process_sleep_20_sw2] rep1 tp=138.96/s span=14.39s lat_p50=7.152 lat_p95=13.585 exec_p50=0.136 peak=20 over20=0.0s mean_conc=18.99 submit=0.695s wall=15.1s
+###### per_exec=50
+[tp_process_sleep_50_sw2] upserted; 40 executions x 50 units = 2000
+[tp_process_sleep_50_sw2] warmup tp=135.81/s span=14.73s lat_p50=7.435 lat_p95=14.008 exec_p50=0.136 peak=20 over20=0.0s mean_conc=18.5 submit=0.343s wall=16.2s
+[tp_process_sleep_50_sw2] rep1 tp=133.04/s span=15.03s lat_p50=7.572 lat_p95=14.296 exec_p50=0.136 peak=20 over20=0.0s mean_conc=18.12 submit=0.321s wall=17.2s
+###### per_exec=100
+[tp_process_sleep_100_sw2] upserted; 20 executions x 100 units = 2000
+[tp_process_sleep_100_sw2] warmup tp=101.70/s span=19.66s lat_p50=9.539 lat_p95=19.286 exec_p50=0.136 peak=20 over20=0.0s mean_conc=13.85 submit=0.592s wall=24.2s
+[tp_process_sleep_100_sw2] rep1 tp=132.44/s span=15.10s lat_p50=7.401 lat_p95=14.529 exec_p50=0.136 peak=20 over20=0.0s mean_conc=18.03 submit=0.346s wall=18.4s
+###### SWEEP2 DONE
+
+--- earlier probe, 2000 units in ONE execution (shape rejected) ---
+2000 independent tasks in a single io.kestra.plugin.core.flow.Parallel block:
+after 155s only 426/2000 task runs had reached SUCCESS (~2.75 units/s) with the
+execution's own JSON document already at ~890 KB for 2001 task runs. Kestra
+stores the whole execution, task run list and state histories as one row and
+rewrites it on every state transition, so a single execution holding 2000 task
+runs is quadratic and never reaches steady state. Run abandoned.
+
+--- 200 units in ONE execution (sanity, same code path) ---
+tp=134.78/s span=1.48s exec_p50=0.142 peak_conc=20 submit=0.504s

@@ -1,0 +1,3 @@
+probe_drop_r0|2000|2000
+probe_drop_r1|2000|2000
+probe_drop_r2|1000|691

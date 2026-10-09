@@ -1,0 +1,87 @@
+[15:59:29] starting client container
+[15:59:29] starting 1 worker process(es), 20 slot(s) each
+[15:59:29] active workers: 20/1
+[15:59:32] active workers: 7/1
+[15:59:35] active workers: 1/1
+[15:59:35] interpreter probe inside the worker container
+{"version": "3.12.15 (main, Oct  6 2026, 02:02:22) [GCC 14.2.0]", "fibo31_s": [0.11464, 0.114181, 0.113937], "fibo10_s": 5e-06}
+[15:59:36] settling 90s
+[16:01:06] === sleep-warmup: enqueue 2000
+{"tag": "sleep-warmup", "workload": "sleep", "n": 2000, "enqueue_s": 0.2344, "paused_window_s": 0.7397, "unpause_s": 0.0052, "workers": 1}
+    waiting: 196/2000 rows, 5 completed, 0 other
+    waiting: 868/2000 rows, 237 completed, 0 other
+    waiting: 1701/2000 rows, 471 completed, 0 other
+    waiting: 2000/2000 rows, 712 completed, 0 other
+    waiting: 2000/2000 rows, 963 completed, 0 other
+    waiting: 2000/2000 rows, 1215 completed, 0 other
+    waiting: 2000/2000 rows, 1473 completed, 0 other
+    waiting: 2000/2000 rows, 1722 completed, 0 other
+    waiting: 2000/2000 rows, 1970 completed, 0 other
+{"tag": "sleep-warmup", "jobs": 2000, "span_s": 17.331, "throughput_per_s": 115.4, "span_from_enqueue_s": 17.4237, "throughput_from_enqueue_per_s": 114.786, "latency_p50_s": 9.0668, "latency_p95_s": 16.4277, "exec_p50_s": 0.0993, "exec_p95_s": 0.1047, "queue_wait_p50_s": 8.9671, "enqueue_window_s": 0.1161, "first_start_after_last_enqueue_s": -0.0233, "peak_concurrent": 20, "slot_utilisation": 0.5725, "mean_slot_cycle_s": 0.1733, "per_worker_gap_p50_s": 0.0611, "per_worker_gap_p95_s": 0.0611, "intra_worker_overlaps": 1998, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:01:27] --- sleep-warmup done; 60s gap
+[16:02:27] === sleep-r1: enqueue 2000
+{"tag": "sleep-r1", "workload": "sleep", "n": 2000, "enqueue_s": 0.228, "paused_window_s": 0.7326, "unpause_s": 0.0045, "workers": 1}
+    waiting: 158/2000 rows, 33 completed, 0 other
+    waiting: 778/2000 rows, 255 completed, 0 other
+    waiting: 1719/2000 rows, 477 completed, 0 other
+    waiting: 2000/2000 rows, 722 completed, 0 other
+    waiting: 2000/2000 rows, 967 completed, 0 other
+    waiting: 2000/2000 rows, 1218 completed, 0 other
+    waiting: 2000/2000 rows, 1469 completed, 0 other
+    waiting: 2000/2000 rows, 1721 completed, 0 other
+    waiting: 2000/2000 rows, 1977 completed, 0 other
+{"tag": "sleep-r1", "jobs": 2000, "span_s": 17.2496, "throughput_per_s": 115.945, "span_from_enqueue_s": 17.3342, "throughput_from_enqueue_per_s": 115.379, "latency_p50_s": 9.0283, "latency_p95_s": 16.4027, "exec_p50_s": 0.0993, "exec_p95_s": 0.1046, "queue_wait_p50_s": 8.9288, "enqueue_window_s": 0.1062, "first_start_after_last_enqueue_s": -0.0216, "peak_concurrent": 20, "slot_utilisation": 0.576, "mean_slot_cycle_s": 0.1725, "per_worker_gap_p50_s": 0.0638, "per_worker_gap_p95_s": 0.0638, "intra_worker_overlaps": 1998, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:02:48] --- sleep-r1 done; 60s gap
+[16:03:48] === sleep-r2: enqueue 2000
+{"tag": "sleep-r2", "workload": "sleep", "n": 2000, "enqueue_s": 0.2291, "paused_window_s": 0.7348, "unpause_s": 0.0055, "workers": 1}
+    waiting: 188/2000 rows, 24 completed, 0 other
+    waiting: 849/2000 rows, 246 completed, 0 other
+    waiting: 1628/2000 rows, 469 completed, 0 other
+    waiting: 2000/2000 rows, 703 completed, 0 other
+    waiting: 2000/2000 rows, 945 completed, 0 other
+    waiting: 2000/2000 rows, 1196 completed, 0 other
+    waiting: 2000/2000 rows, 1441 completed, 0 other
+    waiting: 2000/2000 rows, 1693 completed, 0 other
+    waiting: 2000/2000 rows, 1950 completed, 0 other
+{"tag": "sleep-r2", "jobs": 2000, "span_s": 17.3911, "throughput_per_s": 115.002, "span_from_enqueue_s": 17.4733, "throughput_from_enqueue_per_s": 114.461, "latency_p50_s": 9.204, "latency_p95_s": 16.5974, "exec_p50_s": 0.0991, "exec_p95_s": 0.1041, "queue_wait_p50_s": 9.1056, "enqueue_window_s": 0.1034, "first_start_after_last_enqueue_s": -0.0212, "peak_concurrent": 20, "slot_utilisation": 0.5692, "mean_slot_cycle_s": 0.1739, "per_worker_gap_p50_s": 0.0695, "per_worker_gap_p95_s": 0.0695, "intra_worker_overlaps": 1998, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:04:09] --- sleep-r2 done; 60s gap
+[16:05:09] === sleep-r3: enqueue 2000
+{"tag": "sleep-r3", "workload": "sleep", "n": 2000, "enqueue_s": 0.2482, "paused_window_s": 0.7566, "unpause_s": 0.0082, "workers": 1}
+    waiting: 150/2000 rows, 29 completed, 0 other
+    waiting: 840/2000 rows, 261 completed, 0 other
+    waiting: 1704/2000 rows, 487 completed, 0 other
+    waiting: 2000/2000 rows, 713 completed, 0 other
+    waiting: 2000/2000 rows, 964 completed, 0 other
+    waiting: 2000/2000 rows, 1208 completed, 0 other
+    waiting: 2000/2000 rows, 1459 completed, 0 other
+    waiting: 2000/2000 rows, 1717 completed, 0 other
+    waiting: 2000/2000 rows, 1972 completed, 0 other
+{"tag": "sleep-r3", "jobs": 2000, "span_s": 17.2809, "throughput_per_s": 115.735, "span_from_enqueue_s": 17.3741, "throughput_from_enqueue_per_s": 115.114, "latency_p50_s": 9.0378, "latency_p95_s": 16.4483, "exec_p50_s": 0.0992, "exec_p95_s": 0.1047, "queue_wait_p50_s": 8.9383, "enqueue_window_s": 0.1161, "first_start_after_last_enqueue_s": -0.0229, "peak_concurrent": 20, "slot_utilisation": 0.5749, "mean_slot_cycle_s": 0.1728, "per_worker_gap_p50_s": 0.0684, "per_worker_gap_p95_s": 0.0684, "intra_worker_overlaps": 1998, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:05:30] --- sleep-r3 done; 60s gap
+[16:06:30] === sleep-r4: enqueue 2000
+{"tag": "sleep-r4", "workload": "sleep", "n": 2000, "enqueue_s": 0.2429, "paused_window_s": 0.7499, "unpause_s": 0.0069, "workers": 1}
+    waiting: 154/2000 rows, 27 completed, 0 other
+    waiting: 828/2000 rows, 249 completed, 0 other
+    waiting: 1802/2000 rows, 483 completed, 0 other
+    waiting: 2000/2000 rows, 720 completed, 0 other
+    waiting: 2000/2000 rows, 978 completed, 0 other
+    waiting: 2000/2000 rows, 1222 completed, 0 other
+    waiting: 2000/2000 rows, 1470 completed, 0 other
+    waiting: 2000/2000 rows, 1727 completed, 0 other
+    waiting: 2000/2000 rows, 1975 completed, 0 other
+{"tag": "sleep-r4", "jobs": 2000, "span_s": 17.3016, "throughput_per_s": 115.596, "span_from_enqueue_s": 17.3962, "throughput_from_enqueue_per_s": 114.968, "latency_p50_s": 8.9499, "latency_p95_s": 16.3977, "exec_p50_s": 0.0994, "exec_p95_s": 0.1048, "queue_wait_p50_s": 8.8499, "enqueue_window_s": 0.1183, "first_start_after_last_enqueue_s": -0.0238, "peak_concurrent": 20, "slot_utilisation": 0.5739, "mean_slot_cycle_s": 0.173, "per_worker_gap_p50_s": 0.0584, "per_worker_gap_p95_s": 0.0584, "intra_worker_overlaps": 1998, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:06:51] --- sleep-r4 done; 60s gap
+[16:07:51] === sleep-r5: enqueue 2000
+{"tag": "sleep-r5", "workload": "sleep", "n": 2000, "enqueue_s": 0.229, "paused_window_s": 0.7381, "unpause_s": 0.0089, "workers": 1}
+    waiting: 90/2000 rows, 26 completed, 0 other
+    waiting: 722/2000 rows, 242 completed, 0 other
+    waiting: 1369/2000 rows, 462 completed, 0 other
+    waiting: 2000/2000 rows, 695 completed, 0 other
+    waiting: 2000/2000 rows, 940 completed, 0 other
+    waiting: 2000/2000 rows, 1194 completed, 0 other
+    waiting: 2000/2000 rows, 1438 completed, 0 other
+    waiting: 2000/2000 rows, 1696 completed, 0 other
+    waiting: 2000/2000 rows, 1941 completed, 0 other
+{"tag": "sleep-r5", "jobs": 2000, "span_s": 17.5383, "throughput_per_s": 114.036, "span_from_enqueue_s": 17.6281, "throughput_from_enqueue_per_s": 113.455, "latency_p50_s": 9.2523, "latency_p95_s": 16.7225, "exec_p50_s": 0.0992, "exec_p95_s": 0.1045, "queue_wait_p50_s": 9.1537, "enqueue_window_s": 0.1064, "first_start_after_last_enqueue_s": -0.0166, "peak_concurrent": 20, "slot_utilisation": 0.5654, "mean_slot_cycle_s": 0.1754, "per_worker_gap_p50_s": 0.0732, "per_worker_gap_p95_s": 0.0732, "intra_worker_overlaps": 1998, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:08:13] --- sleep-r5 done; 60s gap
+[16:09:13] WORKLOAD sleep DONE

@@ -1,0 +1,7 @@
+#!/bin/bash
+# rsh <local-script>  -> runs it remotely via base64 (ssh -n safe)
+set -euo pipefail
+SP=/tmp/claude-1000/-home-rfiszel--herdr-worktrees-windmilldocs-resume-workflow-engine-comparison/bc7bb4c2-c0ef-4c06-a1a0-34c22f02f119/scratchpad
+B64=$(base64 -w0 "$1")
+ssh -n -o StrictHostKeyChecking=no -o ServerAliveInterval=30 -i $SP/tp/key.pem ubuntu@77.113.180.185 \
+  "echo $B64 | base64 -d > /tmp/_rs.sh && bash /tmp/_rs.sh"

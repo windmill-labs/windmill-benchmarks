@@ -1,0 +1,9 @@
+[tp_docker_cpu_20_m] upserted; 25 executions x 20 units = 500
+[tp_docker_cpu_20_m] warmup tp=6.26/s span=79.86s lat_p50=41.027 lat_p95=77.544 exec_p50=3.189 peak=20 over20=0.0s mean_conc=19.77 submit=0.44s wall=81.1s cores_busy=4.227 cores_max=10.38 nwin=78 shims_p50=6
+[tp_docker_cpu_20_m] rep1 tp=5.84/s span=85.56s lat_p50=42.433 lat_p95=82.844 exec_p50=3.454 peak=20 over20=0.0s mean_conc=19.79 submit=0.6s wall=86.2s cores_busy=4.007 cores_max=10.154 nwin=83 shims_p50=6
+[tp_docker_cpu_20_m] rep2 tp=5.69/s span=87.92s lat_p50=45.084 lat_p95=86.221 exec_p50=3.585 peak=20 over20=0.0s mean_conc=19.83 submit=0.639s wall=89.2s cores_busy=3.931 cores_max=8.585 nwin=87 shims_p50=6
+[tp_docker_cpu_20_m] rep3 tp=8.47/s span=59.05s lat_p50=27.648 lat_p95=56.823 exec_p50=2.405 peak=20 over20=0.0s mean_conc=19.77 submit=0.669s wall=59.8s cores_busy=5.745 cores_max=10.19 nwin=58 shims_p50=8
+[tp_docker_cpu_20_m] rep4 tp=6.96/s span=71.82s lat_p50=36.171 lat_p95=69.743 exec_p50=2.888 peak=20 over20=0.0s mean_conc=19.8 submit=0.572s wall=73.0s cores_busy=4.743 cores_max=10.107 nwin=71 shims_p50=7
+[tp_docker_cpu_20_m] rep5 tp=6.49/s span=77.08s lat_p50=38.201 lat_p95=74.320 exec_p50=3.076 peak=20 over20=0.0s mean_conc=19.77 submit=0.639s wall=78.1s cores_busy=4.822 cores_max=9.378 nwin=76 shims_p50=7
+[tp_docker_cpu_20_m] wrote raw_docker_cpu.json
+[tp_docker_cpu_20_m] wrote rows_docker_cpu.json

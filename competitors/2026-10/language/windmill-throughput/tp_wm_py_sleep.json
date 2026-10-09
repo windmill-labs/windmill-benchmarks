@@ -1,0 +1,72 @@
+{
+ "engine": "windmill",
+ "config": "stock",
+ "language": "python",
+ "workload": "sleep",
+ "concurrency": 20,
+ "concurrency_mechanism": "20 worker processes, one job each",
+ "is_default": false,
+ "reps": [
+  {
+   "jobs": 2000,
+   "submit_s": 0.78,
+   "span_s": 13.519,
+   "throughput_per_s": 147.9,
+   "latency_p50_s": 6.819,
+   "latency_p95_s": 12.857,
+   "exec_p50_s": 0.131,
+   "queue_wait_p50_s": 6.689,
+   "peak_concurrency": 20,
+   "avg_concurrency": 19.43
+  },
+  {
+   "jobs": 2000,
+   "submit_s": 0.78,
+   "span_s": 13.535,
+   "throughput_per_s": 147.8,
+   "latency_p50_s": 6.831,
+   "latency_p95_s": 12.869,
+   "exec_p50_s": 0.131,
+   "queue_wait_p50_s": 6.701,
+   "peak_concurrency": 20,
+   "avg_concurrency": 19.42
+  },
+  {
+   "jobs": 2000,
+   "submit_s": 0.77,
+   "span_s": 13.565,
+   "throughput_per_s": 147.4,
+   "latency_p50_s": 6.852,
+   "latency_p95_s": 12.9,
+   "exec_p50_s": 0.131,
+   "queue_wait_p50_s": 6.717,
+   "peak_concurrency": 20,
+   "avg_concurrency": 19.43
+  },
+  {
+   "jobs": 2000,
+   "submit_s": 0.77,
+   "span_s": 13.552,
+   "throughput_per_s": 147.6,
+   "latency_p50_s": 6.836,
+   "latency_p95_s": 12.877,
+   "exec_p50_s": 0.131,
+   "queue_wait_p50_s": 6.703,
+   "peak_concurrency": 20,
+   "avg_concurrency": 19.43
+  },
+  {
+   "jobs": 2000,
+   "submit_s": 0.78,
+   "span_s": 13.335,
+   "throughput_per_s": 150.0,
+   "latency_p50_s": 6.723,
+   "latency_p95_s": 12.68,
+   "exec_p50_s": 0.129,
+   "queue_wait_p50_s": 6.595,
+   "peak_concurrency": 20,
+   "avg_concurrency": 19.42
+  }
+ ],
+ "median_throughput_per_s": 147.8
+}

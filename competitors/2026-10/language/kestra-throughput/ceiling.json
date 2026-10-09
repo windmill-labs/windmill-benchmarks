@@ -1,0 +1,65 @@
+{
+ "serial_docker_run_true_s": [
+  0.3497,
+  0.3273,
+  0.2997,
+  0.3245,
+  0.3253
+ ],
+ "serial_docker_run_sleep100ms_s": [
+  0.4306,
+  0.4268,
+  0.4289,
+  0.4438,
+  0.4334
+ ],
+ "in_container": {
+  "python_version": "3.14.8 (main, Oct  6 2026, 01:59:23) [GCC 14.2.0]",
+  "executable": "/usr/local/bin/python",
+  "cpu_count": 32,
+  "sched_affinity": 32,
+  "fibo31_serial_s": [
+   0.10649,
+   0.10687,
+   0.10637,
+   0.10667,
+   0.10672,
+   0.1065,
+   0.10645
+  ],
+  "parallel": [
+   {
+    "procs": 16,
+    "window_s": 8.0,
+    "calls": 1136,
+    "nonzero_exits": 0,
+    "elapsed_s": 8.071,
+    "calls_per_s": 140.76
+   },
+   {
+    "procs": 20,
+    "window_s": 8.0,
+    "calls": 1140,
+    "nonzero_exits": 0,
+    "elapsed_s": 8.053,
+    "calls_per_s": 141.57
+   },
+   {
+    "procs": 32,
+    "window_s": 8.0,
+    "calls": 1152,
+    "nonzero_exits": 0,
+    "elapsed_s": 8.067,
+    "calls_per_s": 142.8
+   }
+  ]
+ },
+ "serial_docker_run_fibo31_s": [
+  0.4651,
+  0.4332,
+  0.4483,
+  0.4384,
+  0.4187,
+  0.4514
+ ]
+}

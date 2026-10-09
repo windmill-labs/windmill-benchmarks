@@ -1,0 +1,3 @@
+{"engine":"windmill","version":"1.811.1 CE","host":"AWS EC2 m7i.xlarge (4 vCPU, 16 GiB, us-east-2)","run":"2026-10-09",
+ "python":{"version":"3.13.5","fibo33_s":[0.3145,0.3142,0.3144],"bare_boot_s":0.0088},
+ "bun":{"version":"1.4.0","fibo33_s":[0.022,0.020,0.020],"bare_boot_s":0.0035}}

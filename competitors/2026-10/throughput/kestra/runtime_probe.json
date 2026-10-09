@@ -1,0 +1,36 @@
+{
+ "process": {
+  "version": "3.12.3 (main, Jul 15 2026, 23:46:41) [GCC 13.3.0]",
+  "implementation": "CPython",
+  "executable": "/app/.venv/bin/python3.12",
+  "fibo31_s": [
+   0.1084,
+   0.1079,
+   0.1077
+  ],
+  "fibo10_s": 4.506626999955188e-06,
+  "cpu_count": 32,
+  "sched_affinity": 32,
+  "kestra_log_cmd_lines": [
+   "Starting command with pid 298 [/bin/sh -c set -e\nif [ -n \"$VIRTUAL_ENV\" ]; then \"$VIRTUAL_ENV/bin/python\" \"/tmp/kestra-wd/tmp/4hErkP0ZYK4x9Jeov3nYML/8734276164062114761.py\"; else \"python3.12\" \"/tmp/kestra-wd/tmp/4hErkP0ZYK4x9Jeov3nYML/8734276164062114761.py\"; fi]",
+   "Command succeed with exit code 0"
+  ]
+ },
+ "docker": {
+  "version": "3.14.8 (main, Oct  6 2026, 01:59:23) [GCC 14.2.0]",
+  "implementation": "CPython",
+  "executable": "/usr/local/bin/python",
+  "fibo31_s": [
+   0.1073,
+   0.1071,
+   0.1075
+  ],
+  "fibo10_s": 4.432865000126185e-06,
+  "cpu_count": 32,
+  "sched_affinity": 32,
+  "kestra_log_cmd_lines": [
+   "Starting command with container id a4b40062f31964c02edc528579f12f6542811a829c5223036fe42cc1d4fef014 [/bin/sh -c set -e\nif [ -n \"$VIRTUAL_ENV\" ]; then \"$VIRTUAL_ENV/bin/python\" \"/tmp/kestra-wd/tmp/6b2dk1s97VJfnUDcHSIXiP/7930738377204540080.py\"; else \"python\" \"/tmp/kestra-wd/tmp/6b2dk1s97VJfnUDcHSIXiP/7930738377204540080.py\"; fi]",
+   "Command succeed with exit code 0"
+  ]
+ }
+}

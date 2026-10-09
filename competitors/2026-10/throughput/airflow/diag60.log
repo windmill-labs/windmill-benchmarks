@@ -1,0 +1,16 @@
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: queued|7 running|38 scheduled|1553 success|402
+    [   52s] run=running ti: queued|10 running|41 scheduled|956 success|993
+    [   77s] run=running ti: running|31 scheduled|396 success|1573
+  diag60 sleep warmup: state=success success=2000/2000 span=91.32s thr=21.90/s lat_p50=1.585 lat_p95=2.370 exec_p50=1.506 peak_conc=60 mean_conc=36.0 cores=5.44
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: queued|16 running|23 scheduled|1445 success|516
+    [   52s] run=running ti: queued|1 running|28 scheduled|892 success|1079
+    [   77s] run=running ti: queued|13 running|31 scheduled|304 success|1652
+  diag60 sleep rep1: state=success success=2000/2000 span=88.88s thr=22.50/s lat_p50=1.633 lat_p95=2.335 exec_p50=1.554 peak_conc=59 mean_conc=36.1 cores=5.41
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: queued|8 running|23 scheduled|1456 success|513
+    [   52s] run=running ti: queued|4 running|34 scheduled|869 success|1093
+    [   77s] run=running ti: running|32 scheduled|293 success|1675
+  diag60 sleep rep2: state=success success=2000/2000 span=87.54s thr=22.85/s lat_p50=1.540 lat_p95=2.300 exec_p50=1.461 peak_conc=60 mean_conc=35.0 cores=5.46
+wrote /home/ubuntu/af/out/airflow_throughput_diag60_sleep.json

@@ -1,0 +1,82 @@
+[18:21:24] starting client container
+[18:21:24] starting 1 worker process(es), 20 slot(s) each
+[18:21:24] active workers: 1/1
+[18:21:24] runtime probe inside the worker container
+{"node":"v22.23.3","v8":"12.4.254.21-node.57","sdk":"1.36.0","sdk_name":"@hatchet-dev/typescript-sdk"}
+[18:21:24] settling 90s
+[18:22:54] === tssleep-warmup: enqueue 2000
+{"tag":"tssleep-warmup","workload":"sleep","n":2000,"enqueue_s":0.237,"paused_window_s":0.744,"unpause_s":0.007,"workers":1}
+    waiting: 183/2000 rows, 2 completed, 0 other
+    waiting: 2000/2000 rows, 20 completed, 0 other
+    waiting: 2000/2000 rows, 106 completed, 0 other
+    waiting: 2000/2000 rows, 356 completed, 0 other
+    waiting: 2000/2000 rows, 609 completed, 0 other
+    waiting: 2000/2000 rows, 864 completed, 0 other
+    waiting: 2000/2000 rows, 1120 completed, 0 other
+    waiting: 2000/2000 rows, 1383 completed, 0 other
+    waiting: 2000/2000 rows, 1638 completed, 0 other
+    waiting: 2000/2000 rows, 1892 completed, 0 other
+{"tag": "tssleep-warmup", "jobs": 2000, "span_s": 21.903, "throughput_per_s": 91.312, "span_from_enqueue_s": 21.9535, "throughput_from_enqueue_per_s": 91.102, "latency_p50_s": 13.7249, "latency_p95_s": 20.9778, "exec_p50_s": 0.1, "exec_p95_s": 0.101, "queue_wait_p50_s": 13.6249, "enqueue_window_s": 0.1733, "first_start_after_last_enqueue_s": -0.1229, "peak_concurrent": 20, "slot_utilisation": 0.4577, "mean_slot_cycle_s": 0.219, "per_worker_gap_p50_s": 0.2095, "per_worker_gap_p95_s": 0.9208, "intra_worker_overlaps": 1958, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[18:23:18] --- tssleep-warmup done; 60s gap
+[18:24:18] === tssleep-r1: enqueue 2000
+{"tag":"tssleep-r1","workload":"sleep","n":2000,"enqueue_s":0.243,"paused_window_s":0.749,"unpause_s":0.006,"workers":1}
+    waiting: 200/2000 rows, 20 completed, 0 other
+    waiting: 1334/2000 rows, 235 completed, 0 other
+    waiting: 2000/2000 rows, 470 completed, 0 other
+    waiting: 2000/2000 rows, 726 completed, 0 other
+    waiting: 2000/2000 rows, 980 completed, 0 other
+    waiting: 2000/2000 rows, 1242 completed, 0 other
+    waiting: 2000/2000 rows, 1501 completed, 0 other
+    waiting: 2000/2000 rows, 1758 completed, 0 other
+{"tag": "tssleep-r1", "jobs": 2000, "span_s": 16.785, "throughput_per_s": 119.154, "span_from_enqueue_s": 16.8306, "throughput_from_enqueue_per_s": 118.831, "latency_p50_s": 8.7133, "latency_p95_s": 15.8213, "exec_p50_s": 0.1, "exec_p95_s": 0.101, "queue_wait_p50_s": 8.6133, "enqueue_window_s": 0.1759, "first_start_after_last_enqueue_s": -0.1303, "peak_concurrent": 20, "slot_utilisation": 0.5971, "mean_slot_cycle_s": 0.1679, "per_worker_gap_p50_s": 0.1285, "per_worker_gap_p95_s": 0.8306, "intra_worker_overlaps": 1950, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[18:24:36] --- tssleep-r1 done; 60s gap
+[18:25:36] === tssleep-r2: enqueue 2000
+{"tag":"tssleep-r2","workload":"sleep","n":2000,"enqueue_s":0.246,"paused_window_s":0.75,"unpause_s":0.004,"workers":1}
+    waiting: 188/2000 rows, 20 completed, 0 other
+    waiting: 1207/2000 rows, 237 completed, 0 other
+    waiting: 2000/2000 rows, 467 completed, 0 other
+    waiting: 2000/2000 rows, 722 completed, 0 other
+    waiting: 2000/2000 rows, 968 completed, 0 other
+    waiting: 2000/2000 rows, 1232 completed, 0 other
+    waiting: 2000/2000 rows, 1486 completed, 0 other
+    waiting: 2000/2000 rows, 1745 completed, 0 other
+{"tag": "tssleep-r2", "jobs": 2000, "span_s": 16.807, "throughput_per_s": 118.998, "span_from_enqueue_s": 16.857, "throughput_from_enqueue_per_s": 118.645, "latency_p50_s": 8.7095, "latency_p95_s": 15.8851, "exec_p50_s": 0.1, "exec_p95_s": 0.101, "queue_wait_p50_s": 8.609, "enqueue_window_s": 0.1759, "first_start_after_last_enqueue_s": -0.1259, "peak_concurrent": 20, "slot_utilisation": 0.5965, "mean_slot_cycle_s": 0.1681, "per_worker_gap_p50_s": 0.143, "per_worker_gap_p95_s": 0.677, "intra_worker_overlaps": 1954, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[18:25:54] --- tssleep-r2 done; 60s gap
+[18:26:54] === tssleep-r3: enqueue 2000
+{"tag":"tssleep-r3","workload":"sleep","n":2000,"enqueue_s":0.245,"paused_window_s":0.752,"unpause_s":0.007,"workers":1}
+    waiting: 193/2000 rows, 20 completed, 0 other
+    waiting: 2000/2000 rows, 20 completed, 0 other
+    waiting: 2000/2000 rows, 238 completed, 0 other
+    waiting: 2000/2000 rows, 499 completed, 0 other
+    waiting: 2000/2000 rows, 752 completed, 0 other
+    waiting: 2000/2000 rows, 1018 completed, 0 other
+    waiting: 2000/2000 rows, 1279 completed, 0 other
+    waiting: 2000/2000 rows, 1533 completed, 0 other
+    waiting: 2000/2000 rows, 1790 completed, 0 other
+{"tag": "tssleep-r3", "jobs": 2000, "span_s": 22.682, "throughput_per_s": 88.176, "span_from_enqueue_s": 22.7308, "throughput_from_enqueue_per_s": 87.987, "latency_p50_s": 14.5984, "latency_p95_s": 21.7531, "exec_p50_s": 0.1, "exec_p95_s": 0.101, "queue_wait_p50_s": 14.4974, "enqueue_window_s": 0.1797, "first_start_after_last_enqueue_s": -0.1309, "peak_concurrent": 20, "slot_utilisation": 0.4419, "mean_slot_cycle_s": 0.2268, "per_worker_gap_p50_s": 0.338, "per_worker_gap_p95_s": 0.9639, "intra_worker_overlaps": 1964, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[18:27:18] --- tssleep-r3 done; 60s gap
+[18:28:18] === tssleep-r4: enqueue 2000
+{"tag":"tssleep-r4","workload":"sleep","n":2000,"enqueue_s":0.248,"paused_window_s":0.753,"unpause_s":0.005,"workers":1}
+    waiting: 198/2000 rows, 20 completed, 0 other
+    waiting: 1195/2000 rows, 240 completed, 0 other
+    waiting: 2000/2000 rows, 475 completed, 0 other
+    waiting: 2000/2000 rows, 728 completed, 0 other
+    waiting: 2000/2000 rows, 995 completed, 0 other
+    waiting: 2000/2000 rows, 1253 completed, 0 other
+    waiting: 2000/2000 rows, 1507 completed, 0 other
+    waiting: 2000/2000 rows, 1761 completed, 0 other
+{"tag": "tssleep-r4", "jobs": 2000, "span_s": 16.736, "throughput_per_s": 119.503, "span_from_enqueue_s": 16.7832, "throughput_from_enqueue_per_s": 119.167, "latency_p50_s": 8.57, "latency_p95_s": 15.8002, "exec_p50_s": 0.1, "exec_p95_s": 0.101, "queue_wait_p50_s": 8.4695, "enqueue_window_s": 0.1871, "first_start_after_last_enqueue_s": -0.1399, "peak_concurrent": 20, "slot_utilisation": 0.599, "mean_slot_cycle_s": 0.1674, "per_worker_gap_p50_s": 0.1, "per_worker_gap_p95_s": 0.7181, "intra_worker_overlaps": 1951, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[18:28:36] --- tssleep-r4 done; 60s gap
+[18:29:36] === tssleep-r5: enqueue 2000
+{"tag":"tssleep-r5","workload":"sleep","n":2000,"enqueue_s":0.234,"paused_window_s":0.741,"unpause_s":0.007,"workers":1}
+    waiting: 147/2000 rows, 20 completed, 0 other
+    waiting: 1266/2000 rows, 239 completed, 0 other
+    waiting: 2000/2000 rows, 473 completed, 0 other
+    waiting: 2000/2000 rows, 734 completed, 0 other
+    waiting: 2000/2000 rows, 987 completed, 0 other
+    waiting: 2000/2000 rows, 1239 completed, 0 other
+    waiting: 2000/2000 rows, 1496 completed, 0 other
+    waiting: 2000/2000 rows, 1759 completed, 0 other
+{"tag": "tssleep-r5", "jobs": 2000, "span_s": 16.647, "throughput_per_s": 120.142, "span_from_enqueue_s": 16.6919, "throughput_from_enqueue_per_s": 119.818, "latency_p50_s": 8.6365, "latency_p95_s": 15.7313, "exec_p50_s": 0.1, "exec_p95_s": 0.101, "queue_wait_p50_s": 8.5365, "enqueue_window_s": 0.1753, "first_start_after_last_enqueue_s": -0.1304, "peak_concurrent": 20, "slot_utilisation": 0.6022, "mean_slot_cycle_s": 0.1665, "per_worker_gap_p50_s": 0.109, "per_worker_gap_p95_s": 0.7964, "intra_worker_overlaps": 1949, "distinct_workers": 1, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[18:29:54] --- tssleep-r5 done; 60s gap
+[18:30:54] WORKLOAD tssleep DONE

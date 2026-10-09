@@ -1,0 +1,104 @@
+=== stock start 2026-10-09T16:00:22+00:00 ===
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: queued|8 running|1 scheduled|1752 success|239
+    [   52s] run=running ti: scheduled|1344 success|656
+    [   77s] run=running ti: scheduled|1023 success|977
+    [  103s] run=running ti: running|8 scheduled|628 success|1364
+    [  128s] run=running ti: scheduled|332 success|1668
+    [  154s] run=running ti: running|4 scheduled|25 success|1971
+  stock sleep warmup: state=success success=2000/2000 span=154.00s thr=12.99/s lat_p50=0.585 lat_p95=0.941 exec_p50=0.517 peak_conc=20 mean_conc=7.2 cores=3.86
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: running|8 scheduled|1674 success|318
+    [   51s] run=running ti: running|12 scheduled|1254 success|734
+    [   77s] run=running ti: running|15 scheduled|926 success|1059
+    [  103s] run=running ti: queued|4 running|15 scheduled|556 success|1425
+    [  128s] run=running ti: running|9 scheduled|264 success|1727
+  stock sleep rep1: state=success success=2000/2000 span=148.33s thr=13.48/s lat_p50=0.584 lat_p95=0.771 exec_p50=0.518 peak_conc=20 mean_conc=7.0 cores=3.93
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: running|6 scheduled|1707 success|287
+    [   51s] run=running ti: running|16 scheduled|1338 success|646
+    [   77s] run=running ti: queued|9 running|5 scheduled|1027 success|959
+    [  103s] run=running ti: scheduled|741 success|1259
+    [  128s] run=running ti: scheduled|391 success|1609
+    [  154s] run=running ti: scheduled|97 success|1903
+  stock sleep rep2: state=success success=2000/2000 span=158.02s thr=12.66/s lat_p50=0.584 lat_p95=0.768 exec_p50=0.521 peak_conc=20 mean_conc=6.6 cores=3.75
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: queued|9 running|9 scheduled|1635 success|347
+    [   51s] run=running ti: running|8 scheduled|1269 success|723
+    [   77s] run=running ti: scheduled|910 success|1090
+    [  103s] run=running ti: running|16 scheduled|568 success|1416
+    [  128s] run=running ti: queued|6 running|13 scheduled|263 success|1718
+  stock sleep rep3: state=success success=2000/2000 span=141.22s thr=14.16/s lat_p50=0.563 lat_p95=0.776 exec_p50=0.500 peak_conc=20 mean_conc=7.2 cores=4.07
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: scheduled|1668 success|332
+    [   51s] run=running ti: running|6 scheduled|1318 success|676
+    [   77s] run=running ti: running|10 scheduled|993 success|997
+    [  103s] run=running ti: running|10 scheduled|552 success|1438
+    [  128s] run=running ti: running|11 scheduled|182 success|1807
+  stock sleep rep4: state=success success=2000/2000 span=135.89s thr=14.72/s lat_p50=0.546 lat_p95=0.750 exec_p50=0.484 peak_conc=20 mean_conc=7.3 cores=4.18
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: running|6 scheduled|1698 success|296
+    [   52s] run=running ti: queued|7 scheduled|1308 success|685
+    [   77s] run=running ti: queued|5 running|4 scheduled|931 success|1060
+    [  103s] run=running ti: running|2 scheduled|598 success|1400
+    [  128s] run=running ti: running|8 scheduled|196 success|1796
+  stock sleep rep5: state=success success=2000/2000 span=135.52s thr=14.76/s lat_p50=0.558 lat_p95=0.749 exec_p50=0.496 peak_conc=20 mean_conc=7.4 cores=4.22
+wrote /home/ubuntu/af/out/airflow_throughput_stock_sleep.json
+=== stock sleep done 2026-10-09T16:16:17+00:00 ===
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: scheduled|1774 success|226
+    [   51s] run=running ti: scheduled|1501 success|499
+    [   77s] run=running ti: scheduled|1286 success|714
+    [  103s] run=running ti: queued|4 running|14 scheduled|1018 success|964
+    [  128s] run=running ti: scheduled|744 success|1256
+    [  154s] run=running ti: running|16 scheduled|475 success|1509
+    [  179s] run=running ti: scheduled|217 success|1783
+  stock cpu warmup: state=success success=2000/2000 span=195.61s thr=10.22/s lat_p50=0.710 lat_p95=0.871 exec_p50=0.626 peak_conc=20 mean_conc=6.0 cores=5.11
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: scheduled|1778 success|222
+    [   51s] run=running ti: scheduled|1507 success|493
+    [   77s] run=running ti: running|16 scheduled|1247 success|737
+    [  103s] run=running ti: scheduled|964 success|1036
+    [  128s] run=running ti: running|15 scheduled|697 success|1288
+    [  154s] run=running ti: scheduled|449 success|1551
+    [  179s] run=running ti: running|5 scheduled|204 success|1791
+  stock cpu rep1: state=success success=2000/2000 span=198.56s thr=10.07/s lat_p50=0.713 lat_p95=0.867 exec_p50=0.630 peak_conc=20 mean_conc=5.9 cores=5.02
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: queued|8 scheduled|1679 success|313
+    [   51s] run=running ti: scheduled|1409 success|591
+    [   77s] run=running ti: running|16 scheduled|1144 success|840
+    [  103s] run=running ti: queued|1 running|8 scheduled|888 success|1103
+    [  128s] run=running ti: running|16 scheduled|593 success|1391
+    [  154s] run=running ti: running|16 scheduled|286 success|1698
+    [  179s] run=running ti: scheduled|26 success|1974
+  stock cpu rep2: state=success success=2000/2000 span=178.25s thr=11.22/s lat_p50=0.663 lat_p95=0.874 exec_p50=0.588 peak_conc=20 mean_conc=6.5 cores=5.46
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: scheduled|1779 success|221
+    [   52s] run=running ti: scheduled|1546 success|454
+    [   77s] run=running ti: queued|3 running|13 scheduled|1258 success|726
+    [  103s] run=running ti: running|4 scheduled|1011 success|985
+    [  128s] run=running ti: running|16 scheduled|744 success|1240
+    [  154s] run=running ti: running|4 scheduled|504 success|1492
+    [  180s] run=running ti: running|3 scheduled|248 success|1749
+    [  205s] run=running ti: scheduled|10 success|1990
+  stock cpu rep3: state=success success=2000/2000 span=202.68s thr=9.87/s lat_p50=0.722 lat_p95=0.877 exec_p50=0.638 peak_conc=20 mean_conc=5.9 cores=4.98
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: scheduled|1781 success|219
+    [   51s] run=running ti: scheduled|1511 success|489
+    [   77s] run=running ti: running|20 scheduled|1241 success|739
+    [  103s] run=running ti: queued|4 running|16 scheduled|945 success|1035
+    [  128s] run=running ti: queued|16 scheduled|708 success|1276
+    [  154s] run=running ti: running|14 scheduled|402 success|1584
+    [  179s] run=running ti: scheduled|126 success|1874
+  stock cpu rep4: state=success success=2000/2000 span=186.84s thr=10.71/s lat_p50=0.702 lat_p95=0.873 exec_p50=0.618 peak_conc=20 mean_conc=6.3 cores=5.34
+    [    0s] run=queued ti: (none)|2000
+    [   26s] run=running ti: scheduled|1765 success|235
+    [   51s] run=running ti: scheduled|1527 success|473
+    [   77s] run=running ti: running|16 scheduled|1260 success|724
+    [  103s] run=running ti: running|16 scheduled|1018 success|966
+    [  128s] run=running ti: scheduled|756 success|1244
+    [  154s] run=running ti: running|12 scheduled|486 success|1502
+    [  179s] run=running ti: scheduled|241 success|1759
+  stock cpu rep5: state=success success=2000/2000 span=196.35s thr=10.19/s lat_p50=0.707 lat_p95=0.891 exec_p50=0.626 peak_conc=20 mean_conc=6.1 cores=5.12
+wrote /home/ubuntu/af/out/airflow_throughput_stock_cpu.json
+=== stock cpu done 2026-10-09T16:36:58+00:00 ===

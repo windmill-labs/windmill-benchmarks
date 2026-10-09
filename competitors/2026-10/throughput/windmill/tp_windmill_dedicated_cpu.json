@@ -1,0 +1,71 @@
+{
+ "engine": "windmill",
+ "config": "dedicated",
+ "workload": "cpu",
+ "concurrency": 20,
+ "concurrency_mechanism": "20 dedicated worker processes",
+ "is_default": false,
+ "reps": [
+  {
+   "jobs": 2000,
+   "submit_s": 0.7,
+   "span_s": 17.526,
+   "throughput_per_s": 114.1,
+   "latency_p50_s": 8.825,
+   "latency_p95_s": 16.63,
+   "exec_p50_s": 0.682,
+   "queue_wait_p50_s": 8.147,
+   "peak_concurrency": 82,
+   "avg_concurrency": 78.18
+  },
+  {
+   "jobs": 2000,
+   "submit_s": 0.71,
+   "span_s": 17.545,
+   "throughput_per_s": 114.0,
+   "latency_p50_s": 8.811,
+   "latency_p95_s": 16.577,
+   "exec_p50_s": 0.687,
+   "queue_wait_p50_s": 8.114,
+   "peak_concurrency": 82,
+   "avg_concurrency": 77.97
+  },
+  {
+   "jobs": 2000,
+   "submit_s": 0.71,
+   "span_s": 17.637,
+   "throughput_per_s": 113.4,
+   "latency_p50_s": 8.853,
+   "latency_p95_s": 16.692,
+   "exec_p50_s": 0.687,
+   "queue_wait_p50_s": 8.13,
+   "peak_concurrency": 82,
+   "avg_concurrency": 78.02
+  },
+  {
+   "jobs": 2000,
+   "submit_s": 0.71,
+   "span_s": 17.541,
+   "throughput_per_s": 114.0,
+   "latency_p50_s": 8.786,
+   "latency_p95_s": 16.605,
+   "exec_p50_s": 0.684,
+   "queue_wait_p50_s": 8.092,
+   "peak_concurrency": 82,
+   "avg_concurrency": 78.06
+  },
+  {
+   "jobs": 2000,
+   "submit_s": 0.71,
+   "span_s": 17.612,
+   "throughput_per_s": 113.6,
+   "latency_p50_s": 8.864,
+   "latency_p95_s": 16.712,
+   "exec_p50_s": 0.688,
+   "queue_wait_p50_s": 8.147,
+   "peak_concurrency": 82,
+   "avg_concurrency": 78.18
+  }
+ ],
+ "median_throughput_per_s": 114.0
+}

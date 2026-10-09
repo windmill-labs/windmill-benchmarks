@@ -1,0 +1,166 @@
+id: tp_process_sleep_20_m
+namespace: company.team
+tasks:
+  - id: fanout
+    type: io.kestra.plugin.core.flow.Parallel
+    tasks:
+      - id: u000
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u001
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u002
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u003
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u004
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u005
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u006
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u007
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u008
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u009
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u010
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u011
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u012
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u013
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u014
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u015
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u016
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u017
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u018
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")
+      - id: u019
+        type: io.kestra.plugin.scripts.python.Script
+        taskRunner:
+          type: io.kestra.plugin.core.runner.Process
+        script: |
+          import time
+          time.sleep(0.1)
+          print("ok")

@@ -1,0 +1,8 @@
+PYJSON={"version": "3.11.17", "impl": "CPython", "fibo33_runs_s": [0.3936, 0.3956, 0.3935], "fibo33_total_s": 1.1827}
+TSJSON={"version":"22.23.3","v8":"12.4.254.21-node.57","fibo33_runs_s":[0.0331,0.032,0.0317],"fibo33_total_s":0.0968}
+PYSDK=1.34.0
+TSSDK=1.24.0
+PYIMG=3.11.17
+SRVVER=1.29.7
+PYBASE="Debian GNU/Linux 13 (trixie)"
+TSBASE="Debian GNU/Linux 12 (bookworm)"

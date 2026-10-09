@@ -1,0 +1,1 @@
+{"tag": "ip_sleep_r1", "workload": "sleep", "n": 31, "units": 500, "max_workers": 20, "wall_start": 1791563341.8672009, "wall_end": 1791563346.0807056, "wall_s": 4.214, "submit_s": 0.072, "ok": 500, "flow_proc_cpu_s": 3.369, "cores_busy_flow_proc": 0.8, "python": "3.12.14 (main, Sep  1 2026, 00:10:07) [GCC 14.2.0]"}

@@ -1,0 +1,133 @@
+id: bench_js_process_fibonacci_10_33
+namespace: company.team
+tasks:
+  - id: t_000
+    type: io.kestra.plugin.scripts.node.Script
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    script: |
+      function fibo(n) {
+        if (n <= 1) {
+          return n
+        } else {
+          return fibo(n-1) + fibo(n-2)
+        }
+      }
+      console.log(fibo(33))
+  - id: t_001
+    type: io.kestra.plugin.scripts.node.Script
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    script: |
+      function fibo(n) {
+        if (n <= 1) {
+          return n
+        } else {
+          return fibo(n-1) + fibo(n-2)
+        }
+      }
+      console.log(fibo(33))
+  - id: t_002
+    type: io.kestra.plugin.scripts.node.Script
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    script: |
+      function fibo(n) {
+        if (n <= 1) {
+          return n
+        } else {
+          return fibo(n-1) + fibo(n-2)
+        }
+      }
+      console.log(fibo(33))
+  - id: t_003
+    type: io.kestra.plugin.scripts.node.Script
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    script: |
+      function fibo(n) {
+        if (n <= 1) {
+          return n
+        } else {
+          return fibo(n-1) + fibo(n-2)
+        }
+      }
+      console.log(fibo(33))
+  - id: t_004
+    type: io.kestra.plugin.scripts.node.Script
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    script: |
+      function fibo(n) {
+        if (n <= 1) {
+          return n
+        } else {
+          return fibo(n-1) + fibo(n-2)
+        }
+      }
+      console.log(fibo(33))
+  - id: t_005
+    type: io.kestra.plugin.scripts.node.Script
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    script: |
+      function fibo(n) {
+        if (n <= 1) {
+          return n
+        } else {
+          return fibo(n-1) + fibo(n-2)
+        }
+      }
+      console.log(fibo(33))
+  - id: t_006
+    type: io.kestra.plugin.scripts.node.Script
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    script: |
+      function fibo(n) {
+        if (n <= 1) {
+          return n
+        } else {
+          return fibo(n-1) + fibo(n-2)
+        }
+      }
+      console.log(fibo(33))
+  - id: t_007
+    type: io.kestra.plugin.scripts.node.Script
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    script: |
+      function fibo(n) {
+        if (n <= 1) {
+          return n
+        } else {
+          return fibo(n-1) + fibo(n-2)
+        }
+      }
+      console.log(fibo(33))
+  - id: t_008
+    type: io.kestra.plugin.scripts.node.Script
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    script: |
+      function fibo(n) {
+        if (n <= 1) {
+          return n
+        } else {
+          return fibo(n-1) + fibo(n-2)
+        }
+      }
+      console.log(fibo(33))
+  - id: t_009
+    type: io.kestra.plugin.scripts.node.Script
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    script: |
+      function fibo(n) {
+        if (n <= 1) {
+          return n
+        } else {
+          return fibo(n-1) + fibo(n-2)
+        }
+      }
+      console.log(fibo(33))

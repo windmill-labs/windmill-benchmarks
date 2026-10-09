@@ -1,0 +1,96 @@
+[16:09:35] starting client container
+[16:09:35] starting 20 worker process(es), 1 slot(s) each
+[16:09:35] active workers: 1/20
+[16:09:38] active workers: 8/20
+[16:09:41] active workers: 20/20
+[16:09:41] interpreter probe inside the worker container
+{"version": "3.12.15 (main, Oct  6 2026, 02:02:22) [GCC 14.2.0]", "fibo31_s": [0.114534, 0.114393, 0.113371], "fibo10_s": 6e-06}
+[16:09:42] settling 90s
+[16:11:12] === cpu-warmup: enqueue 2000
+{"tag": "cpu-warmup", "workload": "cpu", "n": 2000, "enqueue_s": 0.282, "paused_window_s": 0.8005, "unpause_s": 0.0184, "workers": 20}
+    waiting: 414/2000 rows, 27 completed, 0 other
+    waiting: 2000/2000 rows, 214 completed, 0 other
+    waiting: 2000/2000 rows, 414 completed, 0 other
+    waiting: 2000/2000 rows, 616 completed, 0 other
+    waiting: 2000/2000 rows, 818 completed, 0 other
+    waiting: 2000/2000 rows, 1018 completed, 0 other
+    waiting: 2000/2000 rows, 1218 completed, 0 other
+    waiting: 2000/2000 rows, 1416 completed, 0 other
+    waiting: 2000/2000 rows, 1611 completed, 0 other
+    waiting: 2000/2000 rows, 1812 completed, 0 other
+{"tag": "cpu-warmup", "jobs": 2000, "span_s": 21.1859, "throughput_per_s": 94.402, "span_from_enqueue_s": 21.2801, "throughput_from_enqueue_per_s": 93.984, "latency_p50_s": 10.7775, "latency_p95_s": 20.1267, "exec_p50_s": 0.1725, "exec_p95_s": 0.2283, "queue_wait_p50_s": 10.591, "enqueue_window_s": 0.1281, "first_start_after_last_enqueue_s": -0.0339, "peak_concurrent": 20, "slot_utilisation": 0.8397, "mean_slot_cycle_s": 0.2119, "per_worker_gap_p50_s": 0.0306, "per_worker_gap_p95_s": 0.0556, "intra_worker_overlaps": 0, "distinct_workers": 20, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:11:35] --- cpu-warmup done; 60s gap
+[16:12:35] === cpu-r1: enqueue 2000
+{"tag": "cpu-r1", "workload": "cpu", "n": 2000, "enqueue_s": 0.2512, "paused_window_s": 0.77, "unpause_s": 0.0187, "workers": 20}
+    waiting: 325/2000 rows, 26 completed, 0 other
+    waiting: 2000/2000 rows, 212 completed, 0 other
+    waiting: 2000/2000 rows, 407 completed, 0 other
+    waiting: 2000/2000 rows, 607 completed, 0 other
+    waiting: 2000/2000 rows, 803 completed, 0 other
+    waiting: 2000/2000 rows, 999 completed, 0 other
+    waiting: 2000/2000 rows, 1198 completed, 0 other
+    waiting: 2000/2000 rows, 1393 completed, 0 other
+    waiting: 2000/2000 rows, 1599 completed, 0 other
+    waiting: 2000/2000 rows, 1803 completed, 0 other
+{"tag": "cpu-r1", "jobs": 2000, "span_s": 21.2229, "throughput_per_s": 94.238, "span_from_enqueue_s": 21.3123, "throughput_from_enqueue_per_s": 93.843, "latency_p50_s": 10.9057, "latency_p95_s": 20.2184, "exec_p50_s": 0.1723, "exec_p95_s": 0.2289, "queue_wait_p50_s": 10.7588, "enqueue_window_s": 0.1062, "first_start_after_last_enqueue_s": -0.0168, "peak_concurrent": 20, "slot_utilisation": 0.8385, "mean_slot_cycle_s": 0.2122, "per_worker_gap_p50_s": 0.0312, "per_worker_gap_p95_s": 0.0553, "intra_worker_overlaps": 0, "distinct_workers": 20, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:12:59] --- cpu-r1 done; 60s gap
+[16:13:59] === cpu-r2: enqueue 2000
+{"tag": "cpu-r2", "workload": "cpu", "n": 2000, "enqueue_s": 0.265, "paused_window_s": 0.7859, "unpause_s": 0.0208, "workers": 20}
+    waiting: 361/2000 rows, 28 completed, 0 other
+    waiting: 2000/2000 rows, 214 completed, 0 other
+    waiting: 2000/2000 rows, 417 completed, 0 other
+    waiting: 2000/2000 rows, 618 completed, 0 other
+    waiting: 2000/2000 rows, 818 completed, 0 other
+    waiting: 2000/2000 rows, 1016 completed, 0 other
+    waiting: 2000/2000 rows, 1209 completed, 0 other
+    waiting: 2000/2000 rows, 1409 completed, 0 other
+    waiting: 2000/2000 rows, 1606 completed, 0 other
+    waiting: 2000/2000 rows, 1805 completed, 0 other
+{"tag": "cpu-r2", "jobs": 2000, "span_s": 21.3191, "throughput_per_s": 93.813, "span_from_enqueue_s": 21.4083, "throughput_from_enqueue_per_s": 93.422, "latency_p50_s": 10.8379, "latency_p95_s": 20.2662, "exec_p50_s": 0.1768, "exec_p95_s": 0.233, "queue_wait_p50_s": 10.6569, "enqueue_window_s": 0.1136, "first_start_after_last_enqueue_s": -0.0244, "peak_concurrent": 20, "slot_utilisation": 0.8416, "mean_slot_cycle_s": 0.2132, "per_worker_gap_p50_s": 0.0311, "per_worker_gap_p95_s": 0.052, "intra_worker_overlaps": 0, "distinct_workers": 20, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:14:22] --- cpu-r2 done; 60s gap
+[16:15:22] === cpu-r3: enqueue 2000
+{"tag": "cpu-r3", "workload": "cpu", "n": 2000, "enqueue_s": 0.2509, "paused_window_s": 0.7694, "unpause_s": 0.0185, "workers": 20}
+    waiting: 362/2000 rows, 22 completed, 0 other
+    waiting: 2000/2000 rows, 211 completed, 0 other
+    waiting: 2000/2000 rows, 407 completed, 0 other
+    waiting: 2000/2000 rows, 608 completed, 0 other
+    waiting: 2000/2000 rows, 808 completed, 0 other
+    waiting: 2000/2000 rows, 1006 completed, 0 other
+    waiting: 2000/2000 rows, 1206 completed, 0 other
+    waiting: 2000/2000 rows, 1404 completed, 0 other
+    waiting: 2000/2000 rows, 1603 completed, 0 other
+    waiting: 2000/2000 rows, 1804 completed, 0 other
+{"tag": "cpu-r3", "jobs": 2000, "span_s": 21.3022, "throughput_per_s": 93.887, "span_from_enqueue_s": 21.3851, "throughput_from_enqueue_per_s": 93.523, "latency_p50_s": 10.8299, "latency_p95_s": 20.2345, "exec_p50_s": 0.1763, "exec_p95_s": 0.2304, "queue_wait_p50_s": 10.655, "enqueue_window_s": 0.1147, "first_start_after_last_enqueue_s": -0.0318, "peak_concurrent": 20, "slot_utilisation": 0.8422, "mean_slot_cycle_s": 0.213, "per_worker_gap_p50_s": 0.031, "per_worker_gap_p95_s": 0.0524, "intra_worker_overlaps": 0, "distinct_workers": 20, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:15:45] --- cpu-r3 done; 60s gap
+[16:16:45] === cpu-r4: enqueue 2000
+{"tag": "cpu-r4", "workload": "cpu", "n": 2000, "enqueue_s": 0.2535, "paused_window_s": 0.7718, "unpause_s": 0.0183, "workers": 20}
+    waiting: 294/2000 rows, 22 completed, 0 other
+    waiting: 2000/2000 rows, 72 completed, 0 other
+    waiting: 2000/2000 rows, 133 completed, 0 other
+    waiting: 2000/2000 rows, 328 completed, 0 other
+    waiting: 2000/2000 rows, 529 completed, 0 other
+    waiting: 2000/2000 rows, 728 completed, 0 other
+    waiting: 2000/2000 rows, 928 completed, 0 other
+    waiting: 2000/2000 rows, 1123 completed, 0 other
+    waiting: 2000/2000 rows, 1322 completed, 0 other
+    waiting: 2000/2000 rows, 1520 completed, 0 other
+    waiting: 2000/2000 rows, 1710 completed, 0 other
+    waiting: 2000/2000 rows, 1909 completed, 0 other
+{"tag": "cpu-r4", "jobs": 2000, "span_s": 24.3661, "throughput_per_s": 82.081, "span_from_enqueue_s": 24.4505, "throughput_from_enqueue_per_s": 81.798, "latency_p50_s": 13.762, "latency_p95_s": 23.3355, "exec_p50_s": 0.1736, "exec_p95_s": 0.2291, "queue_wait_p50_s": 13.5878, "enqueue_window_s": 0.1186, "first_start_after_last_enqueue_s": -0.0342, "peak_concurrent": 20, "slot_utilisation": 0.7269, "mean_slot_cycle_s": 0.2437, "per_worker_gap_p50_s": 0.0307, "per_worker_gap_p95_s": 0.0488, "intra_worker_overlaps": 0, "distinct_workers": 20, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:17:13] --- cpu-r4 done; 60s gap
+[16:18:13] === cpu-r5: enqueue 2000
+{"tag": "cpu-r5", "workload": "cpu", "n": 2000, "enqueue_s": 0.2568, "paused_window_s": 0.7788, "unpause_s": 0.022, "workers": 20}
+    waiting: 218/2000 rows, 20 completed, 0 other
+    waiting: 1810/2000 rows, 200 completed, 0 other
+    waiting: 2000/2000 rows, 387 completed, 0 other
+    waiting: 2000/2000 rows, 589 completed, 0 other
+    waiting: 2000/2000 rows, 789 completed, 0 other
+    waiting: 2000/2000 rows, 991 completed, 0 other
+    waiting: 2000/2000 rows, 1192 completed, 0 other
+    waiting: 2000/2000 rows, 1390 completed, 0 other
+    waiting: 2000/2000 rows, 1589 completed, 0 other
+    waiting: 2000/2000 rows, 1788 completed, 0 other
+    waiting: 2000/2000 rows, 1989 completed, 0 other
+{"tag": "cpu-r5", "jobs": 2000, "span_s": 21.5101, "throughput_per_s": 92.979, "span_from_enqueue_s": 21.5975, "throughput_from_enqueue_per_s": 92.603, "latency_p50_s": 11.0153, "latency_p95_s": 20.4261, "exec_p50_s": 0.1764, "exec_p95_s": 0.2312, "queue_wait_p50_s": 10.8374, "enqueue_window_s": 0.1052, "first_start_after_last_enqueue_s": -0.0179, "peak_concurrent": 20, "slot_utilisation": 0.8332, "mean_slot_cycle_s": 0.2151, "per_worker_gap_p50_s": 0.0315, "per_worker_gap_p95_s": 0.0624, "intra_worker_overlaps": 0, "distinct_workers": 20, "statuses": ["COMPLETED"], "max_retry_count": 0, "all_completed": true}
+[16:18:38] --- cpu-r5 done; 60s gap
+[16:19:38] WORKLOAD cpu DONE

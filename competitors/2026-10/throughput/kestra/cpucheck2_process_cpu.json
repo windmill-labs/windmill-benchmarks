@@ -1,0 +1,26 @@
+{
+ "combo": "process/cpu",
+ "note": "one extra rep, NOT part of the 5 measured reps; cores are averages over the whole rep wall time, so they are diluted by the brief idle head and tail",
+ "wall_s": 23.6,
+ "rep": {
+  "jobs": 2000,
+  "span_s": 21.614,
+  "throughput_per_s": 92.534,
+  "latency_p50_s": 10.729,
+  "latency_p95_s": 20.663,
+  "exec_p50_s": 0.192,
+  "exec_p95_s": 0.263,
+  "peak_concurrency": 20,
+  "seconds_above_20_concurrent": 0.0,
+  "mean_concurrency": 19.37
+ },
+ "cpu_attribution_cores": {
+  "host_busy_total": 22.18,
+  "kestra_jvm_itself": 2.29,
+  "task_processes_reaped_children_of_jvm": 17.33,
+  "postgres_cgroup": 2.19,
+  "host_ncpu": 32,
+  "cgroup_path_used": "/sys/fs/cgroup/system.slice/docker-3a55c01ac428a792422d58124b2c98ced1521a9f75fb642a27e510ce870c3961.scope/cpu.stat"
+ },
+ "ideal_task_cpu_cores": null
+}

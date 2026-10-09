@@ -1,0 +1,1 @@
+{"tag": "ip_cpu_r5", "workload": "cpu", "n": 31, "units": 2000, "max_workers": 20, "wall_start": 1791562998.3580236, "wall_end": 1791563238.2703161, "wall_s": 239.912, "submit_s": 0.174, "ok": 2000, "flow_proc_cpu_s": 246.089, "cores_busy_flow_proc": 1.026, "python": "3.12.14 (main, Sep  1 2026, 00:10:07) [GCC 14.2.0]"}

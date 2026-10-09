@@ -1,0 +1,35 @@
+{
+ "summary": "The in_process configuration nominally spreads 20-way, but on a CPU-bound body it uses 1.03 cores, 5.1% of the 20 it spans, and reaches 8.39 units/s against a 180.0 units/s ceiling, 4.7% of it. The 20 'concurrent' tasks are threads of one CPython process, so the GIL serialises them.",
+ "why": "ThreadPoolTaskRunner runs each @task in a thread of the flow's own process. Nothing is dispatched and nothing is isolated, so 20-way concurrency buys overlap only where the body releases the GIL. time.sleep does; a naive recursive fibo does not.",
+ "throughput_per_s_median": 8.39,
+ "throughput_per_s_reps": [
+  8.39,
+  8.38,
+  8.41,
+  8.38,
+  8.39
+ ],
+ "theoretical_ceiling_per_s": 180.0,
+ "pct_of_ceiling": 4.66,
+ "cores_busy_flow_process_median": 1.028,
+ "cores_busy_flow_process_reps": [
+  1.029,
+  1.029,
+  1.028,
+  1.028,
+  1.026
+ ],
+ "fraction_of_20_cores_used": 0.0514,
+ "pct_of_20_cores_used": 5.14,
+ "pct_of_32_vcpu_box_used": 3.21,
+ "host_cores_busy_median": 1.21,
+ "how_the_core_figure_was_taken": {
+  "primary": "resource.getrusage(RUSAGE_SELF) in the flow process, read immediately before the flow call and immediately after it returns. ru_utime + ru_stime deltas give the CPU-seconds the process consumed; dividing by the wall seconds of the same interval gives cores busy. RUSAGE_SELF covers every thread of the process, and in this configuration all 2000 task bodies are threads of it, so nothing escapes the accounting.",
+  "cpu_seconds_consumed_median": 246.1,
+  "cpu_seconds_of_fibo_work_expected": 222.2,
+  "orchestration_cpu_overhead_s": 23.9,
+  "cross_check": "host-wide /proc/stat sampled once a second and sliced to each rep's measured window, which gives the flow process plus the Prefect server and Postgres",
+  "box": "32 vCPU, nothing else running on it"
+ },
+ "contrast_with_sleep_workload": "On the sleep body the same configuration reaches far higher throughput, because time.sleep releases the GIL and 20 threads do overlap. The gap between the two workloads in this one configuration is the GIL, not Prefect's orchestration."
+}

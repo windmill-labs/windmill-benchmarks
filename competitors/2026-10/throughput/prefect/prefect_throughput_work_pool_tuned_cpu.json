@@ -1,0 +1,81 @@
+{
+ "engine": "prefect",
+ "config": "work_pool_tuned",
+ "workload": "cpu",
+ "units_per_rep": 400,
+ "batch_size_note": "400 units per rep, same reason.",
+ "reps_measured": 3,
+ "reps_warmup_discarded": 1,
+ "concurrency": 20,
+ "concurrency_mechanism": "Process work pool 'bench' with concurrency limit 20, worker poll loop at PREFECT_WORKER_QUERY_SECONDS=0.1; 2000 deployment runs of the 'unit' flow, each executed as its own subprocess.",
+ "is_default": false,
+ "notes": "Same as work_pool but with PREFECT_WORKER_QUERY_SECONDS=0.1 instead of the default 10s, which is the single change. run_deployment is still not used, so its 5s poll_interval default is not in play.",
+ "reps": [
+  {
+   "jobs": 400,
+   "span_s": 112.608,
+   "throughput_per_s": 3.55,
+   "latency_p50_s": 61.321,
+   "latency_p95_s": 102.029,
+   "exec_p50_s": 0.7727,
+   "exec_p95_s": 1.7739,
+   "peak_concurrency": 18,
+   "submit_spread_s": 15.904,
+   "host_cores_busy": 9.97,
+   "units_seen": 400,
+   "not_completed": 0
+  },
+  {
+   "jobs": 400,
+   "span_s": 117.658,
+   "throughput_per_s": 3.4,
+   "latency_p50_s": 60.993,
+   "latency_p95_s": 103.214,
+   "exec_p50_s": 0.7611,
+   "exec_p95_s": 1.6532,
+   "peak_concurrency": 17,
+   "submit_spread_s": 16.553,
+   "host_cores_busy": 9.8,
+   "units_seen": 400,
+   "not_completed": 0
+  },
+  {
+   "jobs": 400,
+   "span_s": 115.752,
+   "throughput_per_s": 3.46,
+   "latency_p50_s": 60.306,
+   "latency_p95_s": 101.2,
+   "exec_p50_s": 0.7473,
+   "exec_p95_s": 1.4431,
+   "peak_concurrency": 15,
+   "submit_spread_s": 16.524,
+   "host_cores_busy": 9.86,
+   "units_seen": 400,
+   "not_completed": 0
+  }
+ ],
+ "warmup_discarded": [
+  {
+   "jobs": 400,
+   "span_s": 117.381,
+   "throughput_per_s": 3.41
+  }
+ ],
+ "summary": {
+  "units_per_rep": 400,
+  "throughput_median_per_s": 3.46,
+  "throughput_min_per_s": 3.4,
+  "throughput_max_per_s": 3.55,
+  "throughput_stdev_per_s": 0.075,
+  "theoretical_ceiling_per_s": 180.0,
+  "pct_of_ceiling": 1.92,
+  "latency_p50_median_s": 60.993,
+  "latency_p95_median_s": 102.029,
+  "exec_p50_median_s": 0.7611,
+  "peak_concurrency_max": 18,
+  "host_cores_busy_median": 9.86,
+  "create_whole_batch_s_median": 16.717,
+  "creation_rate_per_s": 23.9,
+  "submission_headroom_x": 6.9
+ }
+}

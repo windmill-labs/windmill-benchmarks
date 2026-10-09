@@ -1,0 +1,35 @@
+{
+ "topology": {
+  "vcpus": 32,
+  "distinct_sibling_groups": 16,
+  "threads_per_core": 2.0,
+  "model": "Intel(R) Xeon(R) Platinum 8488C"
+ },
+ "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+ "fibo31_under_parallelism": [
+  {
+   "parallelism": 1,
+   "fibo31_p50_s": 0.1107,
+   "fibo31_mean_s": 0.1108,
+   "aggregate_calls_per_s": 9.0
+  },
+  {
+   "parallelism": 10,
+   "fibo31_p50_s": 0.1149,
+   "fibo31_mean_s": 0.1149,
+   "aggregate_calls_per_s": 86.48
+  },
+  {
+   "parallelism": 20,
+   "fibo31_p50_s": 0.1188,
+   "fibo31_mean_s": 0.1442,
+   "aggregate_calls_per_s": 113.26
+  },
+  {
+   "parallelism": 32,
+   "fibo31_p50_s": 0.2246,
+   "fibo31_mean_s": 0.2278,
+   "aggregate_calls_per_s": 130.99
+  }
+ ]
+}

@@ -1,0 +1,1 @@
+{"tag": "cpu-warmup", "workload": "cpu", "n": 2000, "enqueue_s": 0.282, "paused_window_s": 0.8005, "unpause_s": 0.0184, "workers": 20}

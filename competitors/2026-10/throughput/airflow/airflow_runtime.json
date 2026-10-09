@@ -1,0 +1,238 @@
+{
+  "engine": "airflow",
+  "experiment": "throughput under concurrency: 2000 independent task instances, 20 concurrent",
+  "date_utc": "2026-10-09",
+  "host": {
+    "instance_type": "m7i.8xlarge",
+    "region": "us-east-2",
+    "vcpu": 32,
+    "memory_gib": 123,
+    "kernel": "7.0.0-1014-aws",
+    "docker": "29.1.3",
+    "docker_compose": "2.40.3",
+    "note": "dedicated box, nothing else running on it"
+  },
+  "versions": {
+    "airflow": "3.3.1",
+    "image": "apache/airflow:3.3.1",
+    "image_digest": "apache/airflow@sha256:0c4bcc0370e526de1b7892a3bf4343d260c6c82359c66f77155b53cd773d6339",
+    "compose_file": "https://airflow.apache.org/docs/apache-airflow/3.3.1/docker-compose.yaml",
+    "compose_file_md5": "ac8a78b6cec83e5decc45084621a64e4",
+    "executor": "CeleryExecutor (as shipped by the official compose)",
+    "python_in_worker": "CPython 3.13.14 (main, Aug 12 2026, 08:57:09) [GCC 12.2.0]",
+    "celery": "5.6.3",
+    "sqlalchemy": "2.0.51",
+    "postgres": "PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2)",
+    "redis": "7.2.16",
+    "services": [
+      "postgres",
+      "redis",
+      "airflow-apiserver",
+      "airflow-scheduler",
+      "airflow-dag-processor",
+      "airflow-worker",
+      "airflow-triggerer"
+    ]
+  },
+  "fibo31_worker_container_s": {
+    "run_1_before_benchmark": [
+      0.135401,
+      0.134862,
+      0.135583
+    ],
+    "run_2_after_benchmark": [
+      0.135104,
+      0.133551,
+      0.134366
+    ],
+    "median_all_six": 0.134983,
+    "note": "naive recursive fibo(31) measured with time.perf_counter() inside the airflow-worker container on an otherwise idle box"
+  },
+  "theoretical_ceilings_per_s": {
+    "sleep": {
+      "value": 200.0,
+      "basis": "20 concurrent / 0.100 s (time.sleep(0.1))"
+    },
+    "cpu": {
+      "value": 148.17,
+      "basis": "20 cores / 0.134983 s of compute per task (median fibo(31))"
+    }
+  },
+  "workloads": {
+    "sleep": {
+      "dag_id": "tp_sleep",
+      "body": "time.sleep(0.1)",
+      "units": 2000
+    },
+    "cpu": {
+      "dag_id": "tp_cpu",
+      "body": "naive recursive fibo(31)",
+      "units": 2000
+    },
+    "fanout": "one DAG run per rep; a single @task mapped with .expand() over a literal list of 2000 ints (dynamic task mapping). All 2000 task instances are created by the scheduler up-front and sit in 'scheduled' state before the first one starts, verified per rep: max(scheduled_dttm) <= min(start_date).",
+    "source_files": [
+      "tp_sleep.py",
+      "tp_cpu.py"
+    ]
+  },
+  "protocol": {
+    "reps": "1 warmup run discarded, then 5 measured runs, per (config, workload)",
+    "order": "stock/sleep, stock/cpu, then DB wiped (docker compose down -v) and the stack rebuilt for tuned/sleep, tuned/cpu",
+    "db_reset": "each configuration started from an empty metadata DB so DB size could not differ between configs",
+    "metrics_source": "Airflow metadata DB task_instance: queued_dttm, start_date, end_date, scheduled_dttm, state, try_number. No harness wall-clock enters any reported number.",
+    "cpu_measurement": "independent 1Hz /proc/stat sampler on the host for the whole session (cpulog.tsv)"
+  },
+  "settings_changed": {
+    "to_pin_concurrency_at_20_in_both_configs": {
+      "core.parallelism": {
+        "default": "32",
+        "set_to": "20"
+      },
+      "core.max_active_tasks_per_dag": {
+        "default": "16",
+        "set_to": "20"
+      },
+      "celery.worker_concurrency": {
+        "default": "16",
+        "set_to": "20"
+      }
+    },
+    "to_make_the_2000_wide_fanout_possible": {
+      "core.max_map_length": {
+        "default": "1024",
+        "set_to": "2000"
+      }
+    },
+    "required_by_the_official_compose_quickstart_on_linux": {
+      "AIRFLOW_UID": {
+        "default": "50000",
+        "set_to": "1000",
+        "why": "so the bind-mounted dags/ and logs/ are writable by the host user; the official guide instructs this"
+      },
+      "FERNET_KEY": {
+        "default": "(unset, compose requires it)",
+        "set_to": "generated random key"
+      },
+      "AIRFLOW__API_AUTH__JWT_SECRET": {
+        "default": "airflow_jwt_secret (compose default)",
+        "set_to": "bench_jwt_secret"
+      }
+    },
+    "tuned_configuration_only": {
+      "scheduler.scheduler_idle_sleep_time": {
+        "default": "1",
+        "set_to": "0.1"
+      },
+      "core.load_examples": {
+        "default": "True",
+        "set_to": "false"
+      }
+    },
+    "compose_file_edit": {
+      "line": "AIRFLOW__CORE__LOAD_EXAMPLES: 'true'  ->  AIRFLOW__CORE__LOAD_EXAMPLES: ${AIRFLOW__CORE__LOAD_EXAMPLES:-true}",
+      "why": "the only edit to the official compose file; a value hardcoded in the compose 'environment:' block cannot be overridden from an env file. The default is still 'true', so the stock configuration is byte-for-byte equivalent to the published file.",
+      "all_other_lines": "unchanged (md5 of the original: ac8a78b6cec83e5decc45084621a64e4)"
+    }
+  },
+  "settings_left_at_default_that_could_have_bound": {
+    "core.default_pool_task_slot_count": {
+      "default": "128",
+      "effective": "128",
+      "verdict": "never bound: 128 slots is far above 20"
+    },
+    "scheduler.max_tis_per_query": {
+      "default": "16",
+      "effective": "16",
+      "verdict": "never reached: measured scheduler enqueue batches averaged 8.8 (stock) / 9.1-9.4 (tuned) task instances with a max of 20, so the 16-per-query cap was not the limit"
+    },
+    "core.max_active_runs_per_dag": {
+      "default": "16",
+      "effective": "16",
+      "verdict": "irrelevant: one DAG run at a time"
+    },
+    "scheduler.task_queued_timeout": {
+      "default": "600.0",
+      "effective": "600.0",
+      "verdict": "never hit: no task instance was stuck in 'queued'; zero retries across all 20 measured reps"
+    },
+    "dag_processor.min_file_process_interval": {
+      "default": "30",
+      "effective": "30"
+    },
+    "dag_processor.parsing_processes": {
+      "default": "2",
+      "effective": "2"
+    },
+    "api.workers": {
+      "default": "1",
+      "effective": "1",
+      "verdict": "one api-server process serves the Execution API for every task runner. With a 5+10 SQLAlchemy pool it is a real control-plane bottleneck: during an early trial run, adding the harness's own api polling on top of 20 task runners produced 'QueuePool limit of size 5 overflow 10 reached' and HTTP 500s. The harness was therefore changed to poll Postgres directly, and the 20 measured reps recorded zero pool timeouts."
+    },
+    "database.sql_alchemy_pool_size": {
+      "default": "5",
+      "effective": "5"
+    },
+    "database.sql_alchemy_max_overflow": {
+      "default": "10",
+      "effective": "10"
+    }
+  },
+  "diagnostic_concurrency_60": {
+    "purpose": "to establish whether the 20-way cap or Airflow's control plane bound throughput. Same tuned base, sleep workload, with core.parallelism / core.max_active_tasks_per_dag / celery.worker_concurrency all raised from 20 to 60. 1 warmup + 2 reps. Not part of the reported configurations.",
+    "throughput_per_s": [
+      22.502,
+      22.847
+    ],
+    "median_throughput_per_s": 22.675,
+    "mean_concurrency": [
+      36.103,
+      34.951
+    ],
+    "peak_concurrency": [
+      59,
+      60
+    ],
+    "exec_p50_s": [
+      1.5542,
+      1.4611
+    ],
+    "latency_p50_s": [
+      1.6329,
+      1.5402
+    ],
+    "mean_busy_cores_host_of_32": [
+      5.41,
+      5.46
+    ],
+    "finding": "Tripling the cap to 60 raised mean concurrency from 8.5 to ~36 - so Airflow does fill slots when they exist - but throughput rose only from 16.8/s to 22.5/s (+34%), because per-task exec time went from 0.50s to ~1.5s. The 20-way cap was therefore NOT what bound the reported numbers: the limit is the rate at which Airflow's control plane (scheduler critical section plus the single api-server Execution API) can start and finish task instances, roughly 17-23 task instances/s on this box regardless of the concurrency cap."
+  },
+  "scheduler_enqueue_pattern": {
+    "method": "grouped task_instance.queued_dttm into bursts separated by more than 0.3s, for the last rep of each (config, workload)",
+    "stock_sleep": {
+      "bursts_per_run": 227,
+      "avg_batch": 8.81,
+      "max_batch": 20,
+      "median_gap_between_queue_instants_s": 0.411,
+      "max_gap_s": 2.946
+    },
+    "tuned_sleep": {
+      "bursts_per_run": 221,
+      "avg_batch": 9.05,
+      "max_batch": 20
+    },
+    "tuned_cpu": {
+      "bursts_per_run": 213,
+      "avg_batch": 9.39,
+      "max_batch": 20
+    },
+    "reading": "the scheduler releases work in ~9-task-instance bursts about twice a second. The batch size barely moves between stock and tuned; only the gap between bursts shrinks, which is why tuned is ~19% faster on the sleep workload and the 20 worker slots are still only ~43% occupied."
+  },
+  "errors_and_failures": {
+    "task_instance_failures": 0,
+    "retries": 0,
+    "dag_runs_not_success": 0,
+    "apiserver_db_pool_timeouts_during_measured_reps": 0,
+    "scheduler_or_worker_error_log_lines_during_measured_reps": 0,
+    "aborted_trial_run": "one earlier trial of the stock series was aborted because the harness polled the REST API during the run and hit HTTP 500s from api-server DB-pool exhaustion. No measured rep comes from that trial; the stack and metadata DB were rebuilt from scratch before the reported stock series."
+  }
+}

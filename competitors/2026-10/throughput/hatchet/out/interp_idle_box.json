@@ -1,0 +1,6 @@
+{"note": "fibo(31) measured in a fresh bench-worker container on the otherwise idle box, after both measured phases, 5 invocations x 3 readings",
+ "version": "3.12.15 (main, Oct  6 2026, 02:02:22) [GCC 14.2.0]",
+ "fibo31_s": [0.115448, 0.114386, 0.114471, 0.117012, 0.115402, 0.114855,
+              0.115117, 0.113676, 0.115166, 0.116878, 0.115610, 0.115721,
+              0.115223, 0.113584, 0.114909],
+ "fibo10_s": 5e-06}

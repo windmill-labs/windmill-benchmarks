@@ -1,0 +1,105 @@
+############ stock / sleep ############
+healthy after 3x3s
+  ServerVersion  SupportsSchedules  UpsertMemo  EagerWorkflowStart
+  1.29.7         true               true        true              
+workers ready: single worker process, ThreadPoolExecutor(max_workers=20) as activity_executor, max_concurrent_activities=20, activity_task_poller_behavior=SDK default PollerBehaviorSimpleMaximum(5)
+rep 0: 100 workflows submitted in 0.26s, 2000 activities enqueued in 3.64s
+rep 0: 100 workflows done, sum=2000, wall 16.67s
+rep 1: 100 workflows submitted in 0.26s, 2000 activities enqueued in 5.86s
+rep 1: 100 workflows done, sum=2000, wall 17.48s
+rep 2: 100 workflows submitted in 0.30s, 2000 activities enqueued in 3.67s
+rep 2: 100 workflows done, sum=2000, wall 17.83s
+rep 3: 100 workflows submitted in 0.25s, 2000 activities enqueued in 1.93s
+rep 3: 100 workflows done, sum=2000, wall 16.78s
+rep 4: 100 workflows submitted in 0.31s, 2000 activities enqueued in 3.71s
+rep 4: 100 workflows done, sum=2000, wall 18.05s
+rep 5: 100 workflows submitted in 0.32s, 2000 activities enqueued in 3.68s
+rep 5: 100 workflows done, sum=2000, wall 18.92s
+DONE
+rep1 n=2000 span=17.442s tput=114.7/s latp50=17.902 latp95=23.320 execp50=0.1284 peak=20 effconc=15.79 cores=0.17 enq=5.86s
+rep2 n=2000 span=17.783s tput=112.5/s latp50=15.793 latp95=22.384 execp50=0.1265 peak=20 effconc=15.48 cores=0.17 enq=3.67s
+rep3 n=2000 span=16.717s tput=119.6/s latp50=14.111 latp95=21.098 execp50=0.1236 peak=20 effconc=15.60 cores=0.18 enq=1.93s
+rep4 n=2000 span=18.011s tput=111.0/s latp50=16.404 latp95=23.170 execp50=0.1260 peak=20 effconc=15.30 cores=0.17 enq=3.71s
+rep5 n=2000 span=18.877s tput=105.9/s latp50=15.838 latp95=24.178 execp50=0.1276 peak=20 effconc=14.81 cores=0.16 enq=3.69s
+--- act worker log ---
+rep 4: worker stopped
+rep 5: worker stopped
+ALL REPS DONE
+############ done stock / sleep ############
+############ stock / cpu ############
+healthy after 2x3s
+  ServerVersion  SupportsSchedules  UpsertMemo  EagerWorkflowStart
+  1.29.7         true               true        true              
+workers ready: single worker process, ProcessPoolExecutor(max_workers=20) as activity_executor, max_concurrent_activities=20, 20 OS processes so 20 cores can be busy despite the GIL, activity_task_poller_behavior=SDK default PollerBehaviorSimpleMaximum(5)
+rep 0: 100 workflows submitted in 0.29s, 2000 activities enqueued in 3.68s
+rep 0: 100 workflows done, sum=2000, wall 21.74s
+rep 1: 100 workflows submitted in 0.24s, 2000 activities enqueued in 5.84s
+rep 1: 100 workflows done, sum=2000, wall 21.53s
+rep 2: 100 workflows submitted in 0.25s, 2000 activities enqueued in 3.58s
+rep 2: 100 workflows done, sum=2000, wall 21.38s
+rep 3: 100 workflows submitted in 0.26s, 2000 activities enqueued in 1.95s
+rep 3: 100 workflows done, sum=2000, wall 21.77s
+rep 4: 100 workflows submitted in 0.24s, 2000 activities enqueued in 5.81s
+rep 4: 100 workflows done, sum=2000, wall 21.98s
+rep 5: 100 workflows submitted in 0.23s, 2000 activities enqueued in 5.82s
+rep 5: 100 workflows done, sum=2000, wall 22.22s
+DONE
+/home/ubuntu/run_combo.sh: line 50: unexpected EOF while looking for matching `"'
+############ done stock / cpu ############
+############ tuned / sleep ############
+{"level":"info","ts":"2026-10-09T16:00:59.162Z","msg":"dynamic config changed for the key: history.transferprocessormaxpollrps oldValue: nil newValue: { constraints: {} value: 1000 }","logging-call-at":"/home/runner/work/docker-builds/docker-builds/temporal/common/dynamicconfig/file_based_client.go:347"}
+  ServerVersion  SupportsSchedules  UpsertMemo  EagerWorkflowStart
+  1.29.7         true               true        true              
+workers ready: single worker process, ThreadPoolExecutor(max_workers=20) as activity_executor, max_concurrent_activities=20, activity_task_poller_behavior=SDK default PollerBehaviorSimpleMaximum(5)
+rep 0: 100 workflows submitted in 0.29s, 2000 activities enqueued in 3.68s
+rep 0: 100 workflows done, sum=2000, wall 16.11s
+rep 1: 100 workflows submitted in 0.20s, 2000 activities enqueued in 3.55s
+rep 1: 100 workflows done, sum=2000, wall 16.10s
+rep 2: 100 workflows submitted in 0.27s, 2000 activities enqueued in 1.94s
+rep 2: 100 workflows done, sum=2000, wall 16.66s
+rep 3: 100 workflows submitted in 0.26s, 2000 activities enqueued in 1.94s
+rep 3: 100 workflows done, sum=2000, wall 16.21s
+rep 4: 100 workflows submitted in 0.28s, 2000 activities enqueued in 3.62s
+rep 4: 100 workflows done, sum=2000, wall 17.08s
+rep 5: 100 workflows submitted in 0.25s, 2000 activities enqueued in 3.61s
+rep 5: 100 workflows done, sum=2000, wall 16.97s
+DONE
+rep1 n=2000 span=16.058s tput=124.5/s latp50=15.619 latp95=21.433 execp50=0.1229 peak=20 effconc=16.35 cores=0.18 enq=3.55s
+rep2 n=2000 span=16.623s tput=120.3/s latp50=13.832 latp95=20.986 execp50=0.1264 peak=20 effconc=16.21 cores=0.18 enq=1.94s
+rep3 n=2000 span=16.160s tput=123.8/s latp50=13.877 latp95=20.405 execp50=0.1242 peak=20 effconc=16.20 cores=0.18 enq=1.94s
+rep4 n=2000 span=17.031s tput=117.4/s latp50=16.167 latp95=21.794 execp50=0.1258 peak=20 effconc=15.85 cores=0.17 enq=3.62s
+rep5 n=2000 span=16.899s tput=118.4/s latp50=16.022 latp95=21.630 execp50=0.1254 peak=20 effconc=15.78 cores=0.17 enq=3.61s
+--- act worker log ---
+rep 4: worker stopped
+rep 5: worker stopped
+ALL REPS DONE
+############ done tuned / sleep ############
+############ tuned / cpu ############
+{"level":"info","ts":"2026-10-09T16:04:10.997Z","msg":"dynamic config changed for the key: history.transferprocessormaxpollrps oldValue: nil newValue: { constraints: {} value: 1000 }","logging-call-at":"/home/runner/work/docker-builds/docker-builds/temporal/common/dynamicconfig/file_based_client.go:347"}
+  ServerVersion  SupportsSchedules  UpsertMemo  EagerWorkflowStart
+  1.29.7         true               true        true              
+workers ready: single worker process, ProcessPoolExecutor(max_workers=20) as activity_executor, max_concurrent_activities=20, 20 OS processes so 20 cores can be busy despite the GIL, activity_task_poller_behavior=SDK default PollerBehaviorSimpleMaximum(5)
+rep 0: 100 workflows submitted in 0.29s, 2000 activities enqueued in 3.62s
+rep 0: 100 workflows done, sum=2000, wall 21.53s
+rep 1: 100 workflows submitted in 0.30s, 2000 activities enqueued in 3.64s
+rep 1: 100 workflows done, sum=2000, wall 22.32s
+rep 2: 100 workflows submitted in 0.24s, 2000 activities enqueued in 5.83s
+rep 2: 100 workflows done, sum=2000, wall 21.97s
+rep 3: 100 workflows submitted in 0.22s, 2000 activities enqueued in 3.59s
+rep 3: 100 workflows done, sum=2000, wall 21.82s
+rep 4: 100 workflows submitted in 0.23s, 2000 activities enqueued in 3.58s
+rep 4: 100 workflows done, sum=2000, wall 22.01s
+rep 5: 100 workflows submitted in 0.27s, 2000 activities enqueued in 5.29s
+rep 5: 100 workflows done, sum=2000, wall 21.48s
+DONE
+rep1 n=2000 span=22.259s tput=89.9/s latp50=18.845 latp95=26.657 execp50=0.2215 peak=20 effconc=19.05 cores=18.45 enq=3.64s
+rep2 n=2000 span=21.932s tput=91.2/s latp50=21.062 latp95=28.347 execp50=0.2171 peak=20 effconc=19.14 cores=18.62 enq=5.83s
+rep3 n=2000 span=21.768s tput=91.9/s latp50=18.701 latp95=27.139 execp50=0.2205 peak=20 effconc=19.21 cores=18.66 enq=3.59s
+rep4 n=2000 span=21.968s tput=91.0/s latp50=18.935 latp95=26.841 execp50=0.2252 peak=20 effconc=19.25 cores=18.69 enq=3.58s
+rep5 n=2000 span=21.419s tput=93.4/s latp50=20.220 latp95=26.370 execp50=0.2178 peak=20 effconc=19.22 cores=18.65 enq=5.29s
+--- act worker log ---
+rep 4: worker stopped
+rep 5: worker stopped
+ALL REPS DONE
+############ done tuned / cpu ############
+ALL COMBOS COMPLETE

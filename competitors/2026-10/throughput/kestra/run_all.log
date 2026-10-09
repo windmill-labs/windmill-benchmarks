@@ -1,0 +1,38 @@
+=== runtime probe (before measured runs, box idle) ===
+process {"version": "3.12.3 (main, Jul 15 2026, 23:46:41) [GCC 13.3.0]", "implementation": "CPython", "executable": "/app/.venv/bin/python3.12", "fibo31_s": [0.1084, 0.1079, 0.1077], "fibo10_s": 4.506626999955188e-06, "cpu_count": 32, "sched_affinity": 32, "kestra_log_cmd_lines": ["Starting command with pid 298 [/bin/sh -c set -e\nif [ -n \"$VIRTUAL_ENV\" ]; then \"$VIRTUAL_ENV/bin/python\" \"/tmp/kestra-
+docker {"version": "3.14.8 (main, Oct  6 2026, 01:59:23) [GCC 14.2.0]", "implementation": "CPython", "executable": "/usr/local/bin/python", "fibo31_s": [0.1073, 0.1071, 0.1075], "fibo10_s": 4.432865000126185e-06, "cpu_count": 32, "sched_affinity": 32, "kestra_log_cmd_lines": ["Starting command with container id a4b40062f31964c02edc528579f12f6542811a829c5223036fe42cc1d4fef014 [/bin/sh -c set -e\nif [ -n \
+wrote runtime_probe.json
+###### process / sleep
+[tp_process_sleep_20_m] upserted; 100 executions x 20 units = 2000
+[tp_process_sleep_20_m] warmup tp=138.13/s span=14.48s lat_p50=7.263 lat_p95=13.562 exec_p50=0.138 peak=20 over20=0.0s mean_conc=19.11 submit=0.792s wall=15.1s cores_p50=12.8 cores_max=25.2 pyprocs_p50=14
+[tp_process_sleep_20_m] rep1 tp=139.88/s span=14.30s lat_p50=7.272 lat_p95=13.208 exec_p50=0.137 peak=20 over20=0.0s mean_conc=19.22 submit=0.501s wall=14.9s cores_p50=11.85 cores_max=13.93 pyprocs_p50=15
+[tp_process_sleep_20_m] rep2 tp=139.22/s span=14.37s lat_p50=7.048 lat_p95=13.434 exec_p50=0.136 peak=20 over20=0.0s mean_conc=19.03 submit=0.554s wall=15.2s cores_p50=11.43 cores_max=12.91 pyprocs_p50=15
+[tp_process_sleep_20_m] rep3 tp=135.98/s span=14.71s lat_p50=6.684 lat_p95=13.980 exec_p50=0.136 peak=20 over20=0.0s mean_conc=18.46 submit=0.559s wall=16.3s cores_p50=10.96 cores_max=13.12 pyprocs_p50=15
+[tp_process_sleep_20_m] rep4 tp=118.81/s span=16.83s lat_p50=9.218 lat_p95=16.077 exec_p50=0.136 peak=20 over20=0.0s mean_conc=16.2 submit=0.65s wall=17.5s cores_p50=11.0 cores_max=12.11 pyprocs_p50=16
+[tp_process_sleep_20_m] rep5 tp=138.44/s span=14.45s lat_p50=6.900 lat_p95=13.938 exec_p50=0.136 peak=20 over20=0.0s mean_conc=18.83 submit=0.597s wall=15.9s cores_p50=11.08 cores_max=12.17 pyprocs_p50=15
+[tp_process_sleep_20_m] wrote raw_process_sleep.json
+[tp_process_sleep_20_m] wrote rows_process_sleep.json
+###### process / sleep END
+###### process / cpu
+[tp_process_cpu_20_m] upserted; 100 executions x 20 units = 2000
+[tp_process_cpu_20_m] warmup tp=90.25/s span=22.16s lat_p50=10.808 lat_p95=21.264 exec_p50=0.201 peak=20 over20=0.0s mean_conc=19.09 submit=0.659s wall=23.6s cores_p50=24.58 cores_max=26.93 pyprocs_p50=16
+[tp_process_cpu_20_m] rep1 tp=87.81/s span=22.77s lat_p50=12.433 lat_p95=21.736 exec_p50=0.195 peak=20 over20=0.0s mean_conc=18.45 submit=0.676s wall=23.6s cores_p50=24.91 cores_max=25.37 pyprocs_p50=17
+[tp_process_cpu_20_m] rep2 tp=89.96/s span=22.23s lat_p50=10.377 lat_p95=21.035 exec_p50=0.196 peak=20 over20=0.0s mean_conc=18.89 submit=0.518s wall=22.8s cores_p50=24.97 cores_max=26.21 pyprocs_p50=16
+[tp_process_cpu_20_m] rep3 tp=84.70/s span=23.61s lat_p50=10.715 lat_p95=22.310 exec_p50=0.197 peak=20 over20=0.0s mean_conc=17.71 submit=0.522s wall=24.5s cores_p50=24.58 cores_max=25.9 pyprocs_p50=16
+[tp_process_cpu_20_m] rep4 tp=86.28/s span=23.18s lat_p50=12.505 lat_p95=22.073 exec_p50=0.192 peak=20 over20=0.0s mean_conc=18.12 submit=0.577s wall=23.9s cores_p50=24.99 cores_max=25.61 pyprocs_p50=16
+[tp_process_cpu_20_m] rep5 tp=92.29/s span=21.67s lat_p50=11.011 lat_p95=20.443 exec_p50=0.195 peak=20 over20=0.0s mean_conc=19.43 submit=0.469s wall=22.5s cores_p50=24.9 cores_max=25.65 pyprocs_p50=18
+[tp_process_cpu_20_m] wrote raw_process_cpu.json
+[tp_process_cpu_20_m] wrote rows_process_cpu.json
+###### process / cpu END
+###### docker / sleep
+[tp_docker_sleep_20_m] upserted; 100 executions x 20 units = 2000
+[tp_docker_sleep_20_m] warmup tp=5.14/s span=389.00s lat_p50=207.914 lat_p95=375.458 exec_p50=4.049 peak=20 over20=0.0s mean_conc=19.95 submit=0.562s wall=390.3s cores_p50=4.18 cores_max=12.55 pyprocs_p50=1
+[tp_docker_sleep_20_m] rep1 tp=5.78/s span=346.16s lat_p50=181.722 lat_p95=330.064 exec_p50=3.525 peak=20 over20=0.0s mean_conc=19.94 submit=1.204s wall=347.4s cores_p50=4.61 cores_max=11.29 pyprocs_p50=1
+[tp_docker_sleep_20_m] rep2 tp=5.76/s span=347.29s lat_p50=172.254 lat_p95=329.997 exec_p50=3.524 peak=20 over20=0.0s mean_conc=19.94 submit=1.031s wall=348.4s cores_p50=4.66 cores_max=11.05 pyprocs_p50=2
+[tp_docker_sleep_20_m] rep3 tp=5.71/s span=350.49s lat_p50=172.073 lat_p95=333.232 exec_p50=3.487 peak=20 over20=0.0s mean_conc=19.94 submit=1.084s wall=351.5s cores_p50=4.64 cores_max=11.85 pyprocs_p50=2
+[tp_docker_sleep_20_m] rep4 tp=6.41/s span=311.85s lat_p50=149.425 lat_p95=299.650 exec_p50=3.187 peak=20 over20=0.0s mean_conc=19.94 submit=1.054s wall=313.1s cores_p50=4.37 cores_max=10.5 pyprocs_p50=2
+[tp_docker_sleep_20_m] rep5 tp=6.43/s span=311.16s lat_p50=158.098 lat_p95=294.754 exec_p50=3.129 peak=20 over20=0.0s mean_conc=19.94 submit=1.167s wall=312.1s cores_p50=4.45 cores_max=12.77 pyprocs_p50=2
+[tp_docker_sleep_20_m] wrote raw_docker_sleep.json
+[tp_docker_sleep_20_m] wrote rows_docker_sleep.json
+###### docker / sleep END
+###### ALL DONE

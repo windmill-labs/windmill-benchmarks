@@ -1,0 +1,31 @@
+{
+  "temporal_server_version": "1.29.7",
+  "temporal_server_image": "temporalio/auto-setup:1.29.7",
+  "compose": "temporalio/docker-compose docker-compose-postgres.yml (postgres:16), TEMPORAL_VERSION pinned to 1.29.7",
+  "host": "AWS EC2 m7i.xlarge, 4 vCPU, 16 GiB, us-east-2, Ubuntu 24.04, Docker 29.1.3",
+  "configs": {
+    "stock": "dynamicconfig/development-sql.yaml as published; history.transferProcessorMaxPollRPS left at its default of 20",
+    "tuned": "same, plus history.transferProcessorMaxPollRPS: 1000 (confirmed applied in the temporal server log)"
+  },
+  "python": {
+    "image": "python:3.11-slim (Debian 13 trixie)",
+    "version": "3.11.17",
+    "implementation": "CPython",
+    "sdk": "temporalio 1.34.0",
+    "fibo33_runs_s": [0.3936, 0.3956, 0.3935],
+    "fibo33_total_s": 1.1827,
+    "fibo33_mean_s": 0.3942
+  },
+  "typescript": {
+    "image": "node:22-bookworm-slim (Debian 12 bookworm)",
+    "node_version": "22.23.3",
+    "v8_version": "12.4.254.21-node.57",
+    "sdk": "@temporalio/worker 1.24.0, @temporalio/client 1.24.0, @temporalio/workflow 1.24.0, @temporalio/activity 1.24.0",
+    "typescript_compiler": "7.0.2",
+    "fibo33_runs_s": [0.0331, 0.032, 0.0317],
+    "fibo33_total_s": 0.0968,
+    "fibo33_mean_s": 0.0323
+  },
+  "fibo33_note": "Three naive-recursive fibo(33) calls timed inside each worker container with that runtime's monotonic clock (time.monotonic / process.hrtime.bigint). fibo(33)=3524578 verified in both.",
+  "method": "Per combination: one worker process serving one task queue, 6 sequential workflows with a 5s gap between them; workflow 0 discarded as warmup, workflows 1-5 reported. Timings come from each workflow's event history (ActivityTaskScheduled / ActivityTaskStarted / ActivityTaskCompleted), read afterwards by a single Python reader for both languages. No harness wall-clock is used in the reported numbers."
+}

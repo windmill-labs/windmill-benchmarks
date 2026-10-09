@@ -1,0 +1,217 @@
+{
+ "experiment": "throughput under concurrency: 2000 independent activities, 20 concurrent activity slots",
+ "temporal_server_version": "1.29.7",
+ "temporal_server_image": "temporalio/auto-setup:1.29.7",
+ "compose": "temporalio/docker-compose docker-compose-postgres.yml (commit cd6d3b19a3307e2cbbc4c1830228166e92caef24), TEMPORAL_VERSION pinned to 1.29.7, postgres:16 (PostgreSQL 16.15), numHistoryShards 4 (the compose default)",
+ "host": "AWS EC2 m7i.8xlarge, 32 vCPU (16 physical Intel Xeon Platinum 8488C cores, 2 threads per core), 123 GiB, us-east-2, Ubuntu 24.04.5, kernel 7.0.0-1014-aws, Docker 29.1.3, nothing else running on the box",
+ "configs": {
+  "stock": "dynamicconfig/development-sql.yaml exactly as published; history.transferProcessorMaxPollRPS left at its default of 20",
+  "tuned": "same file plus history.transferProcessorMaxPollRPS: 1000, confirmed applied in the temporal server log ('dynamic config changed for the key: history.transferprocessormaxpollrps ... newValue: { constraints: {} value: 1000 }')"
+ },
+ "stack_recreated_per_combination": "docker compose down -v then up -d before each of the four combinations, so every combination starts on an empty Postgres",
+ "python": {
+  "image": "python:3.11-slim",
+  "version": "3.11.17",
+  "implementation": "CPython",
+  "build": "main Oct  6 2026 02:02:21, GCC 14.2.0",
+  "sdk": "temporalio 1.34.0"
+ },
+ "compute_probe": {
+  "fibo31_value": 1346269,
+  "fibo31_single_runs_s": [
+   0.13162,
+   0.13146,
+   0.13087
+  ],
+  "fibo31_single_mean_s": 0.13132,
+  "fibo31_parallel20_per_call_mean_s": [
+   0.17458,
+   0.16848,
+   0.17128
+  ],
+  "note": "fibo(31) costs 0.1313 s alone but 0.171 s when 20 processes compute it at once, because the box has 16 physical cores and 32 hardware threads: 20 CPU-bound processes oversubscribe the physical cores."
+ },
+ "ceilings": {
+  "method": "Same worker code, same container, no orchestrator in the path: feed 400 units through the same executor and divide.",
+  "sleep_threadpool20_per_s": [
+   199.18,
+   199.16,
+   199.17
+  ],
+  "sleep_ceiling_per_s": 199.17,
+  "cpu_processpool20_per_s": [
+   108.99,
+   111.59,
+   111.1
+  ],
+  "cpu_ceiling_per_s": 111.1,
+  "cpu_naive_ceiling_per_s": 152.3,
+  "note": "The naive cpu ceiling, 20 slots / 0.13132 s, is 152.3/s but is not reachable on this box: it assumes 20 independent cores. 111.1/s is what the same 20-process pool actually sustains and is the ceiling used for the percentages."
+ },
+ "workload_organisation": {
+  "choice": "100 workflows x 20 fanned-out activities = 2000 activities per rep",
+  "why": "Measured against the alternative of 2000 single-activity workflows on the same box: 118.9 act/s with 15.95 of 20 slots busy for the fan-out shape versus 113.5 act/s with 14.97 busy for 2000 short workflows, and the fan-out shape needs 2-6 s to enqueue everything against 30.5 s for 2000 workflow starts. A 40 x 50 shape was also tried (113.7 act/s). All three reached a peak of 20, so the shape is not what limits concurrency.",
+  "activity_task_queue": "bench-act",
+  "workflow_task_queue": "bench-wf",
+  "why_two_queues": "The workflow worker is a separate process on its own task queue, so workflow tasks never consume activity slots and eager activity execution cannot fire."
+ },
+ "concurrency_configuration": {
+  "sleep": {
+   "mechanism": "one worker process, activity_executor=concurrent.futures.ThreadPoolExecutor(max_workers=20), max_concurrent_activities=20",
+   "activity_body": "time.sleep(0.1)",
+   "note": "time.sleep releases the GIL, so 20 threads really do serve 20 activities at once."
+  },
+  "cpu": {
+   "mechanism": "one worker process, activity_executor=concurrent.futures.ProcessPoolExecutor(max_workers=20) with a SharedStateManager, max_concurrent_activities=20",
+   "activity_body": "naive recursive fibo(31)",
+   "note": "The process pool route from Temporal's own docs worked, so 20 worker processes were not needed. The pool is spawned and warmed (two rounds of fibo(28) across all 20 processes) before the first rep and reused across reps. Worker-container CPU time over the measured span confirms ~19 cores busy."
+  },
+  "activity_task_poller_behavior": "SDK default, PollerBehaviorSimpleMaximum(5). Raising it to 20 and 40 was tried on the same 2000-activity workload and moved throughput by less than 3% (116.7 and 121.7 act/s against 118.9 at the default), so the poller count is not the limiter at this scale.",
+  "max_activities_per_second": "unset",
+  "max_task_queue_activities_per_second": "unset",
+  "retry_policy": "maximum_attempts=1, so no retry can inflate the activity count",
+  "start_to_close_timeout_s": 600,
+  "schedule_to_start_timeout": "unset (infinite), so activities can wait in the queue while the worker is held off"
+ },
+ "method": {
+  "pre_enqueue": "The activity worker process starts and warms its executor but does not construct a Worker, so nothing polls bench-act. The driver starts all 100 workflows, then polls every history until all 2000 ActivityTaskScheduled events exist, waits a further 5 s, and only then releases the worker. Every rep in every combination recorded 2000/2000 activities enqueued before release.",
+  "pre_enqueue_control": "Raising the post-gate idle wait from 5 s to 30 s changed throughput by 1% (110.8 -> 112.1 act/s), which shows the queue was already full when the worker was released and that submission is not inside the measured window.",
+  "reps": "6 reps per combination with a 5 s gap; rep 0 is discarded as warmup, reps 1-5 are reported.",
+  "timings": "Every reported number comes from the Temporal server's own event history: the ActivityTaskScheduled, ActivityTaskStarted and ActivityTaskCompleted event times of each of the 2000 activities, read back after the run. No harness wall clock is used.",
+  "span": "last ActivityTaskCompleted minus first ActivityTaskStarted; throughput = 2000 / span",
+  "latency": "ActivityTaskScheduled -> ActivityTaskCompleted. Because every activity is enqueued before the worker is released, this is dominated by queue wait and is roughly half the span at p50; it measures the backlog, not Temporal's dispatch latency.",
+  "exec": "ActivityTaskStarted -> ActivityTaskCompleted, which includes the RespondActivityTaskCompleted round trip to the server.",
+  "peak_concurrency": "swept from the (started, completed) intervals of all 2000 activities, completions ordered before starts at a tie",
+  "effective_concurrency": "sum of all started->completed intervals divided by the span: the average number of the 20 slots that were busy",
+  "worker_cores_busy": "delta of the activity worker container's own cgroup v2 cpu.stat usage_usec over the span, divided by the span"
+ },
+ "results_summary": {
+  "stock_sleep": {
+   "throughput_reps_per_s": [
+    114.668,
+    112.467,
+    119.638,
+    111.044,
+    105.948
+   ],
+   "throughput_median_per_s": 112.5,
+   "throughput_min_per_s": 105.948,
+   "throughput_max_per_s": 119.638
+  },
+  "stock_cpu": {
+   "throughput_reps_per_s": [
+    87.659,
+    90.495,
+    90.51,
+    92.249,
+    93.397
+   ],
+   "throughput_median_per_s": 90.5,
+   "throughput_min_per_s": 87.659,
+   "throughput_max_per_s": 93.397
+  },
+  "tuned_sleep": {
+   "throughput_reps_per_s": [
+    124.546,
+    120.317,
+    123.759,
+    117.432,
+    118.351
+   ],
+   "throughput_median_per_s": 120.3,
+   "throughput_min_per_s": 117.432,
+   "throughput_max_per_s": 124.546
+  },
+  "tuned_cpu": {
+   "throughput_reps_per_s": [
+    89.852,
+    91.193,
+    91.876,
+    91.041,
+    93.377
+   ],
+   "throughput_median_per_s": 91.2,
+   "throughput_min_per_s": 89.852,
+   "throughput_max_per_s": 93.377
+  }
+ },
+ "diagnostics": {
+  "host_cpu_during_runs_cores_of_32": {
+   "method": "/proc/stat sampled once a second on the host for the whole combination, converted to cores busy",
+   "sleep_runs": "median 1.6 cores, p90 2.1, max 3.9 - the box is all but idle while the sleep workload is dispatch-limited, so nothing is CPU-saturated",
+   "cpu_runs": "p90 20.5 cores, max 20.8, of which the activity worker container accounts for 18.5-18.7; the Temporal server and Postgres take about 2 cores"
+  },
+  "activity_poller_sweep": {
+   "question": "is the SDK default of 5 activity pollers the limiter?",
+   "tuned_sleep_2000_one_rep_per_s": {
+    "pollers_5": 118.9,
+    "pollers_20": 116.7,
+    "pollers_40": 121.7
+   },
+   "answer": "no - 4x and 8x the pollers move throughput by less than 3%"
+  },
+  "workload_shape_sweep": {
+   "question": "does the 2000 activities organise better as fan-out or as many short workflows?",
+   "tuned_sleep_2000_one_rep_per_s": {
+    "100wf_x_20_activities": 118.9,
+    "2000wf_x_1_activity": 113.5,
+    "40wf_x_50_activities": 113.7
+   },
+   "enqueue_phase_s": {
+    "100wf_x_20_activities": 3.6,
+    "2000wf_x_1_activity": 30.5,
+    "40wf_x_50_activities": 0.7
+   },
+   "answer": "fan-out wins slightly and enqueues an order of magnitude faster; all three reach a peak of 20, so the shape is not what limits concurrency"
+  },
+  "pre_enqueue_settle_control": {
+   "question": "were the activity tasks really all waiting when the worker was released?",
+   "tuned_sleep_2000_one_rep_per_s": {
+    "settle_5s": 110.8,
+    "settle_30s": 112.1
+   },
+   "answer": "yes - a 6x longer idle wait changes nothing, so the backlog was already complete"
+  },
+  "no_pre_enqueue_control": {
+   "question": "does the stock poll limit cost anything when submission is inside the measured window?",
+   "method": "both workers live from the start, 100 workflows submitted at once, 4 reps, reps 1-3 reported",
+   "stock_sleep_per_s": [
+    114.716,
+    114.421,
+    117.267
+   ],
+   "tuned_sleep_per_s": [
+    111.862,
+    111.234,
+    117.986
+   ],
+   "answer": "no - 114.7/s median stock against 111.9/s median tuned, the same band as the pre-enqueued runs and in the opposite direction, so the difference is run-to-run drift rather than the poll limit"
+  },
+  "history_shard_diagnostic": {
+   "question": "what sets the ~120 activities/s dispatch ceiling on the sleep workload?",
+   "method": "the published compose and the stock dynamic config, with NUM_HISTORY_SHARDS raised from the compose default of 4 to 512 on temporalio/auto-setup (confirmed as numHistoryShards: 512 in the container's docker.yaml). Same worker configuration, same workload, 4 reps, reps 1-3 reported.",
+   "stock_sleep_4_shards_per_s": [
+    114.668,
+    112.467,
+    119.638,
+    111.044,
+    105.948
+   ],
+   "stock_sleep_512_shards_per_s": [
+    160.536,
+    159.76,
+    158.98
+   ],
+   "exec_p50_s": {
+    "shards_4": 0.1265,
+    "shards_512": 0.1109
+   },
+   "effective_concurrency": {
+    "shards_4": 15.48,
+    "shards_512": 17.98
+   },
+   "answer": "the shard count, not the poll limit. 512 shards gives 159.8/s against 112.5/s, 42% more, with 18.0 of 20 slots busy instead of 15.5 and the start-to-complete round trip down from 127 ms to 111 ms. This is a diagnostic, not one of the four reported configurations."
+  }
+ },
+ "known_issue": "The first stock/cpu run lost its reader step because a script was edited while bash was executing it; the stack was then recreated with an empty database, so those histories were gone. stock/cpu was re-run from scratch and it is that re-run which is reported. Its five reps (87.7, 90.5, 90.5, 92.2, 93.4 act/s) sit inside the tuned/cpu band, so nothing about the re-run looks anomalous."
+}

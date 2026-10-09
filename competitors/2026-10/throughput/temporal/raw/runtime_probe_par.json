@@ -1,0 +1,25 @@
+{
+ "fibo31_parallel20_rounds": [
+  {
+   "wall_s": 0.23074,
+   "per_call_mean_s": 0.17458,
+   "per_call_max_s": 0.22694,
+   "per_call_min_s": 0.1418,
+   "values_ok": true
+  },
+  {
+   "wall_s": 0.2295,
+   "per_call_mean_s": 0.16848,
+   "per_call_max_s": 0.22576,
+   "per_call_min_s": 0.14085,
+   "values_ok": true
+  },
+  {
+   "wall_s": 0.23035,
+   "per_call_mean_s": 0.17128,
+   "per_call_max_s": 0.22629,
+   "per_call_min_s": 0.14038,
+   "values_ok": true
+  }
+ ]
+}

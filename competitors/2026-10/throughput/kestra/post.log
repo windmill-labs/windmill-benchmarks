@@ -1,0 +1,28 @@
+=== serial docker container lifecycle on this box (20 runs) ===
+docker run --rm python:slim true mean_ms 380.9 p50_ms 380.2
+docker run --rm python:slim python -c sleep(0.1) mean_ms 490.4 p50_ms 488.4
+docker volume create+rm mean_ms 23.5
+=== cpu attribution, one extra non-counted cpu rep ===
+{
+ "host_busy_cores": {
+  "p50": 24.94,
+  "p90": 25.4,
+  "max": 26.1,
+  "n": 71
+ },
+ "task_python_cores": {
+  "p50": 0.04,
+  "p90": 1.68,
+  "max": 5.12,
+  "n": 71
+ },
+ "live_task_processes": {
+  "p50": 16,
+  "p90": 18,
+  "max": 20,
+  "n": 71
+ },
+ "host_ncpu": 32
+}
+throughput 91.231 exec_p50 0.197 peak 20
+=== POST DONE ===
