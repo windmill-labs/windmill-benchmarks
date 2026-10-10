@@ -1,0 +1,8 @@
+    waiting: 463/2000 rows, 0 completed, 0 other
+    waiting: 2000/2000 rows, 154 completed, 0 other
+    waiting: 2000/2000 rows, 424 completed, 0 other
+    waiting: 2000/2000 rows, 694 completed, 0 other
+    waiting: 2000/2000 rows, 964 completed, 0 other
+    waiting: 2000/2000 rows, 1237 completed, 0 other
+    waiting: 2000/2000 rows, 1511 completed, 0 other
+    waiting: 2000/2000 rows, 1770 completed, 0 other

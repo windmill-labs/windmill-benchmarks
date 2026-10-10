@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: windmill
+    command: postgres -c max_connections=1000 -c shared_buffers=2GB
+    volumes:
+      - pg:/var/lib/postgresql/data
+  server:
+    image: ghcr.io/windmill-labs/windmill-ee:1.811.1
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://postgres:changeme@db/windmill
+      MODE: server
+      BASE_URL: http://localhost
+      LICENSE_KEY: ${LICENSE_KEY}
+    ports:
+      - "80:8000"
+    depends_on: [db]
+  worker:
+    image: ghcr.io/windmill-labs/windmill-ee:1.811.1
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://postgres:changeme@db/windmill
+      MODE: worker
+      WORKER_GROUP: default
+      LICENSE_KEY: ${LICENSE_KEY}
+    depends_on: [db]
+    volumes:
+      - cache:/tmp/windmill/cache
+  worker_dedicated:
+    image: ghcr.io/windmill-labs/windmill-ee:1.811.1
+    restart: unless-stopped
+    profiles: ["dedicated"]
+    environment:
+      DATABASE_URL: postgres://postgres:changeme@db/windmill
+      MODE: worker
+      WORKER_GROUP: dedi
+      LICENSE_KEY: ${LICENSE_KEY}
+    depends_on: [db]
+    volumes:
+      - cache2:/tmp/windmill/cache
+volumes:
+  pg: {}
+  cache: {}
+  cache2: {}

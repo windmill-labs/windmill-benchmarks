@@ -1,0 +1,61 @@
+######## stock / cpu (main matrix, redo) ########
+healthy after 2x3s
+ARGCHECK actworker: ["python","actworker.py","cpu","20","6","0"]
+ARGCHECK combo: config=stock workload=cpu total=2000 per_wf=20 reps=6 pollers=0 prerelease=0 out=temporal_throughput_stock_cpu.json
+workers ready: single worker process, ProcessPoolExecutor(max_workers=20) as activity_executor, max_concurrent_activities=20, 20 OS processes so 20 cores can be busy despite the GIL, activity_task_poller_behavior=SDK default PollerBehaviorSimpleMaximum(5)
+rep 0: 100 workflows submitted in 0.24s, 2000 activities enqueued in 3.63s
+rep 0: 100 workflows done, sum=2000, wall 22.36s
+rep 1: 100 workflows submitted in 0.26s, 2000 activities enqueued in 5.31s
+rep 1: 100 workflows done, sum=2000, wall 22.85s
+rep 2: 100 workflows submitted in 0.22s, 2000 activities enqueued in 3.57s
+rep 2: 100 workflows done, sum=2000, wall 22.15s
+rep 3: 100 workflows submitted in 0.26s, 2000 activities enqueued in 3.59s
+rep 3: 100 workflows done, sum=2000, wall 22.14s
+rep 4: 100 workflows submitted in 0.26s, 2000 activities enqueued in 1.94s
+rep 4: 100 workflows done, sum=2000, wall 21.76s
+rep 5: 100 workflows submitted in 0.25s, 2000 activities enqueued in 3.62s
+rep 5: 100 workflows done, sum=2000, wall 21.47s
+DONE
+rep1 n=2000 span=22.816s tput=87.7/s latp50=20.980 latp95=27.742 execp50=0.2272 peak=20 effconc=19.02 cores=18.49 enq=5.31s
+rep2 n=2000 span=22.101s tput=90.5/s latp50=19.032 latp95=27.312 execp50=0.2205 peak=20 effconc=19.07 cores=18.52 enq=3.57s
+rep3 n=2000 span=22.097s tput=90.5/s latp50=18.845 latp95=26.500 execp50=0.2236 peak=20 effconc=19.11 cores=18.5 enq=3.59s
+rep4 n=2000 span=21.680s tput=92.2/s latp50=16.955 latp95=26.189 execp50=0.2155 peak=20 effconc=19.04 cores=18.51 enq=1.94s
+rep5 n=2000 span=21.414s tput=93.4/s latp50=18.453 latp95=26.019 execp50=0.2152 peak=20 effconc=19.12 cores=18.57 enq=3.62s
+COMBO DONE temporal_throughput_stock_cpu.json
+######## pipeline control: stock / sleep ########
+ARGCHECK actworker: ["python","actworker.py","sleep","20","4","0"]
+ARGCHECK combo: config=stock workload=sleep total=2000 per_wf=20 reps=4 pollers=0 prerelease=1 out=pipeline_stock_sleep.json
+workers ready: single worker process, ThreadPoolExecutor(max_workers=20) as activity_executor, max_concurrent_activities=20, activity_task_poller_behavior=SDK default PollerBehaviorSimpleMaximum(5)
+rep 0: 100 workflows submitted in 0.24s, 2000 activities enqueued in 0.24s
+rep 0: 100 workflows done, sum=2000, wall 16.75s
+rep 1: 100 workflows submitted in 0.25s, 2000 activities enqueued in 0.25s
+rep 1: 100 workflows done, sum=2000, wall 17.45s
+rep 2: 100 workflows submitted in 0.28s, 2000 activities enqueued in 0.28s
+rep 2: 100 workflows done, sum=2000, wall 17.55s
+rep 3: 100 workflows submitted in 0.25s, 2000 activities enqueued in 0.25s
+rep 3: 100 workflows done, sum=2000, wall 17.09s
+DONE
+rep1 n=2000 span=17.434s tput=114.7/s latp50=7.699 latp95=14.134 execp50=0.1278 peak=20 effconc=15.79 cores=0.17 enq=0.25s
+rep2 n=2000 span=17.479s tput=114.4/s latp50=7.781 latp95=14.667 execp50=0.1263 peak=20 effconc=15.30 cores=0.18 enq=0.28s
+rep3 n=2000 span=17.055s tput=117.3/s latp50=7.767 latp95=14.612 execp50=0.1242 peak=20 effconc=15.57 cores=0.18 enq=0.25s
+COMBO DONE pipeline_stock_sleep.json
+######## pipeline control: tuned / sleep ########
+healthy after 2x3s
+{"level":"info","ts":"2026-10-09T16:31:40.113Z","msg":"dynamic config changed for the key: history.transferprocessormaxpollrps oldValue: nil newValue: { constraints: {} value: 1000 }","logging-call-at":"/home/runner/work/docker-builds/docker-builds/temporal/common/dynamicconfig/file_based_client.go:347"}
+ARGCHECK actworker: ["python","actworker.py","sleep","20","4","0"]
+ARGCHECK combo: config=tuned workload=sleep total=2000 per_wf=20 reps=4 pollers=0 prerelease=1 out=pipeline_tuned_sleep.json
+workers ready: single worker process, ThreadPoolExecutor(max_workers=20) as activity_executor, max_concurrent_activities=20, activity_task_poller_behavior=SDK default PollerBehaviorSimpleMaximum(5)
+rep 0: 100 workflows submitted in 0.28s, 2000 activities enqueued in 0.28s
+rep 0: 100 workflows done, sum=2000, wall 17.02s
+rep 1: 100 workflows submitted in 0.27s, 2000 activities enqueued in 0.27s
+rep 1: 100 workflows done, sum=2000, wall 17.91s
+rep 2: 100 workflows submitted in 0.31s, 2000 activities enqueued in 0.31s
+rep 2: 100 workflows done, sum=2000, wall 17.96s
+rep 3: 100 workflows submitted in 0.26s, 2000 activities enqueued in 0.26s
+rep 3: 100 workflows done, sum=2000, wall 16.92s
+DONE
+rep1 n=2000 span=17.879s tput=111.9/s latp50=8.380 latp95=13.630 execp50=0.1290 peak=20 effconc=15.58 cores=0.17 enq=0.27s
+rep2 n=2000 span=17.980s tput=111.2/s latp50=7.737 latp95=13.993 execp50=0.1289 peak=20 effconc=15.47 cores=0.17 enq=0.31s
+rep3 n=2000 span=16.951s tput=118.0/s latp50=6.980 latp95=13.789 execp50=0.1264 peak=20 effconc=15.81 cores=0.18 enq=0.26s
+COMBO DONE pipeline_tuned_sleep.json
+FINAL COMPLETE

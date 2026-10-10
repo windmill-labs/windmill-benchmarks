@@ -1,0 +1,84 @@
+=== tuned start 2026-10-09T16:39:17+00:00 ===
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: running|15 scheduled|1674 success|311
+    [   52s] run=running ti: scheduled|1261 success|739
+    [   77s] run=running ti: queued|5 running|14 scheduled|844 success|1137
+    [  103s] run=running ti: running|5 scheduled|436 success|1559
+    [  128s] run=running ti: queued|15 scheduled|38 success|1947
+  tuned sleep warmup: state=success success=2000/2000 span=128.19s thr=15.60/s lat_p50=0.614 lat_p95=0.799 exec_p50=0.492 peak_conc=20 mean_conc=8.4 cores=4.5
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: running|7 scheduled|1600 success|393
+    [   51s] run=running ti: queued|2 running|17 scheduled|1136 success|845
+    [   77s] run=running ti: running|6 scheduled|704 success|1290
+    [  103s] run=running ti: running|13 scheduled|248 success|1739
+  tuned sleep rep1: state=success success=2000/2000 span=115.91s thr=17.25/s lat_p50=0.545 lat_p95=0.758 exec_p50=0.480 peak_conc=20 mean_conc=8.5 cores=4.25
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: queued|6 running|8 scheduled|1608 success|378
+    [   52s] run=running ti: queued|12 running|7 scheduled|1205 success|776
+    [   77s] run=running ti: running|10 scheduled|760 success|1230
+    [  103s] run=running ti: running|10 scheduled|307 success|1683
+  tuned sleep rep2: state=success success=2000/2000 span=119.60s thr=16.72/s lat_p50=0.567 lat_p95=0.763 exec_p50=0.500 peak_conc=20 mean_conc=8.4 cores=4.16
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: scheduled|1603 success|397
+    [   51s] run=running ti: running|4 scheduled|1180 success|816
+    [   77s] run=running ti: queued|4 running|16 scheduled|790 success|1190
+    [  103s] run=running ti: running|10 scheduled|354 success|1636
+  tuned sleep rep3: state=success success=2000/2000 span=119.46s thr=16.74/s lat_p50=0.569 lat_p95=0.768 exec_p50=0.502 peak_conc=20 mean_conc=8.5 cores=4.16
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: running|19 scheduled|1591 success|390
+    [   51s] run=running ti: running|18 scheduled|1195 success|787
+    [   77s] run=running ti: scheduled|789 success|1211
+    [  103s] run=running ti: running|9 scheduled|317 success|1674
+  tuned sleep rep4: state=success success=2000/2000 span=119.06s thr=16.80/s lat_p50=0.573 lat_p95=0.770 exec_p50=0.505 peak_conc=20 mean_conc=8.6 cores=4.2
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: queued|11 running|8 scheduled|1620 success|361
+    [   51s] run=running ti: queued|2 running|6 scheduled|1208 success|784
+    [   77s] run=running ti: running|12 scheduled|726 success|1262
+    [  103s] run=running ti: running|10 scheduled|267 success|1723
+  tuned sleep rep5: state=success success=2000/2000 span=115.96s thr=17.25/s lat_p50=0.553 lat_p95=0.739 exec_p50=0.486 peak_conc=20 mean_conc=8.4 cores=4.29
+wrote /home/ubuntu/af/out/airflow_throughput_tuned_sleep.json
+=== tuned sleep done 2026-10-09T16:52:28+00:00 ===
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: running|16 scheduled|1650 success|334
+    [   52s] run=running ti: running|16 scheduled|1256 success|728
+    [   77s] run=running ti: queued|13 running|3 scheduled|865 success|1119
+    [  103s] run=running ti: scheduled|505 success|1495
+    [  128s] run=running ti: queued|1 running|12 scheduled|114 success|1873
+  tuned cpu warmup: state=success success=2000/2000 span=132.70s thr=15.07/s lat_p50=0.689 lat_p95=0.875 exec_p50=0.610 peak_conc=20 mean_conc=8.8 cores=6.55
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: scheduled|1669 success|331
+    [   51s] run=running ti: running|16 scheduled|1287 success|697
+    [   77s] run=running ti: running|20 scheduled|890 success|1090
+    [  103s] run=running ti: queued|4 running|16 scheduled|521 success|1459
+    [  128s] run=running ti: queued|3 running|16 scheduled|147 success|1834
+  tuned cpu rep1: state=success success=2000/2000 span=135.88s thr=14.72/s lat_p50=0.711 lat_p95=0.888 exec_p50=0.624 peak_conc=20 mean_conc=8.7 cores=6.53
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: running|3 scheduled|1644 success|353
+    [   51s] run=running ti: scheduled|1242 success|758
+    [   77s] run=running ti: running|10 scheduled|868 success|1122
+    [  103s] run=running ti: running|14 scheduled|484 success|1502
+    [  128s] run=running ti: scheduled|114 success|1886
+  tuned cpu rep2: state=success success=2000/2000 span=132.84s thr=15.06/s lat_p50=0.680 lat_p95=0.869 exec_p50=0.599 peak_conc=20 mean_conc=8.7 cores=6.56
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: scheduled|1652 success|348
+    [   52s] run=running ti: running|9 scheduled|1286 success|705
+    [   77s] run=running ti: running|16 scheduled|890 success|1094
+    [  103s] run=running ti: running|16 scheduled|517 success|1467
+    [  128s] run=running ti: running|6 scheduled|110 success|1884
+  tuned cpu rep3: state=success success=2000/2000 span=133.13s thr=15.02/s lat_p50=0.682 lat_p95=0.877 exec_p50=0.603 peak_conc=20 mean_conc=8.7 cores=6.53
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: running|5 scheduled|1673 success|322
+    [   52s] run=running ti: running|4 scheduled|1291 success|705
+    [   77s] run=running ti: scheduled|913 success|1087
+    [  103s] run=running ti: scheduled|527 success|1473
+    [  128s] run=running ti: running|1 scheduled|141 success|1858
+  tuned cpu rep4: state=success success=2000/2000 span=134.55s thr=14.87/s lat_p50=0.692 lat_p95=0.869 exec_p50=0.608 peak_conc=20 mean_conc=8.7 cores=6.46
+    [    0s] run=running ti: (none)|2000
+    [   26s] run=running ti: running|2 scheduled|1650 success|348
+    [   52s] run=running ti: running|14 scheduled|1276 success|710
+    [   77s] run=running ti: running|3 scheduled|899 success|1098
+    [  103s] run=running ti: running|16 scheduled|503 success|1481
+    [  128s] run=running ti: running|3 scheduled|141 success|1856
+  tuned cpu rep5: state=success success=2000/2000 span=134.82s thr=14.83/s lat_p50=0.699 lat_p95=0.890 exec_p50=0.616 peak_conc=20 mean_conc=8.8 cores=6.57
+wrote /home/ubuntu/af/out/airflow_throughput_tuned_cpu.json
+=== tuned cpu done 2026-10-09T17:07:07+00:00 ===

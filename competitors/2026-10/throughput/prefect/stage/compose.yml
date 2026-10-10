@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: prefect
+      POSTGRES_PASSWORD: prefect
+      POSTGRES_DB: prefect
+    command: postgres -c max_connections=600 -c shared_buffers=2GB
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  server:
+    image: prefecthq/prefect:3.8.6-python3.12
+    restart: unless-stopped
+    command: prefect server start --host 0.0.0.0 --port 4200
+    environment:
+      PREFECT_API_DATABASE_CONNECTION_URL: postgresql+asyncpg://prefect:prefect@db:5432/prefect
+      PREFECT_API_URL: http://127.0.0.1:4200/api
+      PREFECT_HOME: /prefect
+    ports:
+      - "4200:4200"
+    depends_on:
+      - db
+  worker:
+    image: prefecthq/prefect:3.8.6-python3.12
+    restart: unless-stopped
+    command: prefect worker start --pool bench
+    environment:
+      PREFECT_API_URL: http://server:4200/api
+      PREFECT_HOME: /prefect
+    volumes:
+      - ./flows:/opt/flows
+    working_dir: /opt/flows
+    depends_on:
+      - server
+volumes:
+  pgdata:

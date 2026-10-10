@@ -1,0 +1,7 @@
+{"engine":"windmill","version":"1.811.1 EE","host":"AWS EC2 m7i.8xlarge, Xeon Platinum 8488C, 32 vCPU = 16 physical cores x 2 SMT threads, 123 GiB, us-east-2","run":"2026-10-09",
+ "python":"3.13.5","fibo31_s":[0.1177,0.1178,0.1172],
+ "ceiling_sleep_per_s":200.0,
+ "ceiling_cpu_per_s":138.3,
+ "ceiling_cpu_method":"20 bare python:3.13-slim processes looping fibo(31) for 12s with the engine stopped: 138.3/s. 16 processes give 137.1/s, so SMT adds ~1% and the real limit is 16 physical cores, not the 20 slots.",
+ "concurrency":{"stock":"20 worker containers, one job at a time each","dedicated":"20 dedicated worker containers bound to the script, warm process"},
+ "caveat":"for dedicated jobs duration_ms includes assignment, so interval-overlap concurrency overstates it (reads 82); effective concurrency = throughput x task duration"}

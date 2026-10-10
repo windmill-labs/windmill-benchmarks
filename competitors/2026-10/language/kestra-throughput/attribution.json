@@ -1,0 +1,15 @@
+{
+ "elapsed_s": 65.39,
+ "host_cores_busy_whole_sampler_window": 5.78,
+ "sampler_hz": 2.0,
+ "shims_p50": 7,
+ "shims_max": 22,
+ "docker_daemon_cores": 1.78,
+ "task_containers_cores": 0.22,
+ "kestra_jvm_cores": 0.44,
+ "postgres_cores": 0.29,
+ "rep_throughput_per_s": 7.776,
+ "rep_span_s": 64.301,
+ "rep_mean_concurrency": 19.77,
+ "note": "Extra rep, NOT counted in the reported throughput. Process-group CPU is utime+stime+cutime+cstime summed over short-lived pids, so a container's python is captured when its shim reaps it; dividing by the sampler window gives cores. The Kestra JVM and Postgres come from their own container cgroups (cpu.stat usage_usec)."
+}

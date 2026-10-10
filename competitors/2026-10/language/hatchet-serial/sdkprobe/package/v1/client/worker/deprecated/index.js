@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.semverLessThan = exports.parseSemver = exports.DeprecationError = exports.emitDeprecationNotice = exports.legacyGetActionListener = exports.LegacyV1Worker = exports.LegacyDualWorker = exports.fetchEngineVersion = exports.isLegacyEngine = void 0;
+var legacy_worker_1 = require("./legacy-worker");
+Object.defineProperty(exports, "isLegacyEngine", { enumerable: true, get: function () { return legacy_worker_1.isLegacyEngine; } });
+Object.defineProperty(exports, "fetchEngineVersion", { enumerable: true, get: function () { return legacy_worker_1.fetchEngineVersion; } });
+Object.defineProperty(exports, "LegacyDualWorker", { enumerable: true, get: function () { return legacy_worker_1.LegacyDualWorker; } });
+var legacy_v1_worker_1 = require("./legacy-v1-worker");
+Object.defineProperty(exports, "LegacyV1Worker", { enumerable: true, get: function () { return legacy_v1_worker_1.LegacyV1Worker; } });
+var legacy_registration_1 = require("./legacy-registration");
+Object.defineProperty(exports, "legacyGetActionListener", { enumerable: true, get: function () { return legacy_registration_1.legacyGetActionListener; } });
+var deprecation_1 = require("./deprecation");
+Object.defineProperty(exports, "emitDeprecationNotice", { enumerable: true, get: function () { return deprecation_1.emitDeprecationNotice; } });
+Object.defineProperty(exports, "DeprecationError", { enumerable: true, get: function () { return deprecation_1.DeprecationError; } });
+Object.defineProperty(exports, "parseSemver", { enumerable: true, get: function () { return deprecation_1.parseSemver; } });
+Object.defineProperty(exports, "semverLessThan", { enumerable: true, get: function () { return deprecation_1.semverLessThan; } });

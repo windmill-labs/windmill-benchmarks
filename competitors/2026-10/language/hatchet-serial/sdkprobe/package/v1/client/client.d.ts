@@ -1,0 +1,342 @@
+/**
+ * This is the TypeScript SDK reference, documenting methods available for interacting with Hatchet resources.
+ * Check out the [user guide](https://docs.hatchet.run/v1) for an introduction to getting your first tasks running.
+ *
+ * @module Hatchet TypeScript SDK Reference
+ */
+import { ClientConfig, HatchetClientOptions, LegacyHatchetClient, TaskMiddleware, InferMiddlewareBefore, InferMiddlewareAfter } from '../../clients/hatchet-client';
+import { AxiosRequestConfig } from 'axios';
+import WorkflowRunRef from '../../util/workflow-run-ref';
+import { Api } from '../../clients/rest';
+import { EventClient } from '../../clients/event/event-client';
+import { DispatcherClient } from '../../clients/dispatcher/dispatcher-client';
+import { Logger } from '../../util/logger';
+import { RunListenerClient } from '../../clients/listeners/run-listener/child-listener-client';
+import { DurableListenerClient } from '../../clients/listeners/durable-listener/durable-listener-client';
+import { type Transport } from '../../clients/transport';
+import { CreateTaskWorkflowOpts, CreateWorkflowOpts, RunOpts, BaseWorkflowDeclaration, WorkflowDeclaration, TaskWorkflowDeclaration, CreateDurableTaskWorkflowOpts, CreateBatchTaskWorkflowOpts } from '../declaration';
+import { BatchTaskFn } from '../task';
+import type { LegacyWorkflow } from '../../legacy/legacy-transformer';
+import { IHatchetClient } from './client.interface';
+import { CreateWorkerOpts, Worker } from './worker/worker';
+import { CELClient, CronClient, FiltersClient, LogsClient, MetricsClient, RatelimitsClient, RunsClient, ScheduleClient, StreamsClient, TenantClient, WebhooksClient, WorkersClient, WorkflowsClient } from './features';
+import { InputType, OutputType, UnknownInputType, StrictWorkflowOutputType, Resolved } from '../types';
+import { AdminClient } from './admin';
+import { DurableContext } from './worker/context';
+type MergeIfNonEmpty<Base, Extra extends Record<string, any>> = keyof Extra extends never ? Base : Base & Extra;
+/**
+ * HatchetV1 implements the main client interface for interacting with the Hatchet workflow engine.
+ * It provides methods for creating and executing workflows, as well as managing workers.
+ *
+ * @template GlobalInput - Global input type required by all tasks. Set via `init<T>()`. Defaults to `{}`.
+ * @template MiddlewareBefore - Extra fields merged into task input by pre-middleware hooks. Inferred from middleware config.
+ * @template MiddlewareAfter - Extra fields merged into task output by post-middleware hooks. Inferred from middleware config.
+ */
+export declare class HatchetClient<GlobalInput extends Record<string, any> = {}, GlobalOutput extends Record<string, any> = {}, MiddlewareBefore extends Record<string, any> = {}, MiddlewareAfter extends Record<string, any> = {}> implements IHatchetClient {
+    private _v0;
+    _api: Api;
+    _listener: RunListenerClient;
+    private _options;
+    private _axiosConfig;
+    private _clientFactory;
+    private _credentials;
+    private _transport;
+    /**
+     * @deprecated v0 client will be removed in a future release, please upgrade to v1
+     * @hidden
+     */
+    get v0(): LegacyHatchetClient;
+    /** The tenant ID for the Hatchet client */
+    tenantId: string;
+    logger: Logger;
+    /**
+     * Creates a new Hatchet client instance.
+     * @param config - Optional configuration for the client
+     * @param options - Optional client options
+     * @param axiosConfig - Optional Axios configuration for HTTP requests
+     * @internal
+     */
+    constructor(config?: Partial<ClientConfig>, options?: HatchetClientOptions, axiosConfig?: AxiosRequestConfig);
+    /**
+     * Static factory method to create a new Hatchet client instance.
+     * @template T - Global input type required by all tasks created from this client. Defaults to `{}`.
+     * @template U - Global output type required by all tasks created from this client. Defaults to `{}`.
+     * @param config - Optional configuration for the client.
+     * @param options - Optional client options.
+     * @param axiosConfig - Optional Axios configuration for HTTP requests.
+     * @returns A new Hatchet client instance. Chain `.withMiddleware()` to attach typed middleware.
+     * @internal
+     */
+    static init<T extends Record<string, any> = {}, U extends Record<string, any> = {}>(config?: Omit<Partial<ClientConfig>, 'middleware'>, options?: HatchetClientOptions, axiosConfig?: AxiosRequestConfig): HatchetClient<T, U>;
+    /**
+     * Attaches middleware to this client and returns a re-typed instance
+     * with inferred pre/post middleware types.
+     *
+     * Use this after `init<T, U>()` to get full middleware return-type inference
+     * that TypeScript can't provide when global types are explicitly set on `init`.
+     * @internal
+     */
+    withMiddleware<const M extends TaskMiddleware<Resolved<GlobalInput, MiddlewareBefore>, Resolved<GlobalOutput, MiddlewareAfter>>>(middleware: M): HatchetClient<GlobalInput, GlobalOutput, MiddlewareBefore & InferMiddlewareBefore<M>, MiddlewareAfter & InferMiddlewareAfter<M>>;
+    private _config;
+    get config(): ClientConfig;
+    /**
+     * Creates a new workflow definition.
+     * @template I - The input type for the workflow
+     * @template O - The return type of the workflow
+     * @param options - Configuration options for creating the workflow
+     * @returns A new Workflow instance
+     * @note It is possible to create an orphaned workflow if no client is available using @hatchet/client CreateWorkflow
+     */
+    workflow<I extends InputType = UnknownInputType, O extends StrictWorkflowOutputType = {}>(options: CreateWorkflowOpts): WorkflowDeclaration<I, O, Resolved<GlobalInput, MiddlewareBefore>>;
+    /**
+     * Creates a new task workflow.
+     * Types can be explicitly specified as generics or inferred from the function signature.
+     * @template I The input type for the task
+     * @template O The output type of the task
+     * @param options Task configuration options
+     * @returns A TaskWorkflowDeclaration instance
+     */
+    task<I extends InputType = UnknownInputType, O extends OutputType = void>(options: CreateTaskWorkflowOpts<I & Resolved<GlobalInput, MiddlewareBefore>, MergeIfNonEmpty<O, GlobalOutput>>): TaskWorkflowDeclaration<I, O, GlobalInput, GlobalOutput, MiddlewareBefore, MiddlewareAfter>;
+    /**
+     * Creates a new task workflow with types inferred from the function parameter.
+     * @template Fn The type of the task function with input and output extending JsonObject
+     * @param options Task configuration options with function that defines types
+     * @returns A TaskWorkflowDeclaration instance with inferred types
+     */
+    task<Fn extends (input: I, ctx?: any) => O | Promise<O>, I extends InputType = Parameters<Fn>[0] | UnknownInputType, O extends OutputType = ReturnType<Fn> extends Promise<infer P> ? P extends OutputType ? P : void : ReturnType<Fn> extends OutputType ? ReturnType<Fn> : void>(options: {
+        fn: Fn;
+    } & Omit<CreateTaskWorkflowOpts<I, O>, 'fn'>): TaskWorkflowDeclaration<I, O, GlobalInput, GlobalOutput, MiddlewareBefore, MiddlewareAfter>;
+    /**
+     * Creates a new batch task workflow. Batch tasks buffer concurrent runs until Hatchet
+     * flushes the batch (size reached or flush interval), then invoke the handler once with
+     * all buffered inputs keyed by each run's task-run external id. The handler must return
+     * a Record mapping each id to its output, or set `batch.broadcastOutput` to return the
+     * same result to all callers. retries is always forced to 0 for batch tasks.
+     *
+     * Preview: batch tasks are in beta and may change in future releases.
+     * @template I The input type for the batch task
+     * @template O The output type of the batch task
+     * @param options Batch task configuration options
+     * @returns A TaskWorkflowDeclaration instance
+     */
+    batchTask<I extends InputType = UnknownInputType, O extends OutputType = void>(options: CreateBatchTaskWorkflowOpts<I & Resolved<GlobalInput, MiddlewareBefore>, MergeIfNonEmpty<O, GlobalOutput>>): TaskWorkflowDeclaration<I, O, GlobalInput, GlobalOutput, MiddlewareBefore, MiddlewareAfter>;
+    /**
+     * Creates a new batch task workflow with types inferred from the function parameter.
+     * @template Fn The type of the batch task function
+     * @param options Batch task configuration options with function that defines types
+     * @returns A TaskWorkflowDeclaration instance with inferred types
+     */
+    batchTask<Fn extends BatchTaskFn<I, O>, I extends InputType = Parameters<Fn>[0] extends Record<string, infer II> ? II extends InputType ? II : UnknownInputType : UnknownInputType, O extends OutputType = ReturnType<Fn> extends Promise<infer P> ? P extends OutputType ? P : void : ReturnType<Fn> extends OutputType ? ReturnType<Fn> : void>(options: {
+        fn: Fn;
+        batch: CreateBatchTaskWorkflowOpts<I, O>['batch'];
+    } & Omit<CreateBatchTaskWorkflowOpts<I, O>, 'fn' | 'batch'>): TaskWorkflowDeclaration<I, O, GlobalInput, GlobalOutput, MiddlewareBefore, MiddlewareAfter>;
+    /**
+     * Creates a new durable task workflow.
+     * Types can be explicitly specified as generics or inferred from the function signature.
+     * @template I The input type for the durable task
+     * @template O The output type of the durable task
+     * @param options Durable task configuration options
+     * @returns A TaskWorkflowDeclaration instance for a durable task
+     */
+    durableTask<I extends InputType, O extends OutputType>(options: CreateDurableTaskWorkflowOpts<I & Resolved<GlobalInput, MiddlewareBefore>, MergeIfNonEmpty<O, GlobalOutput>>): TaskWorkflowDeclaration<I, O, GlobalInput, GlobalOutput, MiddlewareBefore, MiddlewareAfter>;
+    /**
+     * Creates a new durable task workflow with types inferred from the function parameter.
+     * @template Fn The type of the durable task function with input and output extending JsonObject
+     * @param options Durable task configuration options with function that defines types
+     * @returns A TaskWorkflowDeclaration instance with inferred types
+     */
+    durableTask<Fn extends (input: I, ctx: DurableContext<I>) => O | Promise<O>, I extends InputType = Parameters<Fn>[0], O extends OutputType = ReturnType<Fn> extends Promise<infer P> ? P extends OutputType ? P : void : ReturnType<Fn> extends OutputType ? ReturnType<Fn> : void>(options: {
+        fn: Fn;
+    } & Omit<CreateDurableTaskWorkflowOpts<I, O>, 'fn'>): TaskWorkflowDeclaration<I, O, GlobalInput, GlobalOutput, MiddlewareBefore, MiddlewareAfter>;
+    /**
+     * Triggers a workflow run without waiting for completion.
+     * @template I - The input type for the workflow
+     * @template O - The return type of the workflow
+     * @param workflow - The workflow to run, either as a Workflow instance or workflow name
+     * @param input - The input data for the workflow
+     * @param options - Configuration options for the workflow run
+     * @returns A WorkflowRunRef containing the run ID and methods to interact with the run
+     */
+    runNoWait<I extends InputType = UnknownInputType, O extends OutputType = void>(workflow: BaseWorkflowDeclaration<I, O> | LegacyWorkflow | string, input: I, options?: RunOpts): Promise<WorkflowRunRef<O>>;
+    /**
+     * Triggers a workflow run and waits for the result.
+     * @template I - The input type for the workflow
+     * @template O - The return type of the workflow
+     * @param workflow - The workflow to run, either as a Workflow instance or workflow name
+     * @param input - The input data for the workflow
+     * @alias run
+     * @param options - Configuration options for the workflow run
+     * @returns A promise that resolves with the workflow result
+     */
+    runAndWait<I extends InputType = UnknownInputType, O extends OutputType = void>(workflow: BaseWorkflowDeclaration<I, O> | LegacyWorkflow | string, input: I, options?: RunOpts): Promise<O>;
+    /**
+     * Triggers a workflow run and waits for the result.
+     * @template I - The input type for the workflow
+     * @template O - The return type of the workflow
+     * @param workflow - The workflow to run, either as a Workflow instance or workflow name
+     * @param input - The input data for the workflow
+     * @param options - Configuration options for the workflow run
+     * @returns A promise that resolves with the workflow result
+     */
+    run<I extends InputType = UnknownInputType, O extends OutputType = void>(workflow: BaseWorkflowDeclaration<I, O> | LegacyWorkflow | string, input: I, options?: RunOpts): Promise<O>;
+    private _cel;
+    /**
+     * Get the CEL client for debugging CEL expressions
+     * @returns A CEL client instance
+     * @internal
+     */
+    get cel(): CELClient;
+    private _crons;
+    /**
+     * Get the cron client for creating and managing cron workflow runs
+     * @returns A cron client instance
+     */
+    get crons(): CronClient;
+    /**
+     * Get the cron client for creating and managing cron workflow runs
+     * @returns A cron client instance
+     * @deprecated use client.crons instead
+     * @hidden
+     */
+    get cron(): CronClient;
+    private _scheduled;
+    /**
+     * Get the schedules client for creating and managing scheduled workflow runs
+     * @returns A schedules client instance
+     */
+    get scheduled(): ScheduleClient;
+    /**
+     * Get the schedule client for creating and managing scheduled workflow runs
+     * @returns A schedule client instance
+     * @deprecated use client.scheduled instead
+     * @hidden
+     */
+    get schedule(): ScheduleClient;
+    /**
+     * @alias scheduled
+     */
+    get schedules(): ScheduleClient;
+    private _dispatcher;
+    /**
+     * Get the dispatcher client for sending action events and managing worker registration
+     * @returns A dispatcher client instance
+     * @internal
+     */
+    get dispatcher(): DispatcherClient;
+    private _event;
+    /**
+     * Get the event client for creating and managing event workflow runs
+     * @returns A event client instance
+     */
+    get events(): EventClient;
+    private _durableListener;
+    /**
+     * Get the durable listener client for managing durable event subscriptions
+     * @returns A durable listener client instance
+     * @internal
+     */
+    get durableListener(): DurableListenerClient;
+    /**
+     * Get the run listener client for streaming workflow run results
+     * @returns A run listener client instance
+     * @internal
+     */
+    get listener(): RunListenerClient;
+    /**
+     * The Connect transport the client's unary RPCs go through
+     * @internal
+     */
+    get transport(): Transport;
+    /**
+     * @deprecated use client.events instead
+     * @hidden
+     */
+    get event(): EventClient;
+    private _metrics;
+    /**
+     * Get the metrics client for creating and managing metrics
+     * @returns A metrics client instance
+     */
+    get metrics(): MetricsClient;
+    private _filters;
+    /**
+     * Get the filters client for creating and managing filters
+     * @returns A filters client instance
+     */
+    get filters(): FiltersClient;
+    private _tenant;
+    /**
+     * Get the tenant client for managing tenants
+     * @returns A tenant client instance
+     */
+    get tenant(): TenantClient;
+    private _webhooks;
+    /**
+     * Get the webhooks client for creating and managing webhooks
+     * @returns A webhooks client instance
+     */
+    get webhooks(): WebhooksClient;
+    private _logs;
+    /**
+     * Get the logs client for creating and managing logs
+     * @returns A logs client instance
+     */
+    get logs(): LogsClient;
+    private _ratelimits;
+    /**
+     * Get the rate limits client for creating and managing rate limits
+     * @returns A rate limits client instance
+     */
+    get ratelimits(): RatelimitsClient;
+    private _runs;
+    /**
+     * Get the runs client for creating and managing runs
+     * @returns A runs client instance
+     */
+    get runs(): RunsClient;
+    private _streams;
+    /**
+     * Get the streams client for publishing to and reading from durable,
+     * topic-based streams
+     * @returns A streams client instance
+     */
+    get streams(): StreamsClient;
+    private _workflows;
+    /**
+     * Get the workflows client for creating and managing workflows
+     * @returns A workflows client instance
+     */
+    get workflows(): WorkflowsClient;
+    /**
+     * Get the tasks client for creating and managing tasks
+     * @returns A tasks client instance
+     */
+    get tasks(): WorkflowsClient;
+    private _workers;
+    /**
+     * Get the workers client for creating and managing workers
+     * @returns A workers client instance
+     */
+    get workers(): WorkersClient;
+    /**
+     * Get the API client for making HTTP requests to the Hatchet API
+     * Note: This is not recommended for general use, but is available for advanced scenarios
+     * @returns A API client instance
+     */
+    get api(): Api<unknown>;
+    _admin: AdminClient | undefined;
+    /**
+     * Get the admin client for creating and managing workflows
+     * @returns A admin client instance
+     * @internal
+     */
+    get admin(): AdminClient;
+    /**
+     * Creates a new worker instance for processing workflow tasks.
+     * @param options - Configuration options for creating the worker
+     * @returns A promise that resolves with a new HatchetWorker instance
+     */
+    worker(name: string, options?: CreateWorkerOpts | number): Promise<Worker>;
+    runRef<T extends Record<string, any> = any>(id: string): WorkflowRunRef<T>;
+}
+export {};

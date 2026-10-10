@@ -1,0 +1,19 @@
+{
+ "docker": {
+  "version": "3.14.8 (main, Oct  6 2026, 01:59:23) [GCC 14.2.0]",
+  "implementation": "CPython",
+  "executable": "/usr/local/bin/python",
+  "fibo31_s": [
+   0.1075,
+   0.1074,
+   0.1071
+  ],
+  "fibo10_s": 4.416805999881035e-06,
+  "cpu_count": 32,
+  "sched_affinity": 32,
+  "kestra_log_cmd_lines": [
+   "Starting command with container id 0a9b580eae8b8fb447a5dbb421dbc500cfa66424e3312bad0278d8d7096012e5 [/bin/sh -c set -e\nif [ -n \"$VIRTUAL_ENV\" ]; then \"$VIRTUAL_ENV/bin/python\" \"/tmp/kestra-wd/tmp/5wohUJfrC6E37LukOXDgLY/16158122764323006907.py\"; else \"python\" \"/tmp/kestra-wd/tmp/5wohUJfrC6E37LukOXDgLY/16158122764323006907.py\"; fi]",
+   "Command succeed with exit code 0"
+  ]
+ }
+}

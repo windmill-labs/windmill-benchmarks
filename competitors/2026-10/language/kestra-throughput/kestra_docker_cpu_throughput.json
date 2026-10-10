@@ -1,0 +1,233 @@
+{
+ "engine": "kestra",
+ "config": "docker runner",
+ "workload": "cpu",
+ "concurrency": 20,
+ "units_per_rep": 500,
+ "reps": [
+  {
+   "jobs": 500,
+   "span_s": 85.561,
+   "throughput_per_s": 5.844,
+   "latency_p50_s": 42.433,
+   "latency_p95_s": 82.844,
+   "exec_p50_s": 3.454,
+   "exec_p95_s": 4.074,
+   "mean_concurrency": 19.79,
+   "peak_concurrency": 20,
+   "cores_busy": 4.007,
+   "seconds_above_20_concurrent": 0.0,
+   "submit_s": 0.6,
+   "n_exec": 25,
+   "cpu": {
+    "host_ncpu": 32,
+    "sample_hz": 1.0,
+    "samples_total": 84,
+    "samples_in_window": 83,
+    "cores_busy_mean": 4.007,
+    "cores_busy_p50": 3.96,
+    "cores_busy_min": 2.603,
+    "cores_busy_max": 10.154,
+    "python_procs_p50": 2,
+    "python_procs_max": 5,
+    "container_shims_p50": 6,
+    "container_shims_max": 11
+   }
+  },
+  {
+   "jobs": 500,
+   "span_s": 87.924,
+   "throughput_per_s": 5.687,
+   "latency_p50_s": 45.084,
+   "latency_p95_s": 86.221,
+   "exec_p50_s": 3.585,
+   "exec_p95_s": 4.211,
+   "mean_concurrency": 19.83,
+   "peak_concurrency": 20,
+   "cores_busy": 3.931,
+   "seconds_above_20_concurrent": 0.0,
+   "submit_s": 0.639,
+   "n_exec": 25,
+   "cpu": {
+    "host_ncpu": 32,
+    "sample_hz": 1.0,
+    "samples_total": 87,
+    "samples_in_window": 87,
+    "cores_busy_mean": 3.931,
+    "cores_busy_p50": 3.885,
+    "cores_busy_min": 2.154,
+    "cores_busy_max": 8.585,
+    "python_procs_p50": 1,
+    "python_procs_max": 5,
+    "container_shims_p50": 6,
+    "container_shims_max": 21
+   }
+  },
+  {
+   "jobs": 500,
+   "span_s": 59.051,
+   "throughput_per_s": 8.467,
+   "latency_p50_s": 27.648,
+   "latency_p95_s": 56.823,
+   "exec_p50_s": 2.405,
+   "exec_p95_s": 2.939,
+   "mean_concurrency": 19.77,
+   "peak_concurrency": 20,
+   "cores_busy": 5.745,
+   "seconds_above_20_concurrent": 0.0,
+   "submit_s": 0.669,
+   "n_exec": 25,
+   "cpu": {
+    "host_ncpu": 32,
+    "sample_hz": 1.0,
+    "samples_total": 58,
+    "samples_in_window": 58,
+    "cores_busy_mean": 5.745,
+    "cores_busy_p50": 5.635,
+    "cores_busy_min": 3.592,
+    "cores_busy_max": 10.19,
+    "python_procs_p50": 2,
+    "python_procs_max": 6,
+    "container_shims_p50": 8,
+    "container_shims_max": 15
+   }
+  },
+  {
+   "jobs": 500,
+   "span_s": 71.816,
+   "throughput_per_s": 6.962,
+   "latency_p50_s": 36.171,
+   "latency_p95_s": 69.743,
+   "exec_p50_s": 2.888,
+   "exec_p95_s": 3.401,
+   "mean_concurrency": 19.8,
+   "peak_concurrency": 20,
+   "cores_busy": 4.743,
+   "seconds_above_20_concurrent": 0.0,
+   "submit_s": 0.572,
+   "n_exec": 25,
+   "cpu": {
+    "host_ncpu": 32,
+    "sample_hz": 1.0,
+    "samples_total": 71,
+    "samples_in_window": 71,
+    "cores_busy_mean": 4.743,
+    "cores_busy_p50": 4.59,
+    "cores_busy_min": 3.359,
+    "cores_busy_max": 10.107,
+    "python_procs_p50": 2,
+    "python_procs_max": 4,
+    "container_shims_p50": 7,
+    "container_shims_max": 11
+   }
+  },
+  {
+   "jobs": 500,
+   "span_s": 77.08,
+   "throughput_per_s": 6.487,
+   "latency_p50_s": 38.201,
+   "latency_p95_s": 74.32,
+   "exec_p50_s": 3.076,
+   "exec_p95_s": 3.668,
+   "mean_concurrency": 19.77,
+   "peak_concurrency": 20,
+   "cores_busy": 4.822,
+   "seconds_above_20_concurrent": 0.0,
+   "submit_s": 0.639,
+   "n_exec": 25,
+   "cpu": {
+    "host_ncpu": 32,
+    "sample_hz": 1.0,
+    "samples_total": 76,
+    "samples_in_window": 76,
+    "cores_busy_mean": 4.822,
+    "cores_busy_p50": 4.832,
+    "cores_busy_min": 3.019,
+    "cores_busy_max": 9.378,
+    "python_procs_p50": 2,
+    "python_procs_max": 4,
+    "container_shims_p50": 7,
+    "container_shims_max": 19
+   }
+  }
+ ],
+ "batch_size_note": "500 units per rep, not the 2000 used for the process-runner rows of this study. The Docker runner was already measured at 5.8 tasks/s on the sleeping workload, so 2000 units would be ~6 minutes of wall clock per rep. At 500 units a rep takes ~80s and the rate is flat across the span, so the smaller batch measures the same steady-state rate. Shape kept identical to the rest of the study: 25 executions x 20 independent Python script tasks in one io.kestra.plugin.core.flow.Parallel block.",
+ "config_detail": "Kestra's DEFAULT task runner for io.kestra.plugin.scripts.python.Script: the flow carries NO taskRunner block, only `containerImage: python:slim`, so io.kestra.plugin.scripts.runner.docker.Docker starts one python:slim container per task against the host Docker daemon over the mounted /var/run/docker.sock, and removes it afterwards.",
+ "concurrency_mechanism": "worker thread pool size, set with --worker-thread=20 on `kestra server standalone`; one Kestra worker thread runs one task at a time. The default is 8 x availableProcessors (256 on this box), so 20 is far below the default.",
+ "is_default_concurrency": false,
+ "median_throughput_per_s": 6.487,
+ "throughput_spread_per_s": [
+  5.687,
+  8.467
+ ],
+ "mean_occupancy_of_20": 19.79,
+ "median_cores_busy": 4.74,
+ "ceilings": {
+  "cpu_20way_measured_per_s": 141.57,
+  "cpu_20way_measured_basis": "20 forked processes inside ONE python:slim container, each looping fibo(31) for 8s with Kestra and per-task container start out of the picture: 141.57 calls/s. The box is 32 vCPU over 16 PHYSICAL cores, so this is well under the naive 20/0.1073s.",
+  "cpu_20way_naive_per_s": 186.39,
+  "cpu_20way_naive_basis": "20 slots / fibo(31) = 0.1073s measured in Kestra's own python:slim container",
+  "container_lifecycle_20way_per_s": 45.2,
+  "container_lifecycle_basis": "`docker run --rm python:slim python fibo31.py` takes 0.4425s serially on this idle box, so 20 slots would retire 45.2/s if the Docker daemon parallelised container starts perfectly. This is the ceiling that actually binds a container-per-task runner.",
+  "share_of_cpu_ceiling": 4.6,
+  "share_of_naive_cpu_ceiling": 3.5,
+  "share_of_container_lifecycle_ceiling": 14.4
+ },
+ "sanity": {
+  "all_500_succeeded_every_rep": true,
+  "how": "the harness refuses a rep unless all 25 executions report SUCCESS and exactly 500 unit task runs each carry CREATED, RUNNING and SUCCESS timestamps",
+  "failures": 0,
+  "jobs_per_rep": [
+   500,
+   500,
+   500,
+   500,
+   500
+  ],
+  "peak_concurrency_per_rep": [
+   20,
+   20,
+   20,
+   20,
+   20
+  ],
+  "seconds_above_20_concurrent_per_rep": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "mean_concurrency_per_rep": [
+   19.79,
+   19.83,
+   19.77,
+   19.8,
+   19.77
+  ],
+  "concurrency_derivation": "interval sweep over every unit task run's RUNNING -> SUCCESS window"
+ },
+ "timing_source": "every span, latency and concurrency figure is derived from Kestra's own taskRunList[].state.histories CREATED / RUNNING / SUCCESS timestamps, never from harness wall clock",
+ "little_law_check": {
+  "statement": "mean concurrency x per-task RUNNING->SUCCESS window should equal the throughput, and it does, which is what makes the container count the decisive number",
+  "mean_concurrency": 19.79,
+  "exec_p50_s": 3.076,
+  "containers_alive_p50": 7,
+  "reading": "all 20 worker threads are occupied all the time, but only 6-8 containers exist at any instant, so ~two thirds of the occupied slots are waiting on the Docker daemon before their container is even created"
+ },
+ "cpu_cost_per_task": {
+  "core_seconds_per_task": [
+   0.686,
+   0.691,
+   0.679,
+   0.681,
+   0.743
+  ],
+  "median_core_seconds_per_task": 0.686,
+  "useful_core_seconds_per_task": 0.1073,
+  "useful_share_pct": 15.6,
+  "reading": "Host busy-cores divided by throughput is near-constant across reps even though throughput itself varies 1.5x, so each completed task costs a fixed amount of host CPU. Only ~107ms of that is the fibo body; the rest is the container lifecycle. This is the cleanest statement of the overhead because it does not depend on attributing CPU to processes."
+ },
+ "finding": "The Docker runner does not get real CPU parallelism. Median 6.487 tasks/s, against 5.78 tasks/s for the same runner on a pure-sleep body: the spreads overlap (5.69-8.47 here, 5.71-6.43 there), so adding ~107ms of real CPU per task leaves the rate unchanged within run-to-run variation. The rate is not set by CPU. Over the measured window the box averages 4.74 of 32 cores busy - nowhere near the 16 physical cores twenty genuinely parallel containers would use, and barely above the 4.61 the sleeping workload burned. Each completed task costs 0.69 core-seconds of host CPU of which only 0.1073 is the fibo body, i.e. 16% useful work. All 20 worker threads stay occupied (mean concurrency 19.79/20) while only 7 containers exist at the median instant, so roughly two thirds of the occupied slots are blocked inside the Docker daemon rather than computing. The daemon bottlenecks it exactly as it did at 5.8 tasks/s on sleeping work.",
+ "spread_caveat": "The 5.69-8.47 tasks/s spread is wider than the 5.71-6.43 the sleeping workload showed at 2000 units per rep. Reps run in order 5.84, 5.69, 8.47, 6.96, 6.49, so it is not a monotonic drift; the likely cause is the 4x smaller batch, which gives Docker daemon state and ramp/drain proportionally more weight per rep. Host busy-cores track throughput almost exactly across the five reps (0.68-0.74 core-seconds per task throughout), so whatever moves the rate moves container churn with it, which is itself evidence that container handling and not CPU is the binding resource."
+}

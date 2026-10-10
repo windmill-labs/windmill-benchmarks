@@ -1,0 +1,1 @@
+{"tag": "probe_drop_r0", "workload": "sleep", "n": 31, "units": 2000, "max_workers": 20, "wall_start": 1791565648.2745562, "wall_end": 1791565663.4931521, "wall_s": 15.219, "submit_s": 0.18, "ok": 2000, "flow_proc_cpu_s": 12.989, "cores_busy_flow_proc": 0.853, "python": "3.12.14 (main, Sep  1 2026, 00:10:07) [GCC 14.2.0]"}

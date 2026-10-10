@@ -1,0 +1,18 @@
+    numHistoryShards: 512
+ARGCHECK actworker: ["python","actworker.py","sleep","20","4","0"]
+ARGCHECK combo: config=stock workload=sleep total=2000 per_wf=20 reps=4 pollers=0 prerelease=0 out=diag_shards512_stock_sleep.json
+workers ready: single worker process, ThreadPoolExecutor(max_workers=20) as activity_executor, max_concurrent_activities=20, activity_task_poller_behavior=SDK default PollerBehaviorSimpleMaximum(5)
+rep 0: 100 workflows submitted in 0.08s, 2000 activities enqueued in 5.20s
+rep 0: 100 workflows done, sum=2000, wall 12.59s
+rep 1: 100 workflows submitted in 0.06s, 2000 activities enqueued in 1.17s
+rep 1: 100 workflows done, sum=2000, wall 12.50s
+rep 2: 100 workflows submitted in 0.06s, 2000 activities enqueued in 3.37s
+rep 2: 100 workflows done, sum=2000, wall 12.58s
+rep 3: 100 workflows submitted in 0.05s, 2000 activities enqueued in 3.38s
+rep 3: 100 workflows done, sum=2000, wall 12.63s
+DONE
+rep1 n=2000 span=12.458s tput=160.5/s latp50=11.926 latp95=16.937 execp50=0.1102 peak=20 effconc=18.00 cores=0.23 enq=1.17s
+rep2 n=2000 span=12.519s tput=159.8/s latp50=14.212 latp95=18.904 execp50=0.1109 peak=20 effconc=17.98 cores=0.23 enq=3.37s
+rep3 n=2000 span=12.580s tput=159.0/s latp50=14.226 latp95=18.036 execp50=0.1109 peak=20 effconc=17.90 cores=0.23 enq=3.38s
+COMBO DONE diag_shards512_stock_sleep.json
+DIAG COMPLETE

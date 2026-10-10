@@ -1,0 +1,6 @@
+ip_sleep_r0|2000|2000
+ip_sleep_r1|2000|2000
+ip_sleep_r2|1404|1371
+ip_sleep_r3|973|725
+ip_sleep_r4|1023|767
+ip_sleep_r5|1008|717

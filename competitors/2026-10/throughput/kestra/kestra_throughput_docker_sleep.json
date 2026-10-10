@@ -1,0 +1,141 @@
+{
+ "engine": "kestra",
+ "config": "docker",
+ "workload": "sleep",
+ "concurrency": 20,
+ "concurrency_mechanism": "worker thread pool size, set with the `--worker-thread` flag on `kestra server standalone` (one Kestra worker thread runs one task at a time)",
+ "is_default": false,
+ "notes": "Same shape and workload as process/sleep but on Kestra's stock task runner for script tasks, io.kestra.plugin.scripts.runner.docker.Docker with containerImage python:slim, which creates a volume and a container per task and removes both afterwards. Second data point for what container-per-task costs at concurrency. Concurrency is still exactly 20; the worker threads are simply blocked waiting on the single Docker daemon. Compare the per-task window (RUNNING -> SUCCESS) against the serial container lifecycle measured on the same box, in kestra_runtime.json serial_docker_baseline.",
+ "sanity": {
+  "all_2000_succeeded_every_rep": true,
+  "how": "the harness refuses a rep unless all 100 executions report SUCCESS and exactly 2000 unit task runs each carry CREATED, RUNNING and SUCCESS timestamps",
+  "peak_concurrency_per_rep": [
+   20,
+   20,
+   20,
+   20,
+   20
+  ],
+  "seconds_above_20_concurrent_per_rep": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "concurrency_derivation": "interval sweep over every unit task run's RUNNING -> SUCCESS window"
+ },
+ "cpu_sampler_note": "cpu.* is sampled host-wide every 0.5s from /proc/stat and /proc/*/comm. busy_cores_p50 is cores busy across the whole box (Kestra JVM + Postgres + task processes). python_procs counts any process whose comm starts with python3, so it includes the harness itself and overcounts by 1; cpucheck_process_cpu.json has the filtered per-process accounting.",
+ "reps": [
+  {
+   "jobs": 2000,
+   "span_s": 346.159,
+   "throughput_per_s": 5.778,
+   "latency_p50_s": 181.722,
+   "latency_p95_s": 330.064,
+   "exec_p50_s": 3.525,
+   "exec_p95_s": 4.127,
+   "peak_concurrency": 20,
+   "seconds_above_20_concurrent": 0.0,
+   "mean_concurrency": 19.94,
+   "submit_s": 1.204,
+   "n_exec": 100,
+   "cpu": {
+    "samples": 668,
+    "busy_cores_p50": 4.61,
+    "busy_cores_max": 11.29,
+    "python_procs_p50": 1,
+    "python_procs_max": 4,
+    "host_ncpu": 32
+   }
+  },
+  {
+   "jobs": 2000,
+   "span_s": 347.293,
+   "throughput_per_s": 5.759,
+   "latency_p50_s": 172.254,
+   "latency_p95_s": 329.997,
+   "exec_p50_s": 3.524,
+   "exec_p95_s": 3.949,
+   "peak_concurrency": 20,
+   "seconds_above_20_concurrent": 0.0,
+   "mean_concurrency": 19.94,
+   "submit_s": 1.031,
+   "n_exec": 100,
+   "cpu": {
+    "samples": 665,
+    "busy_cores_p50": 4.66,
+    "busy_cores_max": 11.05,
+    "python_procs_p50": 2,
+    "python_procs_max": 4,
+    "host_ncpu": 32
+   }
+  },
+  {
+   "jobs": 2000,
+   "span_s": 350.486,
+   "throughput_per_s": 5.706,
+   "latency_p50_s": 172.073,
+   "latency_p95_s": 333.232,
+   "exec_p50_s": 3.487,
+   "exec_p95_s": 4.292,
+   "peak_concurrency": 20,
+   "seconds_above_20_concurrent": 0.0,
+   "mean_concurrency": 19.94,
+   "submit_s": 1.084,
+   "n_exec": 100,
+   "cpu": {
+    "samples": 673,
+    "busy_cores_p50": 4.64,
+    "busy_cores_max": 11.85,
+    "python_procs_p50": 2,
+    "python_procs_max": 4,
+    "host_ncpu": 32
+   }
+  },
+  {
+   "jobs": 2000,
+   "span_s": 311.852,
+   "throughput_per_s": 6.413,
+   "latency_p50_s": 149.425,
+   "latency_p95_s": 299.65,
+   "exec_p50_s": 3.187,
+   "exec_p95_s": 3.917,
+   "peak_concurrency": 20,
+   "seconds_above_20_concurrent": 0.0,
+   "mean_concurrency": 19.94,
+   "submit_s": 1.054,
+   "n_exec": 100,
+   "cpu": {
+    "samples": 597,
+    "busy_cores_p50": 4.37,
+    "busy_cores_max": 10.5,
+    "python_procs_p50": 2,
+    "python_procs_max": 4,
+    "host_ncpu": 32
+   }
+  },
+  {
+   "jobs": 2000,
+   "span_s": 311.164,
+   "throughput_per_s": 6.427,
+   "latency_p50_s": 158.098,
+   "latency_p95_s": 294.754,
+   "exec_p50_s": 3.129,
+   "exec_p95_s": 3.724,
+   "peak_concurrency": 20,
+   "seconds_above_20_concurrent": 0.0,
+   "mean_concurrency": 19.94,
+   "submit_s": 1.167,
+   "n_exec": 100,
+   "cpu": {
+    "samples": 598,
+    "busy_cores_p50": 4.45,
+    "busy_cores_max": 12.77,
+    "python_procs_p50": 2,
+    "python_procs_max": 4,
+    "host_ncpu": 32
+   }
+  }
+ ]
+}

@@ -1,0 +1,156 @@
+{
+ "engine": "kestra",
+ "kestra_version": "2.0.2",
+ "kestra_commit_id": "2ba6e90",
+ "kestra_commit_date": "2026-09-15T13:59",
+ "image": "kestra/kestra:v2.0.2",
+ "kestra_edition": "OSS",
+ "run": "2026-10-09",
+ "experiment": "throughput of Kestra's default Docker task runner on a core-bound body (naive recursive fibo(31)) at a fixed concurrency of 20",
+ "host": "AWS EC2 m7i.8xlarge (32 vCPU, 123 GiB, us-east-2), nothing else running",
+ "host_cpu": {
+  "model": "Intel(R) Xeon(R) Platinum 8488C",
+  "vcpus": 32,
+  "physical_cores": 16,
+  "threads_per_core": 2.0,
+  "why_it_matters": "32 vCPU is 16 physical cores with 2 SMT threads each, so 20 concurrent CPU-bound tasks do not get 20 independent cores"
+ },
+ "docker_version": "29.1.3",
+ "deployment": "official docker-compose (kestra/kestra:v2.0.2 `server standalone --worker-thread=20` + postgres:18), postgres repository and postgres queue, basic auth enabled (2.x refuses the API without it), /var/run/docker.sock mounted into the Kestra container",
+ "concurrency": {
+  "target": 20,
+  "setting": "--worker-thread=20 on `kestra server standalone` (compose `command: server standalone --worker-thread=20`)",
+  "mechanism": "the worker's thread pool; one Kestra worker thread runs one task at a time, so the pool size is the task concurrency of a single worker",
+  "default": 256,
+  "default_rule": "8 x availableProcessors; `--worker-thread --help` prints Default: 256 on this 32-vCPU box",
+  "is_default": false,
+  "relative_to_default": "20 is far BELOW the default of 256",
+  "confirmation_logs": [
+   "i.k.w.s.DirectQueueJobFetcher SystemWorker subscribed to Worker Queue 'system'",
+   "io.kestra.worker.AbstractWorker Worker started with 32 thread(s)",
+   "i.k.w.s.GrpcWorkerConnectionService Connected to controller, workerGroup: default",
+   "io.kestra.worker.AbstractWorker Worker started with 20 thread(s)",
+   "i.k.worker.fetchers.WorkerJobFetcher Connected to controller: workerId=16Y4IoAVKH5z8Qs5nF2FaA, workerGroup=default, maxConcurrency=40, initialPermits=20"
+  ],
+  "note_on_maxConcurrency_40": "the worker/controller handshake advertises maxConcurrency=40 (2x the thread count) as a job prefetch budget, not an execution limit; derived concurrency never exceeded 20 in any rep",
+  "second_pool_unused": "a SystemWorker starts with 32 threads in the same process and is not used by these flows",
+  "other_controls_left_unset": [
+   "flow-level `concurrency: {limit, behavior}`",
+   "io.kestra.plugin.core.flow.Parallel's own `concurrent` cap",
+   "Docker runner `cpu` / `memory` limits (none set, containers see all 32 vCPU)"
+  ]
+ },
+ "task_runner": {
+  "configuration": "DEFAULT: the flow declares no taskRunner block, only `containerImage: python:slim`, so io.kestra.plugin.scripts.runner.docker.Docker is selected",
+  "class": "io.kestra.plugin.scripts.runner.docker.Docker",
+  "per_task_work": "creates a Docker volume and a python:slim container per task, runs the script inside it, then removes both",
+  "image": "python:slim",
+  "image_digest": "sha256:a2b82f3c48559aa0a8446d9af49826b6e2b2016f4cd2afabfe6013ec53729170",
+  "image_created": "2026-10-06T02:00:28.449654111Z",
+  "pulled_before_the_run": true,
+  "command_kestra_runs": "Starting command with container id 0a9b580eae8b8fb447a5dbb421dbc500cfa66424e3312bad0278d8d7096012e5 [/bin/sh -c set -e\nif [ -n \"$VIRTUAL_ENV\" ]; then \"$VIRTUAL_ENV/bin/python\" \"/tmp/kestra-wd/tmp/5wohUJfrC6E37LukOXDgLY/16158122764323006907.py\"; else \"python\" \"/tmp/kestra-wd/tmp/5wohUJfrC6E37LukOXDgLY/16158122764323006907.py\"; fi]"
+ },
+ "container_python": {
+  "measured_in": "a python:slim container started by Kestra's Docker task runner, through a Kestra flow",
+  "interpreter": "CPython",
+  "version": "3.14.8 (main, Oct  6 2026, 01:59:23) [GCC 14.2.0]",
+  "executable": "/usr/local/bin/python",
+  "cpu_count_visible": 32,
+  "sched_affinity": 32
+ },
+ "fibo31_timings": {
+  "body": "naive recursive fibo(31), the task body of the core-bound workload",
+  "in_kestra_launched_container_s": [
+   0.1075,
+   0.1074,
+   0.1071
+  ],
+  "in_kestra_launched_container_mean_s": 0.1073,
+  "bare_same_image_s": [
+   0.10649,
+   0.10687,
+   0.10637,
+   0.10667,
+   0.10672,
+   0.1065,
+   0.10645
+  ],
+  "bare_same_image_mean_s": 0.10658,
+  "fibo10_s": 4.416805999881035e-06,
+  "note": "python:slim ships CPython 3.14.8, which runs fibo(31) in ~107ms; the host venv Kestra's Process runner uses is CPython 3.12.3 at ~108ms, so the two runners' bodies cost the same CPU"
+ },
+ "cpu_parallel_scaling_in_container": {
+  "method": "k forked processes inside ONE python:slim container, each looping fibo(31) for 8s; raw os.fork because CPython 3.14's multiprocessing defaults to forkserver, which does not come up in this container",
+  "curve": [
+   {
+    "procs": 16,
+    "window_s": 8.0,
+    "calls": 1136,
+    "nonzero_exits": 0,
+    "elapsed_s": 8.071,
+    "calls_per_s": 140.76
+   },
+   {
+    "procs": 20,
+    "window_s": 8.0,
+    "calls": 1140,
+    "nonzero_exits": 0,
+    "elapsed_s": 8.053,
+    "calls_per_s": 141.57
+   },
+   {
+    "procs": 32,
+    "window_s": 8.0,
+    "calls": 1152,
+    "nonzero_exits": 0,
+    "elapsed_s": 8.067,
+    "calls_per_s": 142.8
+   }
+  ],
+  "reading": "16, 20 and 32 processes all land at 140.76-142.8 calls/s, i.e. SMT buys nothing for this body and the box behaves as 16 cores. 141.57 calls/s is the CPU ceiling for a 20-slot pool, not 186.39."
+ },
+ "serial_docker_baselines_idle_box": {
+  "docker_run_true_s": [
+   0.3497,
+   0.3273,
+   0.2997,
+   0.3245,
+   0.3253
+  ],
+  "docker_run_sleep100ms_s": [
+   0.4306,
+   0.4268,
+   0.4289,
+   0.4438,
+   0.4334
+  ],
+  "docker_run_fibo31_s": [
+   0.4651,
+   0.4332,
+   0.4483,
+   0.4384,
+   0.4187,
+   0.4514
+  ],
+  "docker_run_fibo31_mean_s": 0.4425,
+  "reading": "one container lifecycle for this task body costs 0.4425s serially, of which only 0.10658s is the fibo work; the rest is container create / start / wait / remove"
+ },
+ "cores_busy_method": "Host-wide CPU utilisation sampled from /proc/stat once per second by a thread in the harness, which runs on the host alongside the containers. Each sample is the delta over the preceding second: busy_cores = (1 - (idle+iowait delta) / (total jiffies delta)) * 32. Samples are timestamped and then SLICED to the measured window, i.e. only samples whose covered second has its midpoint between the first unit task run's RUNNING and the last unit task run's SUCCESS (both from Kestra's own histories) are kept. cores_busy per rep is the mean of those samples. The figure is whole-box: Kestra JVM + Postgres + the Docker daemon and containerd + the task containers themselves. Alongside it, container_shims counts live containerd-shim processes in /proc at 1 Hz, which is how many containers are actually up at that instant.",
+ "cpu_attribution_extra_rep": {
+  "rep_throughput_per_s": 7.776,
+  "rep_span_s": 64.301,
+  "host_cores_busy": 5.78,
+  "docker_daemon_cores": 1.78,
+  "kestra_jvm_cores": 0.44,
+  "postgres_cores": 0.29,
+  "task_containers_cores_direct": 0.22,
+  "containers_alive_p50": 7,
+  "containers_alive_max": 22,
+  "real_fibo_work_cores": 0.83,
+  "method": "Extra rep, NOT counted in the reported throughput. Process-group CPU is utime+stime+cutime+cstime summed over short-lived pids, so a container's python is captured when its shim reaps it; dividing by the sampler window gives cores. The Kestra JVM and Postgres come from their own container cgroups (cpu.stat usage_usec).",
+  "caveat": "This attribution is PARTIAL and should be read only as a direction. A task container's python is a child of its containerd-shim, so its CPU lands in the shim's cutime and is folded into docker_daemon_cores rather than task_containers_cores; and the short-lived runc processes plus the kernel work of namespace, cgroup, overlayfs and veth setup are largely missed by a 2 Hz /proc sampler, which is why the attributed groups sum to roughly half the host total. The robust figure needs no attribution at all: throughput x fibo(31) time is the cores of real work, and it is a small fraction of the cores busy.",
+  "reading": "During a 7.776/s rep the box had 5.78 of 32 cores busy while the task bodies' own fibo work accounted for only 0.83 cores. The rest is container plumbing: dockerd alone sat at roughly 0.7-1.8 cores and only 7 containers were alive at the median instant against 20 occupied worker threads."
+ },
+ "measured_median_throughput_per_s": 6.487,
+ "comparison_point_docker_sleep_per_s": 5.78
+}

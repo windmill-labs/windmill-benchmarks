@@ -1,0 +1,1 @@
+{"tag": "cpu-r4", "workload": "cpu", "n": 2000, "enqueue_s": 0.2535, "paused_window_s": 0.7718, "unpause_s": 0.0183, "workers": 20}

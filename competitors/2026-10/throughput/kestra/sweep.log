@@ -1,0 +1,23 @@
+###### per_exec=20
+[tp_process_sleep_20_sw] upserted; 100 executions x 20 units = 2000
+[tp_process_sleep_20_sw] warmup tp=140.19/s span=14.27s lat_p50=7.113 lat_p95=13.631 exec_p50=0.137 peak=20 over20=0.0s mean_conc=19.43 submit=1.49s wall=16.2s
+[tp_process_sleep_20_sw] rep1 tp=140.19/s span=14.27s lat_p50=7.113 lat_p95=13.631 exec_p50=0.137 peak=20 over20=0.0s mean_conc=19.43 submit=0.448s wall=0.7s
+###### per_exec=50
+    r = analyse(rows, a.units)
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/kbench/th.py", line 103, in analyse
+    raise RuntimeError(f"expected {units} unit task runs, got {len(rows)}")
+RuntimeError: expected 2000 unit task runs, got 800
+###### per_exec=100
+    r = analyse(rows, a.units)
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/kbench/th.py", line 103, in analyse
+    raise RuntimeError(f"expected {units} unit task runs, got {len(rows)}")
+RuntimeError: expected 2000 unit task runs, got 400
+###### per_exec=200
+    r = analyse(rows, a.units)
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/kbench/th.py", line 103, in analyse
+    raise RuntimeError(f"expected {units} unit task runs, got {len(rows)}")
+RuntimeError: expected 2000 unit task runs, got 200
+###### SWEEP DONE

@@ -1,0 +1,443 @@
+id: bench_py_docker_fibonacci_40_10
+namespace: company.team
+tasks:
+  - id: t_000
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_001
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_002
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_003
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_004
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_005
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_006
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_007
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_008
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_009
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_010
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_011
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_012
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_013
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_014
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_015
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_016
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_017
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_018
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_019
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_020
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_021
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_022
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_023
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_024
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_025
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_026
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_027
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_028
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_029
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_030
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_031
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_032
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_033
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_034
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_035
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_036
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_037
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_038
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))
+  - id: t_039
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      def fibo(n: int):
+        if n <= 1:
+            return n
+        else:
+            return fibo(n - 1) + fibo(n - 2)
+
+      print(str(fibo(10)))

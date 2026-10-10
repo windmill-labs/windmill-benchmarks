@@ -1,0 +1,1 @@
+{"python_version": "3.12.14 (main, Sep  1 2026, 00:10:07) [GCC 14.2.0]", "python_version_short": "3.12.14", "implementation": "CPython", "prefect_version": "3.8.6", "fibo31_s": [0.1126, 0.1116, 0.1121], "fibo31_median_s": 0.1121}

@@ -1,0 +1,71 @@
+{
+ "plain_process": {
+  "where": "plain python process in the prefect image, box idle, taken before the runs",
+  "python_version": "3.12.14 (main, Sep  1 2026, 00:10:07) [GCC 14.2.0]",
+  "python_version_short": "3.12.14",
+  "implementation": "CPython",
+  "prefect_version": "3.8.6",
+  "fibo31_s": [
+   0.1117,
+   0.1111,
+   0.1109
+  ],
+  "fibo31_median_s": 0.1111
+ },
+ "plain_process_after_runs": {
+  "python_version": "3.12.14 (main, Sep  1 2026, 00:10:07) [GCC 14.2.0]",
+  "python_version_short": "3.12.14",
+  "implementation": "CPython",
+  "prefect_version": "3.8.6",
+  "fibo31_s": [
+   0.1126,
+   0.1116,
+   0.1121
+  ],
+  "fibo31_median_s": 0.1121,
+  "where": "plain python process in the prefect image, taken after the runs"
+ },
+ "in_process_task_thread": {
+  "where": "in_process @task thread",
+  "pid": 6,
+  "python": "3.12.14",
+  "full": "3.12.14 (main, Sep  1 2026, 00:10:07) [GCC 14.2.0]",
+  "prefect": "3.8.6",
+  "fibo31_s": [
+   0.1249,
+   0.1196,
+   0.1115
+  ],
+  "fibo31_median_s": 0.1196
+ },
+ "work_pool_subprocess": {
+  "where": "work_pool deployment subprocess",
+  "pid": 57960,
+  "python": "3.12.14",
+  "full": "3.12.14 (main, Sep  1 2026, 00:10:07) [GCC 14.2.0]",
+  "prefect": "3.8.6",
+  "fibo31_s": [
+   0.1215,
+   0.1238,
+   0.1118
+  ],
+  "fibo31_median_s": 0.1215
+ },
+ "all_measurements_s": [
+  0.1117,
+  0.1111,
+  0.1109,
+  0.1126,
+  0.1116,
+  0.1121,
+  0.1249,
+  0.1196,
+  0.1115,
+  0.1215,
+  0.1238,
+  0.1118
+ ],
+ "canonical_compute_time_s": 0.1111,
+ "canonical_source": "median of the three uncontended plain-process measurements taken on the idle box; this is the figure used for every ceiling percentage",
+ "spread_note": "The body is 0.111s uncontended and up to 0.125s when measured inside a single @task thread or a pool subprocess (interpreter warm-up and one-off scheduling noise, each measured once rather than in a loop). Using the slowest figure the ceiling would be 160.1 units/s instead of 180.0, which moves in_process cpu from 4.7% to 5.2% of ceiling and changes no conclusion."
+}

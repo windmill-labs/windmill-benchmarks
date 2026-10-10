@@ -1,0 +1,111 @@
+{
+ "engine": "prefect",
+ "config": "in_process",
+ "workload": "sleep",
+ "units_per_rep": 500,
+ "batch_size_note": "500 units per rep. At 2000 units per rep this configuration outruns the Prefect server's event broker and the task-run recorder silently loses about half the task runs, so the database cannot account for every unit; 500 stays under that ceiling and all 6 reps recorded 500/500.",
+ "reps_measured": 5,
+ "reps_warmup_discarded": 1,
+ "concurrency": 20,
+ "concurrency_mechanism": "ThreadPoolTaskRunner(max_workers=20); 2000 @task .submit() calls inside one flow run. Tasks execute as threads of the flow's own process; nothing is queued server-side and no task is dispatched to a worker.",
+ "is_default": true,
+ "notes": "Prefect's default execution path for @task. All 2000 futures are submitted before any result is awaited; submitting them takes under 0.2s. ThreadPoolTaskRunner is the default task runner, but its default max_workers is unbounded (sys.maxsize), so the 20-way cap is imposed by this experiment. task_run.created is written by the server's task-run recorder tens of seconds after the fact, so the per-unit submission anchor is the uuid7 that ThreadPoolTaskRunner.submit() mints at submission time; latency is that timestamp to the COMPLETED transition.",
+ "reps": [
+  {
+   "jobs": 500,
+   "span_s": 3.171,
+   "throughput_per_s": 157.66,
+   "latency_p50_s": 1.651,
+   "latency_p95_s": 3.042,
+   "exec_p50_s": 0.1026,
+   "exec_p95_s": 0.1127,
+   "peak_concurrency": 20,
+   "submit_spread_s": 0.066,
+   "host_cores_busy": 2.11,
+   "units_seen": 500,
+   "not_completed": 0
+  },
+  {
+   "jobs": 500,
+   "span_s": 3.118,
+   "throughput_per_s": 160.35,
+   "latency_p50_s": 1.596,
+   "latency_p95_s": 2.997,
+   "exec_p50_s": 0.1024,
+   "exec_p95_s": 0.1125,
+   "peak_concurrency": 20,
+   "submit_spread_s": 0.067,
+   "host_cores_busy": 2.12,
+   "units_seen": 500,
+   "not_completed": 0
+  },
+  {
+   "jobs": 500,
+   "span_s": 3.033,
+   "throughput_per_s": 164.87,
+   "latency_p50_s": 1.559,
+   "latency_p95_s": 2.905,
+   "exec_p50_s": 0.1027,
+   "exec_p95_s": 0.1102,
+   "peak_concurrency": 20,
+   "submit_spread_s": 0.068,
+   "host_cores_busy": 2.14,
+   "units_seen": 500,
+   "not_completed": 0
+  },
+  {
+   "jobs": 500,
+   "span_s": 3.136,
+   "throughput_per_s": 159.42,
+   "latency_p50_s": 1.624,
+   "latency_p95_s": 3.017,
+   "exec_p50_s": 0.1026,
+   "exec_p95_s": 0.1118,
+   "peak_concurrency": 20,
+   "submit_spread_s": 0.065,
+   "host_cores_busy": 2.13,
+   "units_seen": 500,
+   "not_completed": 0
+  },
+  {
+   "jobs": 500,
+   "span_s": 3.094,
+   "throughput_per_s": 161.62,
+   "latency_p50_s": 1.59,
+   "latency_p95_s": 2.975,
+   "exec_p50_s": 0.1027,
+   "exec_p95_s": 0.1121,
+   "peak_concurrency": 20,
+   "submit_spread_s": 0.055,
+   "host_cores_busy": 2.14,
+   "units_seen": 500,
+   "not_completed": 0
+  }
+ ],
+ "warmup_discarded": [
+  {
+   "jobs": 500,
+   "span_s": 3.091,
+   "throughput_per_s": 161.74
+  }
+ ],
+ "summary": {
+  "units_per_rep": 500,
+  "throughput_median_per_s": 160.35,
+  "throughput_min_per_s": 157.66,
+  "throughput_max_per_s": 164.87,
+  "throughput_stdev_per_s": 2.702,
+  "theoretical_ceiling_per_s": 200.0,
+  "pct_of_ceiling": 80.17,
+  "latency_p50_median_s": 1.596,
+  "latency_p95_median_s": 2.997,
+  "exec_p50_median_s": 0.1026,
+  "peak_concurrency_max": 20,
+  "host_cores_busy_median": 2.13,
+  "flow_process_cores_busy_median": 0.8,
+  "pct_of_20_cores_used_by_flow_process": 4.0,
+  "submit_whole_batch_s_median": 0.072,
+  "submission_rate_per_s": 6944.4,
+  "submission_headroom_x": 43.3
+ }
+}

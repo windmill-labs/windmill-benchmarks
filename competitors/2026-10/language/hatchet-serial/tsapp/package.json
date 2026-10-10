@@ -1,0 +1,14 @@
+{
+  "name": "hatchet-bench-ts",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": { "build": "tsc -p tsconfig.json" },
+  "dependencies": {
+    "@hatchet-dev/typescript-sdk": "1.36.0",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}

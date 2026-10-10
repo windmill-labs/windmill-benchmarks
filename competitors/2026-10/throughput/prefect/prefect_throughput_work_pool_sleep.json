@@ -1,0 +1,81 @@
+{
+ "engine": "prefect",
+ "config": "work_pool",
+ "workload": "sleep",
+ "units_per_rep": 200,
+ "batch_size_note": "200 units per rep. Throughput here is a stable poll-bound rate of one pool-worth per worker query interval, so a smaller batch measures the same rate in a tenth of the time.",
+ "reps_measured": 3,
+ "reps_warmup_discarded": 1,
+ "concurrency": 20,
+ "concurrency_mechanism": "Process work pool 'bench' with concurrency limit 20; 2000 deployment runs of the 'unit' flow. The worker claims scheduled runs on its poll loop and executes each as its own subprocess.",
+ "is_default": true,
+ "notes": "Stock worker poll loop: PREFECT_WORKER_QUERY_SECONDS left at its default of 10s, PREFECT_WORKER_PREFETCH_SECONDS at 10s. run_deployment is not used at all: all 2000 runs are created up front through the API client (create_flow_run_from_deployment, 100 concurrent), so run_deployment's 5s poll_interval plays no part and creation is roughly an order of magnitude faster than the worker consumes. flow_run.created is written synchronously by that API call, so it is the real submission time.",
+ "reps": [
+  {
+   "jobs": 200,
+   "span_s": 103.588,
+   "throughput_per_s": 1.93,
+   "latency_p50_s": 57.971,
+   "latency_p95_s": 96.346,
+   "exec_p50_s": 0.663,
+   "exec_p95_s": 0.9833,
+   "peak_concurrency": 15,
+   "submit_spread_s": 7.451,
+   "host_cores_busy": 5.45,
+   "units_seen": 200,
+   "not_completed": 0
+  },
+  {
+   "jobs": 200,
+   "span_s": 92.17,
+   "throughput_per_s": 2.17,
+   "latency_p50_s": 58.581,
+   "latency_p95_s": 93.502,
+   "exec_p50_s": 0.6901,
+   "exec_p95_s": 1.0354,
+   "peak_concurrency": 17,
+   "submit_spread_s": 7.471,
+   "host_cores_busy": 6.17,
+   "units_seen": 200,
+   "not_completed": 0
+  },
+  {
+   "jobs": 200,
+   "span_s": 96.126,
+   "throughput_per_s": 2.08,
+   "latency_p50_s": 56.176,
+   "latency_p95_s": 96.465,
+   "exec_p50_s": 0.6861,
+   "exec_p95_s": 1.036,
+   "peak_concurrency": 14,
+   "submit_spread_s": 7.961,
+   "host_cores_busy": 5.7,
+   "units_seen": 200,
+   "not_completed": 0
+  }
+ ],
+ "warmup_discarded": [
+  {
+   "jobs": 200,
+   "span_s": 91.505,
+   "throughput_per_s": 2.19
+  }
+ ],
+ "summary": {
+  "units_per_rep": 200,
+  "throughput_median_per_s": 2.08,
+  "throughput_min_per_s": 1.93,
+  "throughput_max_per_s": 2.17,
+  "throughput_stdev_per_s": 0.121,
+  "theoretical_ceiling_per_s": 200.0,
+  "pct_of_ceiling": 1.04,
+  "latency_p50_median_s": 57.971,
+  "latency_p95_median_s": 96.346,
+  "exec_p50_median_s": 0.6861,
+  "peak_concurrency_max": 17,
+  "host_cores_busy_median": 5.7,
+  "create_whole_batch_s_median": 7.643,
+  "creation_rate_per_s": 26.2,
+  "submission_headroom_x": 12.6
+ }
+}

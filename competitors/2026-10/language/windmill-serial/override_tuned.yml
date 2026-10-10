@@ -1,0 +1,4 @@
+services:
+  worker:
+    environment:
+      SLEEP_QUEUE: "5"

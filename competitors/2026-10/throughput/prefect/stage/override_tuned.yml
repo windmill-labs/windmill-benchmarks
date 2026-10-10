@@ -1,0 +1,4 @@
+services:
+  worker:
+    environment:
+      PREFECT_WORKER_QUERY_SECONDS: "0.1"

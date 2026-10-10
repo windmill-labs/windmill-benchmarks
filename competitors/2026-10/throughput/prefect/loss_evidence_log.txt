@@ -1,0 +1,38 @@
+13139
+--- first ---
+server-1  | 16:01:22.874 | WARNING | prefect.server.utilities.messaging.memory - Subscription queue is full, dropping message for topic='events' queue_size=10000 retry_queue_size=0
+--- last ---
+server-1  | 16:02:28.629 | WARNING | prefect.server.utilities.messaging.memory - Subscription queue is full, dropping message for topic='events' queue_size=10000 retry_queue_size=0
+--- per-second histogram (first 40) ---
+    110 16:01:22
+   1238 16:01:23
+    510 16:01:24
+    256 16:01:36
+    251 16:01:37
+    182 16:01:38
+    228 16:01:39
+    341 16:01:40
+    846 16:01:41
+    989 16:01:42
+    340 16:01:44
+    392 16:01:45
+      4 16:01:58
+    257 16:01:59
+    150 16:02:00
+    269 16:02:01
+    219 16:02:02
+    312 16:02:03
+    204 16:02:04
+    431 16:02:05
+   1167 16:02:06
+    617 16:02:07
+    244 16:02:19
+    236 16:02:20
+    168 16:02:21
+    254 16:02:22
+    234 16:02:23
+    231 16:02:24
+    213 16:02:25
+    416 16:02:26
+   1089 16:02:27
+    741 16:02:28

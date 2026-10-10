@@ -1,0 +1,59 @@
+{
+  "hatchet": {
+    "engine_version": "v0.107.0",
+    "image": "ghcr.io/hatchet-dev/hatchet/hatchet-lite@sha256:db8fb8e009a5c892859e52e4aa50b17aa11ab1dd23801cd320492f2942db30d7",
+    "image_tag_resolved_from_digest": "v0.107.0",
+    "postgres": "15.6",
+    "engine_default_version": "V1"
+  },
+  "python": {
+    "worker_image": "python:3.12-slim",
+    "sdk": "hatchet-sdk 1.40.1",
+    "version": "3.12.15 (main, Oct  6 2026, 02:02:22) [GCC 14.2.0]",
+    "fibo33_s": [
+      0.312944,
+      0.313345,
+      0.323494
+    ],
+    "fibo33_s_mean": 0.316594,
+    "fibo10_s": 8e-06,
+    "measured_in": "docker exec bench-worker python interpreter_bench.py"
+  },
+  "typescript": {
+    "worker_image": "node:22-slim",
+    "sdk": "@hatchet-dev/typescript-sdk 1.36.0",
+    "version": "node v22.23.3 v8 12.4.254.21-node.57",
+    "fibo33_s": [
+      0.031171,
+      0.031327,
+      0.03124
+    ],
+    "fibo33_s_mean": 0.031246,
+    "fibo10_s": 1e-06,
+    "measured_in": "docker exec bench-worker-ts node dist/interpreter_bench.js"
+  },
+  "host": {
+    "instance": "AWS EC2 m7i.xlarge, 4 vCPU, 16 GiB, us-east-2",
+    "note": "one engine on the box, one worker at a time; Python and TypeScript phases separated by idle gaps and each preceded by a 90s settle"
+  },
+  "method": {
+    "workloads": {
+      "fibonacci_40_10": "one workflow, 40 sequential tasks, each naive-recursive fibo(10)",
+      "fibonacci_10_33": "one workflow, 10 sequential tasks, each naive-recursive fibo(33)"
+    },
+    "reps": "1 discarded warmup + 5 measured reps per (language, workload), back to back",
+    "worker": "one worker, default slot count; only one worker connected at a time",
+    "timings": "created_at <- v1_tasks_olap.inserted_at; started_at <- max(STARTED) and completed_at <- max(FINISHED) in v1_task_events_olap; one task per run cross-checked against GET /api/v1/stable/tasks/{id} (all agreed within 0.5ms)",
+    "workflow_names": {
+      "python": "bench-40-10 / bench-10-33",
+      "typescript": "bench-ts-40-10 / bench-ts-10-33"
+    },
+    "order": "python 40x10, python 10x33, typescript 40x10, typescript 10x33, then a python 40x10 control re-run (control_hatchet_py_fibonacci_40_10.json) to check for order effects"
+  },
+  "caveats": [
+    "In the TypeScript runs the task body is synchronous, so it blocks the Node event loop and the SDK flushes its STARTED event only after the function returns. On fibonacci_10_33 that puts the ~31ms of compute inside the created->started window and collapses completed_at-started_at to ~1ms. created_at and completed_at, and therefore every total and per-task figure here, are unaffected; started_at is not a usable dispatch timestamp for the TypeScript 10x33 rows.",
+    "fibo(33) is ~10x faster in Node than in CPython, so raw totals on fibonacci_10_33 are not comparable across the two languages. Compare overhead per task (median total minus measured compute, divided by task count).",
+    "The hatchet-lite v0.107.0 python:3.12-slim worker image now resolves to CPython 3.12.15; the September 2026 run recorded 3.12.14.",
+    "Hatchet's per-task latency is not stationary (the documented setup notes degradation under sustained load), hence the 90s settle before each phase and the >=120s idle gaps between them."
+  ]
+}

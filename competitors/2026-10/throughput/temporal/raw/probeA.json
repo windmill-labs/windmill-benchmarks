@@ -1,0 +1,38 @@
+{
+ "engine": "temporal",
+ "config": "tuned",
+ "workload": "sleep",
+ "concurrency": 20,
+ "reps": [
+  {
+   "rep": 0,
+   "jobs": 2000,
+   "jobs_scheduled": 2000,
+   "span_s": 16.8164,
+   "throughput_per_s": 118.931,
+   "latency_p50_s": 11.1865,
+   "latency_p95_s": 17.5454,
+   "exec_p50_s": 0.1248,
+   "exec_p95_s": 0.1942,
+   "exec_sum_s": 268.246,
+   "effective_concurrency": 15.951,
+   "peak_concurrency_from_timestamps": 20,
+   "activities_failed": 0,
+   "activities_timed_out": 0,
+   "enqueue_phase_s": 3.594,
+   "submit_phase_s": 0.269,
+   "activities_enqueued_before_go": 2000,
+   "worker_cpu_seconds": 2.96,
+   "worker_cores_busy_over_span": 0.18
+  }
+ ],
+ "_manifest": {
+  "config": "tuned",
+  "workload": "sleep",
+  "total": 2000,
+  "per_wf": 20,
+  "nwf": 100,
+  "activity": "sleep_activity",
+  "arg": 0.1
+ }
+}

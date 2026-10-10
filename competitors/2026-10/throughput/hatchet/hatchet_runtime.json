@@ -1,0 +1,114 @@
+{
+  "run": {
+    "date_utc": "2026-10-09",
+    "experiment": "throughput under 20-way concurrency: 2000 independent tasks per rep",
+    "host": "AWS EC2 m7i.8xlarge, 32 vCPU, 123 GiB, us-east-2, Ubuntu 24.04.5, Docker 29.1.3, compose 2.40.3",
+    "exclusivity": "Hatchet, its Postgres, the worker fleet and the trigger client were the only things on the box"
+  },
+  "hatchet": {
+    "image": "ghcr.io/hatchet-dev/hatchet/hatchet-lite@sha256:db8fb8e009a5c892859e52e4aa50b17aa11ab1dd23801cd320492f2942db30d7",
+    "version": "v0.107.0 (the tag this digest was pinned from in the 2026-09 run of this study; the image carries no version label and /api/v1/meta reports none)",
+    "engine_default_version": "V1",
+    "postgres": "PostgreSQL 15.6 (Debian 15.6-1.pgdg120+2)",
+    "config": "stock hatchet-lite compose, unmodified, except Postgres started with max_connections=500 (same compose as the 2026-09 sequential run; needed for 20 worker processes, it is not a Hatchet tuning knob)",
+    "tuning_applied": "none on the engine side"
+  },
+  "python": {
+    "worker_image": "python:3.12-slim",
+    "version": "3.12.15 (main, Oct  6 2026, 02:02:22) [GCC 14.2.0]",
+    "sdk": "hatchet-sdk 1.40.1",
+    "fibo31_s_sleep_phase_probe": [
+      0.11464,
+      0.114181,
+      0.113937
+    ],
+    "fibo31_s_cpu_phase_probe": [
+      0.114534,
+      0.114393,
+      0.113371
+    ],
+    "fibo31_s_median_cpu_phase": 0.114393,
+    "fibo31_s_post_run_probe": [
+      0.118042,
+      0.117761,
+      0.1176
+    ],
+    "fibo10_s": 6e-06,
+    "measured_in": "docker exec bench-fleet python interpreter_bench.py - the same container and the same recursion the tp-cpu task body runs",
+    "fibo31_s_idle_box_15_readings": [
+      0.115448,
+      0.114386,
+      0.114471,
+      0.117012,
+      0.115402,
+      0.114855,
+      0.115117,
+      0.113676,
+      0.115166,
+      0.116878,
+      0.11561,
+      0.115721,
+      0.115223,
+      0.113584,
+      0.114909
+    ],
+    "fibo31_s_median_idle_box": 0.115166,
+    "fibo31_s_used_for_ceiling": 0.115166,
+    "fibo31_s_note": "The three readings asked for are fibo31_s_cpu_phase_probe, taken with docker exec inside the live worker container at the start of the cpu phase. They came out 1-2% fast (0.1134-0.1145) because the 20 worker processes were still booting; a probe taken 15 minutes later in the same container during the 20x1 sleep control read 0.1262-0.1278 under the same kind of contention. The ceiling therefore uses the median of 15 readings taken in a fresh container on the idle box after both phases, 0.115166s, which is the figure the three in-container readings bracket."
+  },
+  "concurrency_configuration": {
+    "target": "exactly 20 concurrent task slots for both workloads",
+    "sleep": {
+      "mechanism": "1 worker process, slots=20",
+      "why": "time.sleep releases the GIL, and the SDK runs a sync task body in ThreadPoolExecutor(max_workers=slots) (hatchet_sdk/worker/runner/runner.py), so 20 slots in one interpreter really do serve 20 tasks at once",
+      "verified_server_side": "GET /api/v1/workers/{id} reported slotConfig {\"default\": {\"available\": 20, \"limit\": 20}}",
+      "is_default": false,
+      "hatchet_default": "100 default slots (hatchet_sdk/utils/slots.py: resolve_worker_slot_config falls back to {DEFAULT: 100})"
+    },
+    "cpu": {
+      "mechanism": "20 worker processes, slots=1 each",
+      "why": "fibo(31) holds the GIL, so 20 slots inside one CPython process would give one core and would measure CPython rather than Hatchet; 20 processes give 20 cores",
+      "verified_server_side": "all 20 workers reported slotConfig {\"default\": {\"available\": 1, \"limit\": 1}}; the extraction also confirms 0 intra-worker overlaps, i.e. no worker ever ran two tasks at once",
+      "verified_host_side": "docker stats during the reps: the fleet container at ~1740-1795% CPU and the whole box at ~20.0-20.5 busy cores out of 32",
+      "is_default": false,
+      "hatchet_default": "100 default slots per worker"
+    },
+    "extra_control_sleep_20x1": {
+      "mechanism": "20 worker processes, slots=1 each, sleep body",
+      "why": "to separate 'the single 20-slot worker is the funnel' from 'the engine's slot refill is the funnel'",
+      "file": "hatchet_throughput_sleep_control_20x1.json",
+      "result": "median 121.6 tasks/s against 115.6 for 1 worker x 20 slots, with two of five reps at 90-96; same band, so the single worker process was not the limit"
+    }
+  },
+  "method": {
+    "workload_shape": "2000 independent single-task workflow runs per rep (hatchet.task standalone, retries=0), not a chain: every task is runnable the moment it is queued",
+    "bulk_path": "Standalone.run_many(items, wait_for_result=False) -> AdminClient.run_workflows -> BulkTriggerWorkflow gRPC, chunked by the SDK at MAX_BULK_WORKFLOW_RUN_BATCH_SIZE=1000, so 2 requests per rep",
+    "pre_enqueue": "every connected worker is paused (PATCH /api/v1/workers/{id} {isPaused:true}) 0.5s before the bulk trigger and unpaused immediately after it returns, so all 2000 tasks are QUEUED before any slot is filled. Measured: enqueue took 0.23-0.27s, the two 1000-row chunks land ~0.12s apart, and the first STARTED is within 55ms of the last insert (negative in the sleep reps, i.e. the first task started before the second chunk landed)",
+    "reps": "1 discarded warmup + 5 measured reps per workload, 60s idle between reps, 90s settle after the workers connected",
+    "timings": "created_at <- v1_tasks_olap.inserted_at; started_at <- max(event_timestamp) over STARTED rows and completed_at <- max over FINISHED rows in v1_task_events_olap. v1_tasks_olap.inserted_at was checked against the OLTP v1_task.inserted_at by join and is byte-identical",
+    "throughput": "2000 / (max(completed_at) - min(started_at)), as specified. The alternative denominator max(completed_at) - min(inserted_at) is also recorded per rep (throughput_from_enqueue_per_s) and differs by under 1%",
+    "selection": "rows are selected by the rep key written into additional_metadata at trigger time"
+  },
+  "caveats": [
+    "started_at and completed_at are stamped by the SDK at the moment it sends the event to the dispatcher (Timestamp.GetCurrentTime() in hatchet_sdk/clients/dispatcher/dispatcher.py), not at the moment the body entered or left. On the sleep workload exec_p50 reads 0.0992s for a 0.100s sleep, so the STARTED stamp lags the real body start by ~1ms. The error is small and it shortens the throughput window slightly rather than lengthening it.",
+    "Latency here is enqueue -> completion inside a 2000-task burst served by 20 slots, so it is dominated by queue wait by construction: p50 is about half the span and p95 about 95% of it. It is a burst-drain figure, not a per-task dispatch latency.",
+    "The database already held ~2500 task rows from three smoke tests before the measured reps; the measured reps themselves add 12000 more, so the smoke rows are a small fraction and no table was reset between workloads.",
+    "During the 20-worker smoke test the engine logged 19 'duplicate key value violates unique constraint Workflow_tenantId_name_key' errors on PutWorkflow - 20 workers registering the same workflow at once. It is harmless (one registration wins) and did not recur in the measured phases, where the workflow already existed.",
+    "cpu rep 4 is an outlier: 82.1 tasks/s against 93.0-94.2 for the other four. Its first ~4.5s ran at a concurrency of 1-4 instead of ~17: all 20 workers took a first task immediately after the unpause, then 16 of them got exactly one more task and sat idle for 4.5s while 4 workers were fed continuously. The unpause itself took 18ms, the same as every other rep, and the engine log is silent for that window, so this is an assignment-side stall rather than a harness artifact. It is reported, not discarded.",
+    "The sleep workload's exec_p50 is 0.0992s under 1 worker x 20 slots and 0.1013s under 20 workers x 1 slot, both against a 0.100s sleep, which is the scale of the event-flush skew on the STARTED stamp."
+  ],
+  "findings": {
+    "throughput": {
+      "sleep_1x20": "115.6 tasks/s median (114.0-115.9), 57.8% of the 200/s ceiling",
+      "cpu_20x1": "93.8 tasks/s median (82.1-94.2), 54.0% of the 173.7/s ceiling",
+      "sleep_20x1_control": "121.6 tasks/s median (90.4-126.9), 60.8% of the 200/s ceiling"
+    },
+    "sustained_concurrency": {
+      "sleep_1x20": "peak 20 in every rep but a time-weighted mean of 11.3-11.5 of 20 slots busy",
+      "cpu_20x1": "peak 20 in every rep, time-weighted mean 16.7-16.8 (14.5 in the stalled rep 4)",
+      "sleep_20x1_control": "peak 20, mean 12.3-12.9"
+    },
+    "bottleneck": "Not CPU and not submission. On the sleep workload the whole 32-core box sat at ~3 busy cores, the worker container at ~0.5 of a core, the engine at ~0.85 and Postgres at ~1.5; bulk enqueue of 2000 took 0.23-0.27s against a 16-21s drain. What limits throughput is the time a freed slot spends empty before the engine refills it. That gap is directly measurable on the single-slot fleets: 31ms median between one task finishing and the next starting on the same worker for the cpu body, 54-61ms for the sleep body. Against a ~100ms body that puts slot utilisation at 0.57-0.64 on sleep and 0.73-0.84 on cpu, and caps the engine at roughly 90-130 task hand-offs per second at 20-way concurrency whatever the body is.",
+    "per_task_overhead_inside_the_worker": "On the cpu workload exec_p50 is 0.176s for a body that takes 0.115s alone, i.e. ~61ms per task of in-worker cost. The fleet drew ~1770% CPU for 20 workers (0.885 core each) while only ~0.115s of every ~0.213s cycle is fibo, so the SDK's own per-task work - gRPC event send, pydantic validation, context construction - runs on the same GIL as the body and inflates the measured execution time of a CPU-bound task."
+  }
+}

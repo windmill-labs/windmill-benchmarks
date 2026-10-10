@@ -1,0 +1,121 @@
+################ py process fibonacci_40_10
+[bench_py_process_fibonacci_40_10] flow upserted (40 tasks, n=10)
+[bench_py_process_fibonacci_40_10] warmup exec=6w1r5F1aj8LO0kMwtj7Ovd state=SUCCESS dur=PT4.747756S
+[bench_py_process_fibonacci_40_10] warmup total=4.708s per_task=117.7ms
+[bench_py_process_fibonacci_40_10] rep1 exec=3uNKZLxRYNe72DAtW9kp1t state=SUCCESS dur=PT3.972136S
+[bench_py_process_fibonacci_40_10] rep1 total=3.932s per_task=98.3ms
+[bench_py_process_fibonacci_40_10] rep2 exec=xMZLkwp73pPLip6CykB4Q state=SUCCESS dur=PT3.807261S
+[bench_py_process_fibonacci_40_10] rep2 total=3.767s per_task=94.2ms
+[bench_py_process_fibonacci_40_10] rep3 exec=4XzDRVyqk5Y0H4wf6RPx9B state=SUCCESS dur=PT4.040037S
+[bench_py_process_fibonacci_40_10] rep3 total=4.006s per_task=100.2ms
+[bench_py_process_fibonacci_40_10] rep4 exec=tR5li70U1MzoMPT3a8nug state=SUCCESS dur=PT3.968795S
+[bench_py_process_fibonacci_40_10] rep4 total=3.915s per_task=97.9ms
+[bench_py_process_fibonacci_40_10] rep5 exec=3gRY9qzm0kHtQ4tRLXChID state=SUCCESS dur=PT3.939593S
+[bench_py_process_fibonacci_40_10] rep5 total=3.888s per_task=97.2ms
+[bench_py_process_fibonacci_40_10] wrote out/kestra_python_process_fibonacci_40_10.json
+################ py docker fibonacci_40_10
+[bench_py_docker_fibonacci_40_10] flow upserted (40 tasks, n=10)
+[bench_py_docker_fibonacci_40_10] warmup exec=4BgR1u2uU8NAvoGQmxphq2 state=SUCCESS dur=PT19.09378S
+[bench_py_docker_fibonacci_40_10] warmup total=19.062s per_task=476.6ms
+[bench_py_docker_fibonacci_40_10] rep1 exec=5KKgrggrpc8pRcn6YPDep6 state=SUCCESS dur=PT18.58953S
+[bench_py_docker_fibonacci_40_10] rep1 total=18.571s per_task=464.3ms
+[bench_py_docker_fibonacci_40_10] rep2 exec=ezk9HUvMzUPbJ8k13dl8I state=SUCCESS dur=PT18.545981S
+[bench_py_docker_fibonacci_40_10] rep2 total=18.504s per_task=462.6ms
+[bench_py_docker_fibonacci_40_10] rep3 exec=7e9YE1ryECTz4YQgpoEttI state=SUCCESS dur=PT18.465211S
+[bench_py_docker_fibonacci_40_10] rep3 total=18.436s per_task=460.9ms
+[bench_py_docker_fibonacci_40_10] rep4 exec=2oYNDA78jpt229pOqBmLJm state=SUCCESS dur=PT18.529477S
+[bench_py_docker_fibonacci_40_10] rep4 total=18.496s per_task=462.4ms
+[bench_py_docker_fibonacci_40_10] rep5 exec=72GhwHi22brDWALfY4IVqh state=SUCCESS dur=PT18.449784S
+[bench_py_docker_fibonacci_40_10] rep5 total=18.415s per_task=460.4ms
+[bench_py_docker_fibonacci_40_10] wrote out/kestra_python_docker_fibonacci_40_10.json
+################ js process fibonacci_40_10
+[bench_js_process_fibonacci_40_10] flow upserted (40 tasks, n=10)
+[bench_js_process_fibonacci_40_10] warmup exec=6OrG73H8LZ6gKpsNef6lCH state=SUCCESS dur=PT3.324288S
+[bench_js_process_fibonacci_40_10] warmup total=3.274s per_task=81.9ms
+[bench_js_process_fibonacci_40_10] rep1 exec=6Ctm5YDTK2z9f3O9UCMvvt state=SUCCESS dur=PT3.290605S
+[bench_js_process_fibonacci_40_10] rep1 total=3.242s per_task=81.0ms
+[bench_js_process_fibonacci_40_10] rep2 exec=7Tv7YviyrOUqZvtRq5v1Qa state=SUCCESS dur=PT3.340221S
+[bench_js_process_fibonacci_40_10] rep2 total=3.297s per_task=82.4ms
+[bench_js_process_fibonacci_40_10] rep3 exec=2h0Hf6QQideZCOR3fSivuu state=SUCCESS dur=PT3.160921S
+[bench_js_process_fibonacci_40_10] rep3 total=3.138s per_task=78.4ms
+[bench_js_process_fibonacci_40_10] rep4 exec=5wxUSwfyEzj8DNQOq16lmT state=SUCCESS dur=PT3.341106S
+[bench_js_process_fibonacci_40_10] rep4 total=3.299s per_task=82.5ms
+[bench_js_process_fibonacci_40_10] rep5 exec=4S4jIDQoIBgBWnKABEAYFf state=SUCCESS dur=PT3.347832S
+[bench_js_process_fibonacci_40_10] rep5 total=3.306s per_task=82.7ms
+[bench_js_process_fibonacci_40_10] wrote out/kestra_js_process_fibonacci_40_10.json
+################ js docker fibonacci_40_10
+[bench_js_docker_fibonacci_40_10] flow upserted (40 tasks, n=10)
+[bench_js_docker_fibonacci_40_10] warmup exec=2uPPj4s1ywKPsAyPpAayjW state=SUCCESS dur=PT18.783177S
+[bench_js_docker_fibonacci_40_10] warmup total=18.762s per_task=469.1ms
+[bench_js_docker_fibonacci_40_10] rep1 exec=1xiAnyvFCLG162X3m56aE9 state=SUCCESS dur=PT18.608481S
+[bench_js_docker_fibonacci_40_10] rep1 total=18.547s per_task=463.7ms
+[bench_js_docker_fibonacci_40_10] rep2 exec=39sdz67pWhWEnPoZ63n0W8 state=SUCCESS dur=PT18.543905S
+[bench_js_docker_fibonacci_40_10] rep2 total=18.521s per_task=463.0ms
+[bench_js_docker_fibonacci_40_10] rep3 exec=5aaxwEXBYNDv3VEQ6ihLxs state=SUCCESS dur=PT18.7251S
+[bench_js_docker_fibonacci_40_10] rep3 total=18.687s per_task=467.2ms
+[bench_js_docker_fibonacci_40_10] rep4 exec=6XTr2C30jWi6ZTqAPaMo8Q state=SUCCESS dur=PT18.52879S
+[bench_js_docker_fibonacci_40_10] rep4 total=18.486s per_task=462.1ms
+[bench_js_docker_fibonacci_40_10] rep5 exec=28xAmQOuEBwxBhpcQcT5HL state=SUCCESS dur=PT18.747565S
+[bench_js_docker_fibonacci_40_10] rep5 total=18.691s per_task=467.3ms
+[bench_js_docker_fibonacci_40_10] wrote out/kestra_js_docker_fibonacci_40_10.json
+################ py process fibonacci_10_33
+[bench_py_process_fibonacci_10_33] flow upserted (10 tasks, n=33)
+[bench_py_process_fibonacci_10_33] warmup exec=4VLByHr1uJg8BplSHHjH0m state=SUCCESS dur=PT3.95737S
+[bench_py_process_fibonacci_10_33] warmup total=3.914s per_task=391.4ms
+[bench_py_process_fibonacci_10_33] rep1 exec=3Gychq87HV686QXcEgjxax state=SUCCESS dur=PT3.93928S
+[bench_py_process_fibonacci_10_33] rep1 total=3.891s per_task=389.1ms
+[bench_py_process_fibonacci_10_33] rep2 exec=Pc79CpX3HqWWvFVCmEWkO state=SUCCESS dur=PT3.976972S
+[bench_py_process_fibonacci_10_33] rep2 total=3.939s per_task=393.9ms
+[bench_py_process_fibonacci_10_33] rep3 exec=1iN1VdkUzuoV0QPtczSF5W state=SUCCESS dur=PT4.006151S
+[bench_py_process_fibonacci_10_33] rep3 total=3.968s per_task=396.8ms
+[bench_py_process_fibonacci_10_33] rep4 exec=3BZeMeJxBAUVwmQSFIZmD state=SUCCESS dur=PT3.917629S
+[bench_py_process_fibonacci_10_33] rep4 total=3.879s per_task=387.9ms
+[bench_py_process_fibonacci_10_33] rep5 exec=52MXF3uRSUIMPCwWju3YB1 state=SUCCESS dur=PT3.908074S
+[bench_py_process_fibonacci_10_33] rep5 total=3.858s per_task=385.8ms
+[bench_py_process_fibonacci_10_33] wrote out/kestra_python_process_fibonacci_10_33.json
+################ py docker fibonacci_10_33
+[bench_py_docker_fibonacci_10_33] flow upserted (10 tasks, n=33)
+[bench_py_docker_fibonacci_10_33] warmup exec=4WNGl6r6DbipuxxlRkOY9d state=SUCCESS dur=PT7.675587S
+[bench_py_docker_fibonacci_10_33] warmup total=7.660s per_task=766.0ms
+[bench_py_docker_fibonacci_10_33] rep1 exec=5l7kRTAbJfomx3z17PYLlO state=SUCCESS dur=PT7.589757S
+[bench_py_docker_fibonacci_10_33] rep1 total=7.547s per_task=754.7ms
+[bench_py_docker_fibonacci_10_33] rep2 exec=4j813XswhR6xQGthbUzMwF state=SUCCESS dur=PT7.680985S
+[bench_py_docker_fibonacci_10_33] rep2 total=7.623s per_task=762.3ms
+[bench_py_docker_fibonacci_10_33] rep3 exec=6rJBXktbzT9DvcBoWeeADF state=SUCCESS dur=PT7.617415S
+[bench_py_docker_fibonacci_10_33] rep3 total=7.560s per_task=756.0ms
+[bench_py_docker_fibonacci_10_33] rep4 exec=5AK979GHw5yymHcd2DdDcX state=SUCCESS dur=PT7.692102S
+[bench_py_docker_fibonacci_10_33] rep4 total=7.646s per_task=764.6ms
+[bench_py_docker_fibonacci_10_33] rep5 exec=4ZSNXNcRoKOLgROh9guo8M state=SUCCESS dur=PT7.632729S
+[bench_py_docker_fibonacci_10_33] rep5 total=7.582s per_task=758.2ms
+[bench_py_docker_fibonacci_10_33] wrote out/kestra_python_docker_fibonacci_10_33.json
+################ js process fibonacci_10_33
+[bench_js_process_fibonacci_10_33] flow upserted (10 tasks, n=33)
+[bench_js_process_fibonacci_10_33] warmup exec=yRnzaSRmoU4l7ce2V0wy5 state=SUCCESS dur=PT1.153555S
+[bench_js_process_fibonacci_10_33] warmup total=1.119s per_task=111.9ms
+[bench_js_process_fibonacci_10_33] rep1 exec=4TaaLxFrQ1cAfyW8fHT2Ud state=SUCCESS dur=PT1.146123S
+[bench_js_process_fibonacci_10_33] rep1 total=1.101s per_task=110.1ms
+[bench_js_process_fibonacci_10_33] rep2 exec=2CdmFZgm4ZuSh4esDDJySN state=SUCCESS dur=PT1.130734S
+[bench_js_process_fibonacci_10_33] rep2 total=1.110s per_task=111.0ms
+[bench_js_process_fibonacci_10_33] rep3 exec=4FiD097YU4q6QVX9BlWCLN state=SUCCESS dur=PT1.14794S
+[bench_js_process_fibonacci_10_33] rep3 total=1.106s per_task=110.6ms
+[bench_js_process_fibonacci_10_33] rep4 exec=6t4nAfemeh8XLsoeXBydmC state=SUCCESS dur=PT1.135948S
+[bench_js_process_fibonacci_10_33] rep4 total=1.114s per_task=111.4ms
+[bench_js_process_fibonacci_10_33] rep5 exec=1V1so8D1PNtKVNcOlY8ca9 state=SUCCESS dur=PT1.16581S
+[bench_js_process_fibonacci_10_33] rep5 total=1.124s per_task=112.4ms
+[bench_js_process_fibonacci_10_33] wrote out/kestra_js_process_fibonacci_10_33.json
+################ js docker fibonacci_10_33
+[bench_js_docker_fibonacci_10_33] flow upserted (10 tasks, n=33)
+[bench_js_docker_fibonacci_10_33] warmup exec=6w6KXcGqPlRSTLmn4xuAIF state=SUCCESS dur=PT5.036117S
+[bench_js_docker_fibonacci_10_33] warmup total=5.011s per_task=501.1ms
+[bench_js_docker_fibonacci_10_33] rep1 exec=3bvEbZu4lBRxjhn568V6fy state=SUCCESS dur=PT5.016388S
+[bench_js_docker_fibonacci_10_33] rep1 total=4.958s per_task=495.8ms
+[bench_js_docker_fibonacci_10_33] rep2 exec=ldcTPVj7uAxwc2cV7Nja9 state=SUCCESS dur=PT4.940454S
+[bench_js_docker_fibonacci_10_33] rep2 total=4.925s per_task=492.5ms
+[bench_js_docker_fibonacci_10_33] rep3 exec=Zyu46XAT1KUAl8JnxB8GD state=SUCCESS dur=PT4.920521S
+[bench_js_docker_fibonacci_10_33] rep3 total=4.894s per_task=489.4ms
+[bench_js_docker_fibonacci_10_33] rep4 exec=6HLjkfJCjuoMyfAZaA5K44 state=SUCCESS dur=PT5.009737S
+[bench_js_docker_fibonacci_10_33] rep4 total=4.991s per_task=499.1ms
+[bench_js_docker_fibonacci_10_33] rep5 exec=VVA7TJ4NLW29yTuZyVuGr state=SUCCESS dur=PT5.040228S
+[bench_js_docker_fibonacci_10_33] rep5 total=4.987s per_task=498.7ms
+[bench_js_docker_fibonacci_10_33] wrote out/kestra_js_docker_fibonacci_10_33.json
+ALLDONE

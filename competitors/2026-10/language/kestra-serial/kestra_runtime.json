@@ -1,0 +1,79 @@
+{
+ "engine": "kestra",
+ "kestra_version": "2.0.2",
+ "kestra_edition": "OSS",
+ "kestra_commit_id": "2ba6e90",
+ "kestra_commit_date": "2026-09-15T13:59:52Z",
+ "image": "kestra/kestra:v2.0.2",
+ "run": "2026-10-09",
+ "host": "AWS EC2 m7i.xlarge (4 vCPU, 16 GiB, us-east-2), nothing else running",
+ "docker_version": "29.1.3",
+ "note": "The Docker task runner and the Process task runner do not use the same interpreter. Both are recorded below. fibo33_s is three consecutive timings of fibo(33) measured inside the container or process that actually runs the task; fibo10_s is the mean of 1000 fibo(10) calls in the same place.",
+ "runtimes": {
+  "python_docker": {
+   "configuration": "default Docker task runner (io.kestra.plugin.scripts.runner.docker.Docker), containerImage: python:slim",
+   "measured_in": "a python:slim container, the image the Docker task runner starts per task",
+   "interpreter": "CPython",
+   "version": "3.14.8 (main, Oct  6 2026, 01:59:23) [GCC 14.2.0]",
+   "command_kestra_runs": "/bin/sh -c 'python <script>.py'",
+   "fibo33_s": [
+    0.287,
+    0.288,
+    0.29
+   ],
+   "fibo10_s": 4.505888e-06,
+   "interpreter_startup_ms": 10.5
+  },
+  "python_process": {
+   "configuration": "io.kestra.plugin.core.runner.Process",
+   "measured_in": "the Kestra worker (kestra/kestra:v2.0.2, Ubuntu 24.04), /usr/bin/python3.12",
+   "interpreter": "CPython",
+   "version": "3.12.3 (main, Jul 15 2026, 23:46:41) [GCC 13.3.0]",
+   "command_kestra_runs": "/bin/sh -c 'python3.12 <script>.py'  (preceded per task by: uv --version; uv python find --system --no-managed-python; /usr/bin/python --version)",
+   "fibo33_s": [
+    0.29,
+    0.29,
+    0.288
+   ],
+   "fibo10_s": 4.425827e-06,
+   "interpreter_startup_ms": 9.6,
+   "extra_probe_subprocesses_ms": 11.6
+  },
+  "js_docker": {
+   "configuration": "default Docker task runner, plugin default containerImage: node",
+   "measured_in": "a node container (docker.io/library/node:latest), the image the Docker task runner starts per task",
+   "interpreter": "Node.js",
+   "version": "v26.11.1",
+   "command_kestra_runs": "/bin/sh -c 'node <script>.js'",
+   "fibo33_s": [
+    0.029,
+    0.028,
+    0.028
+   ],
+   "fibo10_s": 4.63e-07,
+   "interpreter_startup_ms": 22.6
+  },
+  "js_process": {
+   "configuration": "io.kestra.plugin.core.runner.Process",
+   "measured_in": "the Kestra worker; Node.js v26.11.1 installed from the official linux-x64 tarball because the kestra image ships no node",
+   "interpreter": "Node.js",
+   "version": "v26.11.1",
+   "command_kestra_runs": "/bin/sh -c 'node <script>.js'",
+   "fibo33_s": [
+    0.029,
+    0.028,
+    0.028
+   ],
+   "fibo10_s": 5.12e-07,
+   "interpreter_startup_ms": 22.8
+  }
+ },
+ "docker_task_runner_overhead": {
+  "note": "Per-task container lifecycle the Docker task runner pays, measured on the host, mean of 20 runs.",
+  "docker_run_rm_python_slim_true_ms": 262.0,
+  "docker_run_rm_node_true_ms": 259.7,
+  "docker_run_rm_python_slim_fibo10_ms": 273.3,
+  "docker_run_rm_node_fibo10_ms": 281.8,
+  "docker_volume_create_plus_rm_ms": 35.4
+ }
+}

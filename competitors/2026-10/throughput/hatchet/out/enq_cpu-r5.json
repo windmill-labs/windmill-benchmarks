@@ -1,0 +1,1 @@
+{"tag": "cpu-r5", "workload": "cpu", "n": 2000, "enqueue_s": 0.2568, "paused_window_s": 0.7788, "unpause_s": 0.022, "workers": 20}
